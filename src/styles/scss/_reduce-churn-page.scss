@@ -1,0 +1,35 @@
+.reduce-churn-page {
+  .image-header {
+    width: 128%;
+  }
+
+  .texblock-image-section .subHeading {
+    font-size: 6rem;
+    margin-bottom: 3rem;
+  }
+
+  .texblock-image-section.first {
+    .image-block {
+      margin: 0 auto;
+      width: 108%;
+    }
+  }
+
+  .texblock-image-section.second {
+    .image-block {
+      margin: 0 auto;
+      width: 71%;
+    }
+  }
+
+  .texblock-image-section.third {
+    .image-block {
+      margin: 0 auto;
+      width: 88%;
+    }
+  }
+
+  .cta2 h2 {
+    font-size: 3.5rem;
+  }
+}

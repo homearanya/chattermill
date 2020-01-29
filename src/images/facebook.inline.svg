@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg role="img" aria-labelledby="thetitle thedescription" width="7px" height="15px" viewBox="0 0 7 15" version="1.1" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns="http://www.w3.org/2000/svg">
+  <title id="thetitle">Facebook</title>
+  <desc id="thedescription">Created by Lunacy</desc>
+  <path d="M1.55082 15L1.55082 7.5L0 7.5L0 4.9147L1.55082 4.9147L1.55082 3.36319C1.55082 1.25554 2.42688 0 4.91348 0L6.98465 0L6.98465 2.5853L5.69059 2.5853C4.7224 2.5853 4.65757 2.94695 4.65757 3.62078L4.65416 4.9147L7 4.9147L6.72532 7.5L4.65416 7.5L4.65416 15L1.55082 15Z" id="Facebook" fill="#291C45" stroke="none" />
+</svg>

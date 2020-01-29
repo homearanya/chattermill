@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "types": ["react"],
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "typeRoots": ["./node_modules/@types", "./typings/"]
+  },
+  "exclude": ["node-modules", "public", ".cache"]
+}

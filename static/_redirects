@@ -1,0 +1,83 @@
+# Redirect domain aliases to primary domain
+https://chattermill.io/*  https://www.chattermill.com/:splat  301!
+https://chattermill.netlify.com/* https://www.chattermill.com/:splat  301!
+
+# Redirect with a 301 (default)
+
+/customer_experience_for_travel /resources/insights
+/customer_experience_for_finance /resources/insights
+/customer_experience_for_insurance /resources/insights
+/customer_experience_for_ecommerce /resources/insights
+/customer_experience_for_retail /resources/insights
+/customer_experience_for_gaming /resources/insights
+/customer_experience_for_grocery /resources/insights
+/nps_analytics /insights/the-ultimate-guide-to-net-promoter-score-or-chattermill
+/csat_analytics /platform
+/surveys_analytics /platform
+/support_tickets_analytics /platform
+/#benefits /platform
+/#features /platform
+/insights /resources/insights
+/insights/how-to-share-customer-insight-across-an-organisation /resources/insights/how-to-share-customer-insight-across-an-organisation
+/insights/how-ai-is-shaping-fundamentals-of-customer-support/ /resources/insights/how-ai-is-shaping-fundamentals-of-customer-support
+/insights/the-advantages-of-open-ended-survey-questions/ /resources/insights/the-advantages-of-open-ended-survey-questions
+/insights/netflix-customer-experience-story/  /resources/insights/netflix-customer-experience-story
+/insights/10-ways-to-increase-online-reviews /resources/insights/10-ways-to-increase-online-reviews
+/insights/how-dollar-shave-club-creates-great-customer-experience /resources/insights/how-dollar-shave-club-creates-great-customer-experience  
+/insights/how-to-drive-action-with-your-voice-of-customer-program /resources/insights/how-to-drive-action-with-your-voice-of-customer-program
+/insights/what-does-customer-centric-mean /resources/insights/what-does-customer-centric-mean
+/insights/increase-survey-response-rates /resources/insights/increase-survey-response-rates
+/insights/common-customer-experience-mistakes /resources/insights/common-customer-experience-mistakes
+/insights/customer-experience-measurement-metrics /resources/insights/customer-experience-measurement-metrics
+/insights/customer-experience-books /resources/insights/customer-experience-books
+/insights/how-leading-brands-optimise-customer-experience /resources/insights/how-leading-brands-optimise-customer-experience
+/insights/introducing-the-premier-league-customer-experience-table /resources/insights/introducing-the-premier-league-customer-experience-table
+/insights/event-recap-the-2018-q4-experience-meetup-co-hosted-by-chattermill-and /resources/insights/event-recap-the-2018-q4-experience-meetup-co-hosted-by-chattermill-and
+/insights/how-nlp-ml-and-deep-learning-can-transform-your-cx-strategy /resources/insights/how-nlp-ml-and-deep-learning-can-transform-your-cx-strategy/
+/insights/a-deep-dive-into-surveys-open-ended-vs-close-ended /resources/insights/a-deep-dive-into-surveys-open-ended-vs-close-ended
+/insights/us-open-2018-can-amazon-ace-live-sports-broadcasting /resources/insights/US-open-2018-can-amazon-ace-live-sports-broadcasting
+/insights/the-slack-growth-hack /resources/insights/the-slack-growth-hack
+/insights/the-ultimate-guide-to-net-promoter-score-or-chattermill /resources/insights/the-ultimate-guide-to-net-promoter-score-or-chattermill
+/insights/the-guide-to-building-your-customer-experience-technology-stack /resources/insights/the-guide-to-building-your-customer-experience-technology-stack
+/insights/how-to-improve-net-promoter-score /resources/insights/How-to-improve-net-promoter-score/
+/insights/the-customer-experience-technology-stack-aggregation-tools  /resources/insights/the-guide-to-building-your-customer-experience-technology-stack/
+/insights/how-to-perform-effective-net-promoter-score-analysis /resources/insights/how-to-perform-effective-net-promoter-score-analysis
+/insights/the-customer-experience-technology-stack-visualisation /resources/insights/the-customer-experience-technology-stack-visualisation
+/insights/the-customer-experience-technology-stack-feedback-collection /resources/insights/the-customer-experience-technology-stack-feedback-collection
+/insights/practitioners-guide-to-nps-surveys /resources/insights/practitioners-guide-to-nps-surveys
+/insights/the-best-customer-experience-events /resources/insights/the-best-customer-experience-events
+/insights/how-amazon-is-taking-the-world-by-focusing-on-customer-experience-above-all /resources/insights/how-amazon-is-taking-the-world-by-focusing-on-customer-experience-above-all
+/insights/deep-learning-startup-chattermill-closes-gbp600-000-seed-round /resources/insights/deep-learning-startup-chattermill-closes-gbp600-000-seed-round
+/insights/cx-will-do-a-lot-more-good-than-marketing /resources/insights/cx-will-do-a-lot-more-good-than-marketing
+/insights/what-you-should-know-about-customer-reviews 
+/insights/how-amazon-could-change-cx-in-grocery-retail /resources/insights/how-amazon-could-change-cx-in-grocery-retail
+/insights/using-technology-to-improve-your-customer-experience /resources/insights/using-technology-to-improve-your-customer-experience
+/insights/customer-support-in-the-modern-age /resources/insights/customer-support-in-the-modern-age
+/insights/challenger-banks-must-get-the-basics-of-customer-experience-right /resources/insights/challenger-banks-must-get-the-basics-of-customer-experience-right
+/insights/we-analysed-banking-customer-experience-and-heres-what-we-found-part-1 /resources/insights/we-analysed-banking-customer-experience-and-heres-what-we-found-part-1
+/insights/why-automation-is-the-future-of-personalisation /resources/insights/why-automation-is-the-future-of-personalisation
+/insights/wannacry-cx /resources/insights/wannacry-cx
+/insights/why-you-should-pay-more-attention-to-your-promoters /resources/insights/why-you-should-pay-more-attention-to-your-promoters
+/insights/we-analysed-asoss-customer-experience-and-here-s-what-we-found /resources/insights/we-analysed-asoss-customer-experience-and-here-s-what-we-found
+/insights/the-top-100-customer-experience-blogs-you-need-to-be-reading-part-2 /resources/insights/the-top-100-customer-experience-blogs-you-need-to-be-reading-part-2
+/insights/how-to-avoid-being-trump-ed-by-your-customers /resources/insights/how-to-avoid-being-trump-ed-by-your-customers
+/insights/the-top-100-customer-experience-blogs-you-need-to-be-reading-part-1 /resources/insights/the-top-100-customer-experience-blogs-you-need-to-be-reading-part-1
+/insights/how-to-unlock-customer-data-silos-from-different-channels /resources/insights/how-to-unlock-customer-data-silos-from-different-channels
+/insights/the-ultimate-guide-to-csat /resources/insights/the-ultimate-guide-to-csat
+/insights/how-to-make-surveys-worth-the-effort /resources/insights/how-to-make-surveys-worth-the-effort
+/insights/the-5-principles-of-good-customer-experience /resources/insights/the-5-principles-of-good-customer-experience
+/insights/e-commerce-cx-2016-insights /resources/insights/e-commerce-cx-2016-insights
+/insights/the-government-is-shaking-up-the-fintech-industry-here-s-what-to-expect /resources/insights/the-government-is-shaking-up-the-fintech-industry-here-s-what-to-expect
+/insights/the-state-of-customer-experience-in-insurance-in-2016 /resources/insights/the-state-of-customer-experience-in-insurance-in-2016
+/insights/survival-of-the-fittest /resources/insights/survival-of-the-fittest
+/insights/what-the-hell-is-customer-experience /resources/insights/what-the-hell-is-customer-experience
+/insights/how-to-make-it-in-fintech /resources/insights/how-to-make-it-in-fintech
+/insights/words-in-numbers /resources/insights/words-in-numbers
+/insights/the-problem-with-customer-experience-in-travel /resources/insights/the-problem-with-customer-experience-in-travel
+/insights/how-to-stay-relevant-as-modern-technology-makes-diy-travel-easier-than-ever /resources/insights/how-to-stay-relevant-as-modern-technology-makes-diy-travel-easier-than-ever
+/insights/4-things-the-travel-industry-can-learn-from-airbnb-s-incredible-growth /resources/insights/4-things-the-travel-industry-can-learn-from-airbnb-s-incredible-growth
+/insights/net-promoter-score-why-most-companies-are-doing-it-wrong /resources/insights/net-promoter-score-why-most-companies-are-doing-it-wrong
+/insights/why-most-surveys-suck /resources/insights/why-most-surveys-suck
+
+
+
