@@ -40,6 +40,7 @@ const ResourcesPage = ({
 }: ResourcesPageProps) => {
   const wistiaVideosEdges =
     allWistiaVideos && allWistiaVideos.edges ? allWistiaVideos.edges : []
+  console.log({ wistiaVideosEdges })
   const [templateTitleHeights, setTemplateTitleHeights] = useState({})
   const [webinarTitleHeights, setWebinarTitleHeights] = useState({})
   const [imageSizes, setImageSizes] = useState({})
