@@ -32,6 +32,7 @@ module.exports = {
   },
   siteMetadata,
   plugins: [
+    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-image`,
     `gatsby-plugin-perf-budgets`,
     ...gatsbyPluginWebpackBundleAnalyserV2,
