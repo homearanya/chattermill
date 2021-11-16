@@ -1,14 +1,14 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 import {
   $colorHeading,
   $colorSecondary,
-  $greyLight,
-} from "../../../../styles/variables"
-import { dropdownOpen } from "../../../../styles/common.styled"
-import ArrowDown from "../../../../images/arrow-down.inline.svg"
+  $greyLight
+} from "../../../../styles/variables";
+import { dropdownOpen } from "../../../../styles/common.styled";
+import ArrowDown from "../../../../images/arrow-down.inline.svg";
 
-import { menuItem, menuItemHover } from "../mobile-menu.styled"
+import { menuItem, menuItemHover } from "../mobile-menu.styled";
 
 export const ArrowDownIcon = styled(ArrowDown)`
   fill: ${$colorHeading};
@@ -16,11 +16,11 @@ export const ArrowDownIcon = styled(ArrowDown)`
   height: 1rem;
   width: 1rem;
   transition: fill 0.2s;
-`
+`;
 
 export const ArrowUpIcon = styled(ArrowDownIcon)`
   transform: rotateX(180deg);
-`
+`;
 
 export const Header = styled.div`
   ${menuItem};
@@ -29,6 +29,7 @@ export const Header = styled.div`
   justify-content: space-between;
   font-size: 2.2rem;
   width: 25rem;
+  overflow: hidden;
   border-bottom: 2px solid transparent;
   :hover {
     ${menuItemHover};
@@ -37,18 +38,19 @@ export const Header = styled.div`
     }
     cursor: pointer;
   }
-`
-export const Title = styled.span``
+`;
+export const Title = styled.span``;
 
 interface ListProps {
-  isOpen: boolean
+  isOpen: boolean;
 }
 export const List = styled.ul<ListProps>`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   list-style: none;
+  overflow-y: scroll;
   padding: 1rem 0;
   animation: ${dropdownOpen} 0.5s;
-`
+`;
 
 export const ListItem = styled.li`
   a:link,
@@ -65,4 +67,4 @@ export const ListItem = styled.li`
     border: none;
     background-color: ${$greyLight};
   }
-`
+`;

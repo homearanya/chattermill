@@ -1,8 +1,8 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-import { $colorHeading, $greyRegular } from "../../styles/variables"
+import { $colorHeading, $greyRegular } from "../../styles/variables";
 
-import { BigHeading } from "../../styles/common.styled"
+import { BigHeading } from "../../styles/common.styled";
 
 export const Heading = styled(BigHeading)`
   text-align: center;
@@ -22,4 +22,4 @@ export const Heading = styled(BigHeading)`
   a:active {
     color: ${$greyRegular};
   }
-`
+`;

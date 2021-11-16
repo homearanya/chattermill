@@ -1,2 +1,2 @@
-export * from "./cta"
-export { default } from "./cta"
+export * from "./cta";
+export { default } from "./cta";

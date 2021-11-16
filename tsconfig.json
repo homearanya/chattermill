@@ -4,12 +4,11 @@
     "target": "esnext",
     "jsx": "preserve",
     "lib": ["dom", "esnext"],
-    "types": ["react"],
+    "types": ["react", "node"],
     "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
-    "noUnusedLocals": true,
-    "typeRoots": ["./node_modules/@types", "./typings/"]
+    "noUnusedLocals": true
   },
-  "exclude": ["node-modules", "public", ".cache"]
+  "exclude": ["node_modules", "public", ".cache"]
 }

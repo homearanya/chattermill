@@ -1,63 +1,75 @@
-import React from "react";
+import React from "react"
 
-import { graphql } from "gatsby";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import HomeHeader, { HomeHeaderData } from "../components/home-header";
-import BrandsSection from "../components/brands-section";
-import BrandsSection2 from "../components/brands-section-2";
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import HomeHeader, { HomeHeaderData } from "../components/home-header"
+import BrandsSection from "../components/brands-section"
+import BrandsSection2 from "../components/brands-section-2"
 import PlatformSection, {
-  PlatformSectionData
-} from "../components/platform-section";
-import CaseStudySection, {
-  CaseStudySectionData
-} from "../components/case-study-section";
-import CTA, { CTAData } from "../components/cta";
+  PlatformSectionData,
+} from "../components/platform-section"
+import { CaseStudySectionData } from "../components/case-study-section"
+import CTA2, { CTA2Data } from "../components/cta2"
+import ProductPageQuotes from "../components/product-page-quotes"
 
-import "../styles/scss/styles.scss";
+import "../styles/scss/styles.scss"
 
 interface HomePageProps {
-  readonly data: PageQueryData;
+  readonly data: PageQueryData
 }
 
 const HomePage = ({
   data: {
     markdownRemark: {
-      frontmatter: {
-        title,
-        description,
-        header,
-        platformSection,
-        caseStudySection,
-        CTASection
-      }
-    }
+      frontmatter: { title, description, header, platformSection, CTASection },
+    },
+    contentfulProductPage: { caseStudies, caseStudyHeading },
+  },
+}: HomePageProps) => {
+  const caseStudyData = {
+    caseStudies,
+    caseStudyHeading,
   }
-}: HomePageProps) => (
-  <Layout className="home-page">
-    <SEO title={title} description={description} />
-    <HomeHeader data={header} />
-    <BrandsSection />
-    <PlatformSection data={platformSection} />
-    <CaseStudySection data={caseStudySection} />
-    <CTA data={CTASection} />
-    <BrandsSection2 borderBottom withObserver />
-  </Layout>
-);
+  return (
+    <Layout className="home-page">
+      <SEO title={title} description={description} />
+      <HomeHeader data={header} />
+      <BrandsSection />
+      <PlatformSection data={platformSection} />
+      <ProductPageQuotes data={caseStudyData} />
+      <CTA2 data={CTASection} />
+      {/* <BrandsSection2 borderBottom withObserver /> */}
+    </Layout>
+  )
+}
 
-export default HomePage;
+export default HomePage
 
 interface PageQueryData {
   markdownRemark: {
     frontmatter: {
-      title: string;
-      description: string;
-      header: HomeHeaderData;
-      platformSection: PlatformSectionData;
-      caseStudySection: CaseStudySectionData;
-      CTASection: CTAData;
-    };
-  };
+      title: string
+      description: string
+      header: HomeHeaderData
+      platformSection: PlatformSectionData
+      caseStudySection: CaseStudySectionData
+      CTASection: CTA2Data
+    }
+  }
+  contentfulProductPage: {
+    caseStudyHeading: string
+    caseStudies: {
+      title: string
+      quote: string
+      name: string
+      photoImage: {
+        file: {
+          url: string
+        }
+      }
+    }
+  }
 }
 
 export const query = graphql`
@@ -70,9 +82,12 @@ export const query = graphql`
           backgroundImage {
             src {
               childImageSharp {
-                fixed(width: 767) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(
+                  width: 767
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP]
+                )
               }
               publicURL
             }
@@ -82,9 +97,9 @@ export const query = graphql`
             heading
             subHeading
             text
-            button {
-              text
-              link
+            emailForm {
+              textPlaceholder
+              buttonText
             }
           }
         }
@@ -95,17 +110,11 @@ export const query = graphql`
             link
           }
           features {
-            shapeColor
-            image {
+            video {
               src {
-                childImageSharp {
-                  fluid(maxWidth: 640) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
+                id
                 publicURL
               }
-              alt
             }
             textBlock {
               imageName
@@ -121,11 +130,10 @@ export const query = graphql`
         caseStudySection {
           backgroundImage {
             childImageSharp {
-              fixed(width: 575) {
-                ...GatsbyImageSharpFixed
-              }
+              gatsbyImageData(width: 575, layout: FIXED, formats: [AUTO, WEBP])
             }
           }
+          alt
           textBlock {
             tagline
             subHeading
@@ -133,58 +141,41 @@ export const query = graphql`
           }
           image {
             childImageSharp {
-              fluid(maxWidth: 528) {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(
+                width: 528
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
-        }
-        customerExperienceSection {
-          heading
-          experiences {
-            image {
-              src {
-                childImageSharp {
-                  fluid(maxWidth: 500) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-                publicURL
-              }
-              alt
-            }
-            textBlock {
-              tagline
-              subHeading
-              text
-              button {
-                text
-                link
-              }
-            }
-          }
+          imageAlt
         }
         CTASection {
           shapeColor
-          textBlock {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 253) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-              publicURL
-            }
-            subHeading
-            text
-            button {
-              text
-              link
-              secondary
-            }
-          }
+          text
+          subText
         }
       }
     }
+    contentfulProductPage {
+      caseStudyHeading
+      caseStudies {
+        photoImage {
+          fluid(maxWidth: 100, quality: 92) {
+            base64
+            aspectRatio
+            src
+            srcSet
+            srcWebp
+            srcSetWebp
+            sizes
+          }
+        }
+        title
+        quote
+        name
+      }
+    }
   }
-`;
+`

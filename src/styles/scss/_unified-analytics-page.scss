@@ -1,0 +1,30 @@
+.unified-analytics-page {
+  .image-header {
+    width: 113%;
+  }
+  .texblock-image-section .subHeading {
+    font-size: 6rem;
+    margin-bottom: 3rem;
+  }
+
+  .texblock-image-section.first {
+    .image-block {
+      margin: 0 auto;
+      width: 79%;
+    }
+  }
+
+  .texblock-image-section.second {
+    .image-block {
+      margin: 0 auto;
+      width: 101%;
+    }
+  }
+
+  .texblock-image-section.third {
+    .image-block {
+      margin: 0 auto;
+      width: 85%;
+    }
+  }
+}

@@ -1,19 +1,28 @@
 import React from "react"
 import { useInView } from "react-intersection-observer"
-import { Col } from "react-awesome-styled-grid"
 
-import { StyledLink, StyledWhiteIcon, StyledColorIcon } from "./brands.styled"
+import {
+  StyledCol,
+  StyledLink,
+  StyledWhiteIcon,
+  StyledColorIcon,
+} from "./brands.styled"
+
+export interface Brand {
+  name: string
+  whiteIcon: string
+  colorIcon: string
+  link: string
+  width?: string
+  height?: string
+}
 
 export interface BrandsProps {
-  brands: {
-    name: string
-    whiteIcon: string
-    colorIcon: string
-    link: string
-  }[]
+  brands: Brand[]
   withObserver?: boolean
   columsXS: number
   noGutter?: boolean
+  className?: string
 }
 export const Brands = ({
   brands,
@@ -29,14 +38,15 @@ export const Brands = ({
   return (
     <>
       {brands.map((brand, index) => {
-        const { name, whiteIcon, colorIcon, link } = brand
+        const { name, whiteIcon, colorIcon, link, width, height } = brand
         return (
-          <Col
+          <StyledCol
             key={index}
             noGutter={noGutter}
             xs={columsXS}
             sm={8 / 3}
-            md={1}
+            md={4}
+            align={{ xs: "center" }}
             justify={{ xs: "center" }}
           >
             <StyledLink
@@ -47,10 +57,20 @@ export const Brands = ({
               inView={inView}
               target="_blank"
             >
-              <StyledWhiteIcon src={whiteIcon} alt={name} />
-              <StyledColorIcon src={colorIcon} alt={name} />
+              <StyledWhiteIcon
+                src={whiteIcon}
+                alt={name}
+                width={width}
+                height={height}
+              />
+              <StyledColorIcon
+                src={colorIcon}
+                alt={name}
+                width={width}
+                height={height}
+              />
             </StyledLink>
-          </Col>
+          </StyledCol>
         )
       })}
     </>

@@ -1,68 +1,71 @@
-import React from "react"
-import { Row, Container } from "react-awesome-styled-grid"
-import { StyledSection } from "./brands-section-2.styled"
+import React from "react";
+import { Row } from "react-awesome-styled-grid";
+import { StyledSection, StyledContainer } from "./brands-section-2.styled";
 
-import Brands from "../brands"
+import Brands, { Brand } from "../brands";
 
-import TechCrunchIcon from "../../images/tech-crunch.svg"
-import TechCrunchColorIcon from "../../images/tech-crunch-color.svg"
-import TechWorldIcon from "../../images/tech-world.png"
-import TechWorldColorIcon from "../../images/tech-world-color.png"
-import UKTNIcon from "../../images/uktn.png"
-import UKTNColorIcon from "../../images/uktn-color.png"
-import CustomerThinkIcon from "../../images/customer-think.png"
-import CustomerThinkColorIcon from "../../images/customer-think-color.png"
-import ResearchLiveIcon from "../../images/research-live.png"
-import ResearchLiveColorIcon from "../../images/research-live-color.png"
+import TechCrunchIcon from "../../images/tech-crunch.svg";
+import TechCrunchColorIcon from "../../images/tech-crunch-color.svg";
+import TelegraphIcon from "../../images/telegraph-logo-white.svg";
+import TelegraphColorIcon from "../../images/telegraph-logo-colour.svg";
+import DeloitteIcon from "../../images/deloitte.svg";
+import DeloitteColorIcon from "../../images/deloitte-color.svg";
+import FinancialTimesIcon from "../../images/ft.svg";
+import FinancialTimesColorIcon from "../../images/ft-color.svg";
+import TechNationColorIcon from "../../images/technation-logo-colour.svg";
+import TechNationIcon from "../../images/technation-logo.svg";
 
 interface BrandsSection2Props {
-  borderBottom?: boolean
-  borderTop?: boolean
-  withObserver?: boolean
+  brands?: Brand[];
+  borderBottom?: boolean;
+  borderTop?: boolean;
+  withObserver?: boolean;
 }
 
 export const BrandsSection2 = ({
-  borderTop,
-  borderBottom,
-  withObserver,
-}: BrandsSection2Props) => {
-  const brands = [
+  brands = [
     {
       name: "TechCrunch",
       whiteIcon: TechCrunchIcon,
       colorIcon: TechCrunchColorIcon,
-      link: "https://techcrunch.com/",
+      link: "https://techcrunch.com/2017/12/07/chattermill/"
     },
     {
-      name: "TechWorld",
-      whiteIcon: TechWorldIcon,
-      colorIcon: TechWorldColorIcon,
-      link: "https://www.techworld.com/",
+      name: "Telegraph",
+      whiteIcon: TelegraphIcon,
+      colorIcon: TelegraphColorIcon,
+      link:
+        "https://www.telegraph.co.uk/technology/2020/01/30/meet-uks-30-most-promising-tech-start-ups-vying-next-monzo/"
     },
     {
-      name: "UKTN",
-      whiteIcon: UKTNIcon,
-      colorIcon: UKTNColorIcon,
-      link: "https://www.uktech.news/",
+      name: "Deloitte",
+      whiteIcon: DeloitteIcon,
+      colorIcon: DeloitteColorIcon,
+      link: "https://www.deloitte.co.uk/fast50/winners/2020/"
     },
     {
-      name: "CustomerThink",
-      whiteIcon: CustomerThinkIcon,
-      colorIcon: CustomerThinkColorIcon,
-      link: "https://customerthink.com/",
+      name: "TechNation",
+      whiteIcon: TechNationColorIcon,
+      colorIcon: TechNationIcon,
+      link: "https://technation.io/news/upscale-cohort-2020/"
     },
     {
-      name: "ResearchLive",
-      whiteIcon: ResearchLiveIcon,
-      colorIcon: ResearchLiveColorIcon,
-      link: "https://www.research-live.com/",
-    },
-  ]
+      name: "FinancialTimes",
+      whiteIcon: FinancialTimesIcon,
+      colorIcon: FinancialTimesColorIcon,
+      link: "https://www.ft.com/content/8b37a92b-15e6-4b9c-8427-315a8b5f4332"
+    }
+  ],
+  borderTop,
+  borderBottom,
+  withObserver,
+  ...rest
+}: BrandsSection2Props) => {
   return (
-    <StyledSection borderTop={borderTop} borderBottom={borderBottom}>
-      <Container>
+    <StyledSection borderTop={borderTop} borderBottom={borderBottom} {...rest}>
+      <StyledContainer>
         <Row
-          justify={{ xs: "center", md: "space-between", lg: "space-around" }}
+          justify={{ xs: "center", md: "space-between" }}
           align={{ sm: "center" }}
         >
           <Brands
@@ -72,9 +75,9 @@ export const BrandsSection2 = ({
             noGutter
           />
         </Row>
-      </Container>
+      </StyledContainer>
     </StyledSection>
-  )
-}
+  );
+};
 
-export default BrandsSection2
+export default BrandsSection2;

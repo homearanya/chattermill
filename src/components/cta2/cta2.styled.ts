@@ -1,12 +1,7 @@
 import styled, { css } from "styled-components"
-import { Row } from "react-awesome-styled-grid"
 
 import media from "../../styles/media"
-import {
-  WideContainer,
-  Section,
-  MediumHeading,
-} from "../../styles/common.styled"
+import { WideContainer } from "../../styles/common.styled"
 import { $white, $colorHeading } from "../../styles/variables"
 
 import EmailForm from "../email-form"
@@ -23,7 +18,7 @@ interface StyledShapeLeftProps {
 }
 export const StyledShapeLeft = styled(ShapeLeft)<StyledShapeLeftProps>`
   transform: rotate(45deg);
-  ${props => shape(props.color)};
+  ${(props) => shape(props.color)};
   top: -43rem;
   left: -45rem;
 
@@ -39,7 +34,7 @@ interface StyledShapeRightProps {
 
 export const StyledShapeRight = styled(ShapeLeft)<StyledShapeRightProps>`
   transform: rotate(215deg);
-  ${props => shape(props.color)};
+  ${(props) => shape(props.color)};
   top: 10rem;
   right: -45rem;
 
@@ -52,8 +47,8 @@ export const StyledShapeRight = styled(ShapeLeft)<StyledShapeRightProps>`
 interface StyledSectionProps {
   marginTop?: boolean | undefined
 }
-export const StyledSection = styled(Section)<StyledSectionProps>`
-  margin-top: ${props => (props.marginTop ? "5rem" : "0")};
+export const StyledSection = styled.section<StyledSectionProps>`
+  margin-top: ${(props) => (props.marginTop ? "5rem" : "0")};
 
   ${({ marginTop }) => media.lessThan("sm")`
     margin-top: ${marginTop ? "3rem" : "0"};
@@ -62,25 +57,30 @@ export const StyledSection = styled(Section)<StyledSectionProps>`
 
 export const StyledWideContainer = styled(WideContainer)`
   background-color: ${$colorHeading};
-`
-
-export const StyledRow = styled(Row)`
-  padding: 9rem 0;
   display: flex;
-  align-items: center;
-
-  ${media.lessThan("sm")`
-    padding: 9rem 0 16rem 0;
-  `}
 `
-interface HeadingProps {
-  inView?: boolean
-}
-export const Heading = styled(MediumHeading)<HeadingProps>`
-  color: ${$white};
-  margin: 0;
 
-  ${props =>
+export const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 16rem;
+  padding-bottom: 16rem;
+  max-width: 600px;
+  align-items: center;
+  margin: 0 auto;
+`
+
+interface StyledHeadingProps {
+  inView: boolean
+}
+export const Heading = styled.p<StyledHeadingProps>`
+  color: ${$white};
+  margin-bottom: 3rem;
+  font-size: 4rem;
+  text-align: center;
+
+  ${(props) =>
     css`
       opacity: 0;
       transform: translateX(-40px);
@@ -92,39 +92,37 @@ export const Heading = styled(MediumHeading)<HeadingProps>`
         `}
     `}
   ${media.lessThan("sm")`
+    font-size: 2.5rem;
+    padding: 1rem 4rem;
     text-align: center;
-  `}
+  `};
 `
 
-interface FormWrapperProps {
-  inView?: boolean
+interface TextProps {
+  inView: boolean
 }
-export const FormWrapper = styled.div<FormWrapperProps>`
-  width: 100%;
-  ${props =>
+export const Text = styled.p<TextProps>`
+  color: ${$white};
+  margin-top: 4rem;
+  text-align: center;
+  font-size: 1.6rem;
+
+  ${(props) =>
     css`
       opacity: 0;
-      transform: translateX(40px);
+      transform: translateX(-40px);
       transition: all 1s;
       ${props.inView &&
         css`
           opacity: 1;
           transform: translateX(0);
         `}
-    `};
-`
-
-export const StyledEmailForm = styled(EmailForm)`
-  width: 90%;
-  margin-left: auto;
-
-  ${media.lessThan("lg")`
-    width: 93%;
-  `}
-
+    `}
   ${media.lessThan("sm")`
-    width: 100%;
-    max-width: 29rem;
-    margin: 0 auto;
+    font-size: 1.5rem;
+    padding: 1rem 4rem;
+    text-align: center;
   `}
 `
+
+export const StyledEmailForm = styled(EmailForm)``

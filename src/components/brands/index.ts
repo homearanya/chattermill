@@ -1,2 +1,2 @@
-export * from "./brands"
-export { default } from "./brands"
+export * from "./brands";
+export { default } from "./brands";

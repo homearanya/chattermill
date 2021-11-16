@@ -1,18 +1,24 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
-import { $colorSecondary } from "./variables"
+import { $colorSecondary } from "./variables";
 
-import EuclidSquareLightWOFF from "./fonts/EuclidSquare-Light.woff"
-import EuclidSquareLightWOFF2 from "./fonts/EuclidSquare-Light.woff2"
+import EuclidSquareLightWOFF from "./fonts/EuclidSquare-Light.woff";
+import EuclidSquareLightWOFF2 from "./fonts/EuclidSquare-Light.woff2";
 
-import EuclidSquareRegularWOFF from "./fonts/EuclidSquare-Regular.woff"
-import EuclidSquareRegularWOFF2 from "./fonts/EuclidSquare-Regular.woff2"
+import EuclidSquareRegularWOFF from "./fonts/EuclidSquare-Regular.woff";
+import EuclidSquareRegularWOFF2 from "./fonts/EuclidSquare-Regular.woff2";
 
-import EuclidSquareBoldWOFF from "./fonts/EuclidSquare-Bold.woff"
-import EuclidSquareBoldWOFF2 from "./fonts/EuclidSquare-Bold.woff2"
+import EuclidSquareBoldWOFF from "./fonts/EuclidSquare-Bold.woff";
+import EuclidSquareBoldWOFF2 from "./fonts/EuclidSquare-Bold.woff2";
 
-import RaisonneDemiBoldWOFF from "./fonts/Raisonne-DemiBold.woff"
-import RaisonneDemiBoldWOFF2 from "./fonts/Raisonne-DemiBold.woff2"
+import RaisonneDemiBoldWOFF from "./fonts/Raisonne-DemiBold.woff";
+import RaisonneDemiBoldWOFF2 from "./fonts/Raisonne-DemiBold.woff2";
+
+import EuclidCircularRegularWOFF from "./fonts/EuclidCircularB-Regular-WebS.woff";
+import EuclidCircularRegularWOFF2 from "./fonts/EuclidCircularB-Regular-WebS.woff2";
+
+import EuclidCircularMediumWOFF from "./fonts/EuclidCircularB-Medium-WebS.woff";
+import EuclidCircularMediumWOFF2 from "./fonts/EuclidCircularB-Medium-WebS.woff2";
 
 export default createGlobalStyle`
 @font-face {
@@ -52,6 +58,24 @@ export default createGlobalStyle`
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'EuclidCircularB';
+    font-display: swap;
+    src: url(${EuclidCircularRegularWOFF2}) format('woff2'),
+        url(${EuclidCircularRegularWOFF}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'EuclidCircularB';
+    font-display: swap;
+    src: url(${EuclidCircularMediumWOFF2}) format('woff2'),
+        url(${EuclidCircularMediumWOFF}) format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
 *,
 *::before,
 *::after {
@@ -72,6 +96,7 @@ body {
     font-weight: 400;
     line-height: 1.6;
     color: ${$colorSecondary};
+    overflow-x: hidden;
 }
 
 .active {
@@ -79,4 +104,6 @@ body {
   border-bottom: 3px solid #10c2ed;
 }
 
-`
+
+
+`;

@@ -1,20 +1,25 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import media from "../../styles/media"
-import { $white, $colorPrimary, $greyLight } from "../../styles/variables"
-import { Button } from "../../styles/common.styled"
-import { absoluteCenter } from "../../styles/mixins"
+import {
+  $white,
+  $greyLight,
+  $colorPrimary,
+  $lime,
+  $colorHeading,
+} from "../../styles/variables"
+import UniversalLink from "../universal-link"
 
 interface StyledInputProps {
   border?: boolean
 }
 export const StyledInput = styled.input<StyledInputProps>`
   && {
-    width: 100%;
     background-color: ${$white} !important;
     border: none;
-    padding: 2.6rem 15rem 2.6rem 2rem;
-    border-radius: 3.5rem;
+    width: 98%;
+    padding: 2.3rem 15rem 2.3rem 2rem;
+    border-radius: 2rem;
     overflow: hidden;
     border: ${({ border }) => (border ? `1px solid ${$greyLight}` : "none")};
 
@@ -22,8 +27,20 @@ export const StyledInput = styled.input<StyledInputProps>`
       outline: 0;
     }
 
+    ::placeholder {
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+
     ${media.lessThan("sm")`
-      padding: 2.6rem 2rem;
+      padding: 1.5rem 1.5rem;
+      margin: 0;
+
+      ::placeholder {
+        font-size: 1em;
+        font-weight: 400;
+        text-align: center;
+      }
     `}
   }
 `
@@ -32,31 +49,63 @@ interface StyledFormProps {
 }
 export const StyledForm = styled.form<StyledFormProps>`
   position: relative;
+  display: flex;
+  margin-bottom: 1.5rem;
 `
 
-export const StyledButton = styled(Button)`
-  position: absolute;
-  top: 50%;
-  right: -5rem;
-  transform: translate(-50%, -50%);
+export const ButtonWrapper = styled.div`
+  display: flex;
+`
 
-  ${media.lessThan("sm")`
-    ${absoluteCenter};
-    right: initial;
-    top: 11rem;
+const buttonStyles = css`
+  border-radius: 4px !important;
+  margin-right: 15px;
+  text-align: center;
+  text-decoration: none;
 
-    &&,
-    &&:link,
-    &&:visited {
-      background-color: ${$colorPrimary};
-      color: ${$white};
-      border: 1px solid${$colorPrimary};
+  &&,
+  &&:link,
+  &&:visited {
+    opacity: 1;
+    div {
+      width: 170px;
+      font-size: 1.7rem;
+      font-weight: 400;
+      padding: 1rem;
+      ${media.lessThan("sm")`
+        font-size: 1.4rem;
+        width: unset;
+      `}
     }
+  }
 
-    &&:hover,
-    &&:active {
-      background-color: ${$white};
-      color: ${$colorPrimary};
-    }
-  `}
+  &&:hover,
+  &&:active {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+`
+
+interface StyledButtonProps {
+  submitting?: boolean
+}
+
+export const StyledLink2 = styled(UniversalLink)<StyledButtonProps>`
+  ${buttonStyles};
+  &&,
+  &&:link,
+  &&:visited {
+    background-color: ${$lime};
+    color: ${$colorHeading};
+  }
+`
+
+export const StyledLink = styled(UniversalLink)<StyledButtonProps>`
+  ${buttonStyles};
+  &&,
+  &&:link,
+  &&:visited {
+    background-color: ${$colorPrimary};
+    color: ${$white};
+  }
 `

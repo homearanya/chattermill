@@ -1,19 +1,34 @@
-import React from "react"
-import { Row, Col } from "react-awesome-styled-grid"
+import React, { useState, useEffect } from "react"
+import { graphql, useStaticQuery } from "gatsby"
 import { useInView } from "react-intersection-observer"
 
+import { contentfulImageMap } from "../../utils/helpers"
 import { TextBlockData } from "../../types"
+
+import Filter from "./filter"
 
 import {
   StyledSection,
   StyledHeading,
   StyledTextBlock,
   StyledContainer,
+  Grid,
 } from "./case-studies-section.styled"
+
+interface StaticQueryData {
+  site: {
+    siteMetadata: {
+      customers: {
+        pathPrefix: string
+      }
+    }
+  }
+}
 
 export interface CaseStudiesSectionData {
   heading: string
-  caseStudies: TextBlockData[]
+  caseStudies: GatsbyTypes.ContentfulCaseStudy[]
+  industryTypes: string[]
 }
 
 interface CaseStudiesSectionProps {
@@ -21,45 +36,91 @@ interface CaseStudiesSectionProps {
 }
 
 export const CaseStudiesSection = ({ data }: CaseStudiesSectionProps) => {
-  const { heading, caseStudies } = data
+  const { heading, caseStudies, industryTypes } = data
+  const [filter, setFilter] = useState("All Industries")
+  const [items, setItems] = useState(caseStudies)
+  const {
+    site: {
+      siteMetadata: {
+        customers: { pathPrefix },
+      },
+    },
+  }: StaticQueryData = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            customers {
+              pathPrefix
+            }
+          }
+        }
+      }
+    `
+  )
   const [headingRef, headingInView] = useInView({
     threshold: 0,
     triggerOnce: true,
     rootMargin: "-100px",
   })
-  return (
-    <StyledSection>
-      <Row>
-        <Col>
-          <StyledHeading
-            dangerouslySetInnerHTML={{ __html: heading }}
-            ref={headingRef}
-            inView={headingInView}
-          />
-        </Col>
-      </Row>
 
+  useEffect(() => {
+    setItems(
+      caseStudies.filter((caseStudy) => {
+        return (
+          filter === "All Industries" ||
+          caseStudy.company.industryType === filter
+        )
+      })
+    )
+  }, [filter])
+  return (
+    <StyledSection id="target">
       <StyledContainer>
-        <Row justify={{ sm: "center", md: "space-between" }}>
-          {caseStudies.map((textBlock, index) => {
-            const [texbBlockRef, texbBlockInView] = useInView({
-              threshold: 0,
-              triggerOnce: true,
-              rootMargin: "-150px",
-            })
+        <StyledHeading
+          dangerouslySetInnerHTML={{ __html: heading }}
+          ref={headingRef}
+          inView={headingInView}
+          className="case-studies"
+        />
+        <Filter
+          setFilter={setFilter}
+          industryTypes={["All Industries", ...industryTypes]}
+        />
+        <Grid>
+          {items.map((caseStudy) => {
+            const {
+              id,
+              name,
+              slug,
+              thumbnailImage,
+              thumbnailText,
+              company,
+            } = caseStudy
+            const textBlock: TextBlockData = {
+              image: contentfulImageMap(thumbnailImage),
+              alt: name,
+              tagline: company.industryType,
+              html: thumbnailText.childMarkdownRemark.html,
+              moreDetails: {
+                button: {
+                  text: "Learn more",
+                  link: `${pathPrefix}${slug}`,
+                },
+              },
+            }
             return (
-              <Col key={index} sm={4} md={4} justify={{ md: "space-between" }}>
-                <div ref={texbBlockRef}>
-                  <StyledTextBlock
-                    textBlock={textBlock}
-                    inView={texbBlockInView}
-                    withObserver
-                  />
-                </div>
-              </Col>
+              // <div key={id} ref={texbBlockRef}>
+              <div key={id}>
+                <StyledTextBlock
+                  textBlock={textBlock}
+                  inView={true}
+                  withObserver
+                />
+              </div>
             )
           })}
-        </Row>
+        </Grid>
       </StyledContainer>
     </StyledSection>
   )

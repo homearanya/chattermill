@@ -1,0 +1,22 @@
+.contentInnerClassName {
+  cursor: pointer;
+  padding: 2rem 0rem;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  border-bottom: 1px solid rgb(51, 46, 94, 0.25);
+
+  background-color: #ffff;
+  cursor: pointer;
+
+}
+
+.triggerOpenedClassName {
+  cursor: pointer;
+  font-size: 2rem;
+
+}
+
+.contentOuterClassName {
+  cursor: pointer;
+  font-size: 2rem;
+}

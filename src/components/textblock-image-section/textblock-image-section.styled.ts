@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 import media from "../../styles/media"
-import { Section } from "../../styles/common.styled"
+
 import {
   centerTextBlock,
   verticalCenter,
@@ -11,7 +11,7 @@ import TextBlock from "../text-block"
 
 import Image from "../image"
 
-export const StyledSection = styled(Section)`
+export const StyledSection = styled.section`
   padding: 5rem 0;
 
   ${media.lessThan("sm")`
@@ -35,13 +35,14 @@ interface StyledImageProps {
 }
 export const StyledImage = styled(Image)<StyledImageProps>`
   width: 100% !important;
-  ${props => transitionIntoView(props.withObserver, props.inView)};
+  ${(props) => transitionIntoView(props.withObserver, props.inView)};
 `
 
 export const StyledTextBlock = styled(TextBlock)`
   ${verticalCenter};
   .subHeading {
     margin-bottom: 2rem;
+    line-height: 1.17;
   }
 
   .button {

@@ -1,18 +1,17 @@
 import styled, { css } from "styled-components"
-import { Col } from "react-awesome-styled-grid"
+import { Col, Row } from "react-awesome-styled-grid"
 
 import media from "../../styles/media"
 import { $colorHeading } from "../../styles/variables"
 import TextBlock from "../text-block"
 import {
-  boxShadow,
   verticalCenter,
   transitionIntoView,
   centerTextBlock,
+  aspectRatio,
 } from "../../styles/mixins"
 
 import ShapeLeft from "../../images/shape1.inline.svg"
-
 import Image from "../image"
 import { WideContainer } from "../../styles/common.styled"
 
@@ -30,6 +29,9 @@ export const StyledWideContainer = styled(WideContainer)`
 
 export const StyledCol = styled(Col)`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   ${media.lessThan("sm")`
     &:first-child {
@@ -37,20 +39,28 @@ export const StyledCol = styled(Col)`
     }
   `}
 `
+export const StyledRow = styled(Row)`
+  margin: 9rem 0;
+
+  ${media.lessThan("lg")`
+    margin: 2rem 0;
+  `};
+`
 
 const shape = (color: string) => css`
   position: absolute;
   top: 0;
   height: 100%;
-  width: auto;
+  width: 100%;
   fill: ${color};
   z-index: -1;
 `
+
 interface StyledShapeLeftProps {
   color: string
 }
 export const StyledShapeLeft = styled(ShapeLeft)<StyledShapeLeftProps>`
-  ${props => shape(props.color)};
+  ${(props) => shape(props.color)};
   left: -30%;
 `
 
@@ -60,29 +70,52 @@ interface StyledShapeRightProps {
 
 export const StyledShapeRight = styled(ShapeLeft)<StyledShapeRightProps>`
   transform: rotateY(180deg);
-  ${props => shape(props.color)};
+  ${(props) => shape(props.color)};
   right: -30%;
 `
 
-interface StyledImageProps {
+interface AssetWrapperProps {
   withObserver?: boolean
   inView?: boolean
   justifyRight?: boolean
 }
 
-export const ImageWrapper = styled.div`
-  width: 100%;
-`
-export const StyledImage = styled(Image)<StyledImageProps>`
-  width: 100%;
-  margin: 9rem 0;
-  border-radius: 5px;
-  overflow: hidden;
-  ${boxShadow};
-  margin-left: ${props => props.justifyRight && "auto"};
-  ${props => transitionIntoView(props.withObserver, props.inView)};
+const assetWrapper = ({
+  justifyRight,
+  withObserver,
+  inView,
+}: AssetWrapperProps) => css`
+  margin: 0 auto;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-left: ${justifyRight && "auto"};
+  ${transitionIntoView(withObserver, inView)};
+
+  ${media.lessThan("sm")`
+    margin-bottom: 2rem;
+  `};
 `
 
+export const OuterVideoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const VideoWrapper = styled.div<AssetWrapperProps>`
+  ${(props) => assetWrapper(props)};
+
+  ${aspectRatio(16, 9)}
+
+  video {
+    display: block;
+    object-fit: fill;
+  }
+  ${media.lessThan("sm")`
+    margin-bottom: 2rem;
+  `};
+`
 interface StyledTextBlockProps {
   textPosition?: string
 }
@@ -113,4 +146,15 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
   ${media.lessThan("sm")`
     ${centerTextBlock};
   `};
+`
+
+export const ImageWrapper = styled.div`
+  width: 100%;
+`
+
+export const StyledImage = styled(Image)<AssetWrapperProps>`
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  ${(props) => assetWrapper(props)};
 `

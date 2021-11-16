@@ -24,7 +24,7 @@ export const Button = styled.a<ButtonProps>`
   &&:link,
   &&:visited {
     ${({ inverted, wide, secondary }) =>
-    buttonStyles(inverted, wide, secondary)}
+      buttonStyles(inverted, wide, secondary)}
   }
 
   &&:hover,
@@ -37,22 +37,25 @@ export const Button = styled.a<ButtonProps>`
     outline: 0;
   }
 `
+
+export const Section = styled.section``
+
 interface ButtonProps {
   readonly inverted?: boolean
   readonly wide?: boolean
   readonly secondary?: boolean
 }
-export const ButtonLink = styled(Link) <ButtonProps>`
+export const ButtonLink = styled(Link)<ButtonProps>`
   &&,
   &&:link,
   &&:visited {
     ${({ inverted, wide, secondary }) =>
-    buttonStyles(inverted, wide, secondary)}
+      buttonStyles(inverted, wide, secondary)};
   }
 
   &&:hover,
   &&:active {
-    ${({ inverted, secondary }) => buttonStylesHover(inverted, secondary)}
+    ${({ inverted, secondary }) => buttonStylesHover(inverted, secondary)};
   }
 
   &&:active,
@@ -66,11 +69,17 @@ export const ButtonLink = styled(Link) <ButtonProps>`
   }
 `
 
-export const Section = styled.section``
+export const ButtonClick = styled.button<ButtonProps>`
+  ${({ inverted, wide, secondary }) => buttonStyles(inverted, wide, secondary)};
+
+  &:hover {
+    ${({ inverted, secondary }) => buttonStylesHover(inverted, secondary)};
+  }
+`
 
 export const TinyHeading = styled.h4`
   color: ${$colorPrimary};
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 400;
   line-height: 1.8rem;
   text-transform: uppercase;
@@ -87,7 +96,7 @@ export const SmallHeading = styled.h3`
   color: ${$colorHeading};
   font-size: 2.2rem;
   font-weight: 400;
-  line-height: 4rem;
+  line-height: 1.3;
   margin-bottom: 2rem;
   ${decorator}
 `
@@ -95,7 +104,7 @@ export const MediumHeading = styled.h2`
   color: ${$colorSecondary};
   font-size: 3.6rem;
   font-weight: 400;
-  line-height: 4rem;
+  line-height: 1.3;
   margin-bottom: 4rem;
   ${decorator}
 
@@ -202,4 +211,22 @@ export const dropdownOpen = keyframes`
   transform: scale(1);
   opacity: 1;
 }
+`
+
+export const pulse = keyframes`
+0% {
+    box-shadow: 0 0 0 0 rgba(16, 194, 237, 0.4);
+}
+70% {
+    box-shadow: 0 0 0 30px rgba(16, 194, 237, 0);
+}
+100% {
+    box-shadow: 0 0 0 0 rgba(16, 194, 237, 0);
+}
+`
+
+export const slidingSmoothly = keyframes`
+  100%{
+    transform: translateX(-50%);
+  }
 `

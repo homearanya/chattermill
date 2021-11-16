@@ -13,6 +13,7 @@ import {
   ArrowDownIcon,
   ArrowUpIcon,
 } from "./dropdown.styled"
+import { UnderlinedLink } from "../navigation.styled"
 
 const duration = 300
 
@@ -31,21 +32,32 @@ const transitionStyles = {
 
 interface DropdownProps {
   title: string
-  list: {
-    name: string
-    href: string
-  }[]
+  href: string
+  list: readonly Pick<
+    GatsbyTypes.MarkdownRemarkFrontmatterMenuItemsSubMenuItems,
+    "name" | "href"
+  >[]
 }
 
-const Dropdown = ({ title, list }: DropdownProps) => {
-  const ref = useRef(null)
+const Dropdown = ({ title, href, list }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
-  useOnClickOutside(ref, () => setIsOpen(false))
-
   return (
-    <Wrapper ref={ref}>
-      <Header onClick={() => setIsOpen(!isOpen)}>
-        <Title>{title}</Title>
+    <Wrapper
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <Header>
+        {href ? (
+          href.indexOf("http://") !== -1 || href.indexOf("https://") !== -1 ? (
+            <a href={href}>{title}</a>
+          ) : (
+            <Link to={href} activeClassName="active">
+              {title}
+            </Link>
+          )
+        ) : (
+          <Title>{title}</Title>
+        )}
         {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
       </Header>
       <Transition in={isOpen} timeout={duration}>

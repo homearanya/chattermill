@@ -1,75 +1,88 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, graphql, useStaticQuery } from "gatsby";
-import { Container } from "react-awesome-styled-grid";
-import { useOnClickOutside } from "../../utils/hooks";
-import UnivButtonLink from "../universal-button-link";
-
+import React, { useState, useRef } from "react"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import { Container } from "react-awesome-styled-grid"
+import { useOnClickOutside } from "../../utils/hooks"
+import UnivButtonLink from "../universal-button-link"
 import {
   StyledNavigation,
   Nav,
   List,
   ListItem,
   UserAreaItem,
-  Background
-} from "./navigation.styled";
+  Background,
+  CategoryNav,
+  CategoryList,
+  CategoryListItem,
+  Logo,
+  StyledUnivButtonLink,
+  UnderlinedLink,
+} from "./navigation.styled"
 
-import logo from "../../images/logo-text.svg";
-import Dropdown from "./dropdown";
-import Burger from "./burger";
-import MobileMenu from "./mobile-menu";
+import logo from "../../images/logo-text.svg"
+import Dropdown from "./dropdown"
+import Burger from "../burger"
+import MobileMenu from "./mobile-menu"
 
-export type MenuItems = {
-  name: string;
-  href: string;
-  subMenuItems: {
-    name: string;
-    href: string;
-  }[];
-}[];
-
-interface NavigationData {
-  menuItems: MenuItems;
+export interface MenuEdge {
+  node: {
+    id: string
+    title: string
+    slug?: string
+  }
 }
 
-interface NavigationQueryData {
-  readonly markdownRemark: {
-    frontmatter: NavigationData;
-  };
+type MenuItem = {
+  name: string
+  href: string
+  onClick?: () => void
+  subMenuItems?: {
+    name: string
+    href: string
+  }[]
 }
 
-function handleSubmit() {}
+export type MenuItems = MenuItem[]
 
-const Navigation = () => {
-  const ref = useRef(null);
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  useOnClickOutside(ref, () => setOpen(false));
+const handleDemoClick = () => {
+  window.analytics &&
+    window.analytics.track("Clicked Button", {
+      email: "dummy@dummy.com",
+      label: "Clicked Get Started Button",
+    })
+}
+const handleLogInClick = () => {
+  window.analytics &&
+    window.analytics.track("Clicked Button", {
+      email: "dummy@dummy.com",
+      label: "Clicked LogIn Button",
+    })
+}
+interface NavigationProps {
+  path?: string
+  blog?: boolean
+}
+const Navigation = ({ blog = false }: NavigationProps) => {
+  const ref = useRef(null)
+  const [open, setOpen] = useState(false)
 
-  const handleScroll = () => {
-    const scrollTop = window.pageYOffset;
-
-    if (scrollTop > 32) {
-      setHasScrolled(true);
-    } else {
-      setHasScrolled(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
+  useOnClickOutside(ref, () => setOpen(false))
 
   const {
-    markdownRemark: { frontmatter }
-  }: NavigationQueryData = useStaticQuery(graphql`
-    query NavigationQuery {
+    site: {
+      siteMetadata: {
+        blog: { pathPrefix },
+      },
+    },
+    allContentfulCategory: { edges },
+    markdownRemark: { frontmatter },
+  } = useStaticQuery<GatsbyTypes.NavigationQuery>(graphql`
+    query Navigation {
       markdownRemark(fields: { slug: { eq: "/navigation/" } }) {
         frontmatter {
           menuItems {
             name
             href
+            underlined
             subMenuItems {
               name
               href
@@ -77,66 +90,121 @@ const Navigation = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          blog {
+            pathPrefix
+          }
+        }
+      }
+      allContentfulCategory(sort: { fields: [order], order: ASC }) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
     }
-  `);
-  const { menuItems } = frontmatter;
+  `)
+  const { menuItems } = frontmatter
+
   return (
     <>
-      <StyledNavigation
-        ref={ref}
-        className={hasScrolled ? "scrolled" : undefined}
-      >
+      <StyledNavigation ref={ref} blog={blog}>
         <Container>
           <Nav>
-            <Link to="/">
-              <img src={logo} alt="Chattermill logo" />
-            </Link>
+            <Logo to="/">
+              <img
+                width="137px"
+                height="21px"
+                src={logo}
+                alt="Chattermill logo"
+              />
+            </Logo>
             <List>
               {menuItems.map((menuItem, index) => {
-                const { name, href, subMenuItems } = menuItem;
+                const { name, href, underlined, subMenuItems } = menuItem
                 return (
                   <ListItem key={index}>
                     {href &&
                     (href.indexOf("http://") !== -1 ||
                       href.indexOf("https://") !== -1) ? (
                       <a href={href}>{name}</a>
-                    ) : href ? (
-                      <Link to={href} activeClassName="active">
-                        {name}
-                      </Link>
+                    ) : !subMenuItems ? (
+                      underlined ? (
+                        <UnderlinedLink to={href} activeClassName="active">
+                          {name}
+                        </UnderlinedLink>
+                      ) : (
+                        <Link to={href} activeClassName="active">
+                          {name}
+                        </Link>
+                      )
                     ) : (
-                      <Dropdown title={name} list={subMenuItems} />
+                      <Dropdown title={name} href={href} list={subMenuItems} />
                     )}
                   </ListItem>
-                );
+                )
               })}
-              <UserAreaItem className="demo">
-                <UnivButtonLink
+              <UserAreaItem>
+                <StyledUnivButtonLink
                   button={{
-                    text: "Get a Demo",
-                    link:
-                      "https://app.hubspot.com/meetings/jack123/30-minute-intro-to-chattermill",
-                    inverted: true
+                    text: "Log In",
+                    link: "https://app.chattermill.com/login",
+                    inverted: true,
+                    onClick: handleLogInClick,
                   }}
                 />
               </UserAreaItem>
-              <UserAreaItem>
+              <UserAreaItem className="trial">
                 <UnivButtonLink
                   button={{
-                    text: "Log In",
-                    link: "https://app.chattermill.io/"
+                    text: "Free Trial",
+                    link: "https://app.chattermill.com/signup",
+                    inverted: false,
+                    onClick: handleDemoClick,
                   }}
                 />
               </UserAreaItem>
             </List>
             <Burger open={open} setOpen={setOpen} />
           </Nav>
+          {blog ? (
+            <CategoryNav open={open}>
+              <CategoryList>
+                <CategoryListItem>
+                  <Link to={`${pathPrefix}`} activeClassName="active">
+                    Home Blog
+                  </Link>
+                </CategoryListItem>
+                {edges.map(({ node }) => {
+                  const { title, id } = node
+                  return (
+                    <CategoryListItem key={id}>
+                      <Link
+                        to={`${pathPrefix}category/${title}`}
+                        activeClassName="active"
+                      >
+                        {title}
+                      </Link>
+                    </CategoryListItem>
+                  )
+                })}
+              </CategoryList>
+            </CategoryNav>
+          ) : null}
         </Container>
-        <MobileMenu menuItems={menuItems} open={open} />
+        <MobileMenu
+          blog={blog}
+          pathPrefix={pathPrefix}
+          menuItems={menuItems}
+          categories={edges}
+          open={open}
+        />
       </StyledNavigation>
       <Background open={open} />
     </>
-  );
-};
-
-export default Navigation;
+  )
+}
+export default Navigation

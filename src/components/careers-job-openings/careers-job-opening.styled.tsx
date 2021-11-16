@@ -1,43 +1,43 @@
-import styled from "styled-components"
-import media from "../../styles/media"
-import { Col, Container } from "react-awesome-styled-grid"
-import { Section, fadeIn } from "../../styles/common.styled"
-import { absoluteCenter, animation } from "../../styles/mixins"
-import bannerImage from "../../images/careers-company-photo.png"
+import styled from "styled-components";
+import media from "../../styles/media";
+import { Col, Container } from "react-awesome-styled-grid";
 import {
   BigHeading,
   SmallHeading,
-  MediumHeading,
-} from "../../styles/common.styled"
+  MediumHeading
+} from "../../styles/common.styled";
 
 export const StyledContainer = styled(Container)`
   align-items: center;
+  width: 100%;
+  padding-left: 10rem;
+  padding-right: 10rem;
   margin-bottom: 5rem;
-`
+`;
 
-export const StyledSection = styled(Section)`
+export const StyledSection = styled.section`
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  padding-top: 20rem;
-  padding-bottom: 20rem;
+  padding: 15rem 10rem 15rem 10rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #332e5e;
+  background-color: #def200;
   background-size: cover;
   text-align: center;
 
   ${media.lessThan("sm")`
     min-height: 420px;
+    padding: 5rem 1.5rem 5rem 1.5rem;
   `}
 
   ${media.greaterThan("xl")`
     padding-bottom: 20rem;
   `}
-`
+`;
 
 export const StyledCol = styled(Col)`
   padding: 1.5rem 0;
@@ -47,7 +47,7 @@ export const StyledCol = styled(Col)`
     align-items: center;
     flex-grow: 2;
   `}
-`
+`;
 
 export const StyledLink = styled.a`
   padding: 20px;
@@ -68,33 +68,18 @@ export const StyledLink = styled.a`
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   background-image: none;
-`
+`;
 
 export const StyledBigHeading = styled(BigHeading)`
-  color: #fff;
-`
+  color: #332e5e;
+`;
 
 export const StyledMediumHeading = styled(MediumHeading)`
   padding-top: 1rem;
-  color: #fff;
+  color: #332e5e;
   text-align: center;
-`
+`;
 
 export const StyledSmallHeading = styled(SmallHeading)`
   color: #fff;
-`
-
-export const StyledImage = styled(bannerImage)`
-  position: absolute !important;
-  ${absoluteCenter};
-  ${animation(fadeIn, 1, 0.8)};
-
-  ${media.lessThan("lg")`
-    width: 100% !important;
-  `};
-
-  ${media.lessThan("sm")`
-    position: relative !important;
-    height: auto !important;
-  `};
-`
+`;

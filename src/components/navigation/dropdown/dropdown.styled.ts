@@ -37,13 +37,20 @@ export const Header = styled.div`
     }
     cursor: pointer;
   }
+
+  &&& {
+    a {
+      padding: 0;
+      border-bottom: 0;
+      display: inline;
+    }
+  }
 `
 export const Title = styled.span``
 export const List = styled.ul`
   list-style: none;
   position: absolute;
   left: 0;
-  top: 5rem;
   ${boxShadow};
   background-color: ${$white};
   padding: 1rem 0;

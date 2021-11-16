@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+
+    <symbol id="icon-divide" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.23 12.25"><path d="M0,4.74H12.23V7.52H0Z"/><rect x="4.6" width="3.03" height="2.81"/><rect x="4.6" y="9.44" width="3.03" height="2.81"/></symbol>
+
+    <symbol id="icon-equal" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.23 8.99"><path d="M0,0H12.23V2.81H0ZM0,6.2H12.23V9H0Z"/><symbol>
+
+    <symbol id="icon-info" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2.94 6.97"><path d="M2.94,6v.62A.32.32,0,0,1,2.62,7H.31A.31.31,0,0,1,0,6.65V6a.31.31,0,0,1,.31-.32H.63V4H.31A.31.31,0,0,1,0,3.72V3.09a.31.31,0,0,1,.31-.31H2a.31.31,0,0,1,.32.31V5.71h.31A.32.32,0,0,1,2.94,6Z"/><path d="M2.57,1.1A1.1,1.1,0,1,1,1.47,0,1.1,1.1,0,0,1,2.57,1.1Z"/></symbol>
+
+    <symbol id="icon-multiply" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.83 11.74"><path d="M0,9.77,3.91,5.85,0,2,2,0,5.91,3.85,9.85,0l2,2L7.94,5.85l3.89,3.92-2,2L5.91,7.88,2,11.74Z"/></symbol>
+
+</svg>

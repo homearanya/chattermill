@@ -1,7 +1,7 @@
-import styled from "styled-components"
-
+import styled, { css } from "styled-components"
 import media from "../../styles/media"
-import { Section, fadeInTop, fadeIn } from "../../styles/common.styled"
+import { Container } from "react-awesome-styled-grid"
+import { fadeInTop, fadeIn } from "../../styles/common.styled"
 import {
   absoluteCenter,
   boxShadow,
@@ -12,8 +12,18 @@ import {
 } from "../../styles/mixins"
 import Image from "../image"
 import TextBlock from "../text-block"
+import { $white } from "../../styles/variables"
+import { Link } from "gatsby"
 
-export const StyledSection = styled(Section)``
+export const StyledContainer = styled(Container)`
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
+export const StyledSection = styled.section``
 export const HeroImageWrapper = styled.div`
   clip-path: ellipse(47% 175% at 100% 50%);
   position: absolute;
@@ -53,15 +63,20 @@ interface StyledTextBlockProps {
 }
 
 export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
-  padding: 10rem 0;
+  padding: 0rem 0;
   ${verticalCenter};
 
   .subHeading {
     font-size: 3rem;
     line-height: 3.4rem;
+    margin-bottom: 1rem;
   }
 
-  ${props =>
+  .text {
+    max-width: 80%;
+  }
+
+  ${(props) =>
     props.classNames &&
     staggeredAnimation(fadeInTop, 1, 0, 0.2, props.classNames)}
 
@@ -69,7 +84,7 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
   .subHeading {
       font-size: 2.8rem;
       line-height: 3.2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
   `}
 
@@ -82,7 +97,7 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
   `}
 
   ${media.lessThan("sm")`
-    padding: 5rem 0;
+    padding: 4rem 0rem 13rem 0rem;
     ${centerTextBlock};
 
     .subHeading {
@@ -92,7 +107,7 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
     }
 
     .text {
-      width: 100%;
+      width: 80%;
     }
   `}
 `
@@ -111,11 +126,11 @@ export const CardsWrapper = styled.div`
   `}
 `
 
-export const Card = styled.img`
+const cardStyles = css`
   ${verticalCenter};
-  border-radius: 7px;
+  /* border-radius: 7px; */
   overflow: hidden;
-  ${boxShadow};
+  /* ${boxShadow}; */
 
   ${media.lessThan("lg")`
     :first-child {  
@@ -136,7 +151,13 @@ export const Card = styled.img`
     }
   `}
 `
-export const Card2 = styled(Card)`
+
+export const Card = styled.div`
+  ${cardStyles};
+`
+export const Card2 = styled.img`
+  ${cardStyles};
+
   position: absolute !important;
   top: -26.41%;
   right: -10.42%;
@@ -145,12 +166,85 @@ export const Card2 = styled(Card)`
       display: none;
   `}
 `
-export const Card3 = styled(Card)`
+export const Card3 = styled.img`
+  ${cardStyles};
+
   position: absolute !important;
   bottom: -21.83%;
   right: -9.03%;
 
   ${media.lessThan("sm")`
       display: none;
+  `}
+`
+
+interface StyledButtonProps {
+  submitting?: boolean
+}
+
+export const StyledLink2 = styled(Link)<StyledButtonProps>`
+  position: relative;
+  width: 100%;
+  border-radius: 2px !important;
+  height: 40px;
+  margin: 15px;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  padding: 0.25rem;
+
+  &&,
+  &&:link,
+  &&:visited {
+    font-size: 2rem;
+    background-color: #291c45;
+    color: #ffff;
+    border: #ffff 2px solid;
+  }
+
+  &&:hover,
+  &&:active {
+    opacity: 0.5;
+    color: #bdd9ff;
+  }
+`
+
+export const StyledLink = styled(Link)<StyledButtonProps>`
+  position: relative;
+  width: 100%;
+  border-radius: 2px !important;
+  height: 40px;
+  margin-top: 15px;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  padding: 0.25rem;
+
+  &&,
+  &&:link,
+  &&:visited {
+    font-size: 2rem;
+    background-color: rgb(45, 127, 249);
+    color: ${$white};
+    border: 1px solid rgb(45, 127, 249);
+  }
+
+  &&:hover,
+  &&:active {
+    opacity: 0.5;
+    color: ${$white};
+  }
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  ${media.lessThan("sm")`
+    flex-direction: column;
+    
   `}
 `

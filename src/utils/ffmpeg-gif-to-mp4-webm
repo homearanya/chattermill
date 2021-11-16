@@ -1,0 +1,6 @@
+ffmpeg -i logo-animation.gif -b:v 0 -crf 25 logo-animation.mp4
+ffmpeg -i logo-animation.gif -c vp9 -b:v 0 -crf 41 logo-animation.webm
+ffmpeg -i input.mp4 -c:v libvpx-vp9 -crf 30 -b:v 0 -b:a 128k -c:a libopus output.webm
+ffmpeg -i input.avi -filter:v scale=720:-1 -c:a copy output.mkv
+ffmpeg -i feedback_animation_4_660.mp4 -c:v libvpx-vp9 -b:v 0.33M -c:a libopus -b:a 96k feedback_animation_4_600.webm
+ffmpeg -i understand_section.mp4 -filter:v scale=658:-1 -c:a copy understand_section_660.mp4

@@ -1,9 +1,19 @@
-import { FluidObject, FixedObject } from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
+import {} from "gatsby-plugin-segment-js"
+
+declare global {
+  interface Window {
+    analytics: any
+    dataLayer: any
+  }
+}
+
+export type Maybe<T> = T | null
 
 interface ImageObject {
   readonly childImageSharp: {
-    fluid?: FluidObject | undefined
-    fixed?: FixedObject | undefined
+    fluid?: GatsbyImage | undefined | null
+    fixed?: FixedObject | undefined | null
   }
   readonly publicURL?: string
 }
@@ -27,6 +37,7 @@ interface TextBlockData {
     | "transferwise-logo-small.svg"
     | "moo-logo-small.svg"
     | "bloom-wild-logo-small.svg"
+    | "cleo-logo.svg"
     | "deliveroo-logo-small.svg"
     | "zappos-logo-small.svg"
     | "data-integrations.png"
@@ -45,25 +56,17 @@ interface TextBlockData {
     | "google-play-badge.svg"
     | "ask-nicely.svg"
     | "app-store.svg"
-  image?: ImageObject
+  image?: SubFile
   alt?: string
   tagline?: string
   heading?: string
   subHeading?: string
   smallHeading?: string
   text?: string[]
-  button?: {
-    text: string
-    link: string
-    secondary?: boolean
-    inverted?: boolean
-  }
-  button2?: {
-    text: string
-    link: string
-    secondary?: boolean
-    inverted?: boolean
-  }
+  richText?: GatsbyTypes.ContentfulBodyBody
+  html?: string
+  button?: ButtonData
+  button2?: ButtonData
   moreDetails?: {
     text?: string
     button: ButtonData
@@ -72,4 +75,21 @@ interface TextBlockData {
     textPlaceholder: string
     buttonText: string
   }
+  childComponent?: ButtonData
 }
+
+interface BlogPageContext {
+  mainPost: GatsbyTypes.ContentfulPost
+  frontPosts?: GatsbyTypes.FrontPost[]
+  posts?: GatsbyTypes.ContentfulPost[]
+  numPages: number
+  currentPage: number
+  limit?: number
+  skip?: number
+  category?: string
+  tag?: string
+  totalCount?: number
+  arrayOfPageNumbers: number[]
+}
+
+type CssObjectFit = "fill" | "contain" | "cover" | "none" | "scale-down"

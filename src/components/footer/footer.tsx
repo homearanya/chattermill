@@ -1,9 +1,10 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import { Container, Col } from "react-awesome-styled-grid"
+import { Col } from "react-awesome-styled-grid"
 
 import {
+  StyledContainer,
   StyledFooter,
   NavigationRow,
   SocialLinksWrapper,
@@ -21,23 +22,16 @@ import LinkdedInIcon from "../../images/linkedin.inline.svg"
 import FacebookIcon from "../../images/facebook.inline.svg"
 import AngelListIcon from "../../images/angellist.inline.svg"
 
-interface FooterQueryData {
-  readonly markdownRemark: {
-    frontmatter: {
-      menus: {
-        heading: string
-        menuItems: {
-          name: string
-          href: string
-        }[]
-      }[]
-    }
-  }
-}
-
 const Footer = () => {
-  const data: FooterQueryData = useStaticQuery(graphql`
+  const data = useStaticQuery<GatsbyTypes.FooterQueryQuery>(graphql`
     query FooterQuery {
+      site {
+        siteMetadata {
+          industries {
+            pathPrefix
+          }
+        }
+      }
       markdownRemark(fields: { slug: { eq: "/footer/" } }) {
         frontmatter {
           menus {
@@ -49,9 +43,47 @@ const Footer = () => {
           }
         }
       }
+      allContentfulIndustry(sort: { fields: [title], order: ASC }) {
+        edges {
+          node {
+            id
+            title
+            slug
+          }
+        }
+      }
     }
   `)
-  const { menus } = data.markdownRemark.frontmatter
+  let { menus } = data.markdownRemark.frontmatter
+  // const {
+  // 	site: {
+  // 		siteMetadata: {
+  // 			industries: { pathPrefix: industryPathPrefix },
+  // 		},
+  // 	},
+  // } = data
+  // const {
+  // 	allContentfulIndustry: { edges: industryEdges },
+  // } = data
+
+  // if (industryEdges.length) {
+  // 	const industryMenuItem = {
+  // 		heading: "Industries",
+  // 		menuItems: industryEdges.map(({ node }) => ({
+  // 			name: node.title,
+  // 			href: `${industryPathPrefix}${node.slug}/`,
+  // 		})),
+  // 	}
+  // 	const calculatorsIndex = menus.findIndex(
+  // 		(menuItem) => menuItem.heading === "Calculators"
+  // 	)
+  // 	menus = [
+  // 		...menus.slice(0, calculatorsIndex),
+  // 		industryMenuItem,
+  // 		...menus.slice(calculatorsIndex),
+  // 	]
+  // }
+
   const today = new Date()
 
   const socials: {
@@ -94,19 +126,15 @@ const Footer = () => {
       icon: <AngelListIcon />,
       color: "#ffffff",
       background: "#000000",
-      href: "https://www.angel.co/chattermill",
+      href: "https://angel.co/company/chattermill",
     },
   ]
+
   return (
     <StyledFooter>
-      <Container>
+      <StyledContainer>
         <NavigationRow>
-          <SocialCol
-            xs={4}
-            lg={3}
-            justify={{ xs: "center", lg: "start" }}
-            noGutter
-          >
+          <SocialCol xs={4} align="center" noGutter>
             <SocialLinksWrapper>
               {socials.map((socialLink, index) => {
                 const { color, background, icon, href } = socialLink
@@ -125,12 +153,16 @@ const Footer = () => {
               })}
             </SocialLinksWrapper>
           </SocialCol>
-          <Col xs={4} lg={9}>
-            <MenusRow justify={{ sm: "space-between" }}>
+          <Col xs={4} align="center">
+            <MenusRow justify={{ sm: "space-around", lg: "space-between" }}>
               {menus.map((menu, index) => {
                 const { heading, menuItems } = menu
                 return (
-                  <MenuCol xs={4} sm={1} noGutter key={index}>
+                  <MenuCol
+                    noGutter
+                    key={index}
+                    align={{ xs: "center", sm: "flex-start" }}
+                  >
                     <MenuHeading>{heading}</MenuHeading>
                     <ul>
                       {menuItems && menuItems.length > 0
@@ -139,11 +171,36 @@ const Footer = () => {
                               {menuItem.href &&
                               (menuItem.href.indexOf("http://") !== -1 ||
                                 menuItem.href.indexOf("https://") !== -1) ? (
-                                <a key={index} href={menuItem.href}>
+                                <a
+                                  key={index}
+                                  href={menuItem.href}
+                                  onClick={(e) => {
+                                    window.analytics &&
+                                      window.analytics.track(
+                                        "Clicked OutBound Footer Link",
+                                        {
+                                          email: "dummy@dummy.com",
+                                          label: menuItem.name,
+                                        }
+                                      )
+                                  }}
+                                >
                                   {menuItem.name}
                                 </a>
                               ) : (
-                                <Link key={index} to={menuItem.href}>
+                                <Link
+                                  key={index}
+                                  to={menuItem.href}
+                                  onClick={() => {
+                                    window.analytics &&
+                                      window.analytics.track(
+                                        "Clicked Footer Link",
+                                        {
+                                          label: menuItem.name,
+                                        }
+                                      )
+                                  }}
+                                >
                                   {menuItem.name}
                                 </Link>
                               )}
@@ -158,11 +215,11 @@ const Footer = () => {
           </Col>
         </NavigationRow>
         <CopyRightRow>
-          <Col xs={4} lg={4} offset={{ lg: 8 }} justify={{ xs: "center" }}>
+          <Col xs={4} align="center">
             &copy; Chattermill 2015-{today.getFullYear()} All Rights Reserved
           </Col>
         </CopyRightRow>
-      </Container>
+      </StyledContainer>
     </StyledFooter>
   )
 }

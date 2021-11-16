@@ -1,8 +1,13 @@
 import React from "react"
-import { Container, Col, Row } from "react-awesome-styled-grid"
+import {
+  Container,
+  Col,
+  Row,
+  IGridBreakpoints,
+} from "react-awesome-styled-grid"
 import { useInView } from "react-intersection-observer"
 
-import { ImageObject, TextBlockData } from "../../types"
+import { TextBlockData } from "../../types"
 
 import {
   StyledSection,
@@ -13,7 +18,7 @@ import {
 
 export interface TextBlockImageSectionData {
   textPosition: TextPosition
-  image: ImageObject
+  image: SubFile
   alt?: string
   textBlock: TextBlockData
 }
@@ -28,7 +33,6 @@ const TextBlockImageSection = ({
   className,
 }: TextBlockImageSectionProps) => {
   const { textPosition, image, alt, textBlock } = data
-  // observer for the image
   const [ref, inView] = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -40,9 +44,13 @@ const TextBlockImageSection = ({
     >
       <Container>
         <Row
-          reverse={textPosition === "left" ? ["sm", "md", "lg", "xl"] : false}
+          reverse={
+            textPosition === "left"
+              ? (["sm", "md", "lg", "xl"] as IGridBreakpoints[])
+              : false
+          }
         >
-          <Col xs={4} sm={5} md={7} lg={7} justify="center">
+          <Col xs={4} sm={5} md={7} lg={7} align="center">
             <ImageWrapper ref={ref}>
               <StyledImage
                 image={image}

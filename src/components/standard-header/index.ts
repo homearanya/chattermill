@@ -1,2 +1,2 @@
-export * from "./standard-header"
-export { default } from "./standard-header"
+export * from "./standard-header";
+export { default } from "./standard-header";

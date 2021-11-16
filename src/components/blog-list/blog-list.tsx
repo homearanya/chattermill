@@ -1,106 +1,75 @@
 import React from "react";
-import { Link } from "gatsby";
-import { FluidObject } from "gatsby-image";
 import { Row } from "react-awesome-styled-grid";
+import useMedia from "use-media";
 
-import Pagination, { PaginationData } from "../pagination";
+import { $breakpoints } from "../../styles/media";
+import PostCard from "../post-card";
 
+import { BlogPageContext } from "../../types";
+import Pagination from "../pagination";
 import {
   StyledSection,
   StyledContainer,
   TagHeading,
-  StyledCol,
-  ImageWrapper,
-  StyledLink,
-  StyledImg,
-  Article,
-  Heading,
-  Author,
-  Text,
-  ReadMore
+  StyledCol
 } from "./blog-list.styled";
 
-import BlogHeading from "../blog-heading";
-
-export interface BlogListData {
-  node: {
-    title: { title: string };
-    id: string;
-    slug: string;
-    createdAt: string;
-    tags?: string[];
-    featuredImage: {
-      title: string;
-      fluid: FluidObject | undefined;
-    };
-    body: {
-      childMarkdownRemark: {
-        excerpt: string;
-      };
-    };
-    author: {
-      name: string;
-    };
-  };
-}
+// import BlogHeading from "../blog-heading";
 
 interface BlogListProps {
-  readonly data: BlogListData[];
-  readonly totalCount?: number;
-  readonly pageContext: PaginationData;
+  readonly pageContext: BlogPageContext;
+  readonly pathPrefix: string;
 }
 
-export const BlogList = ({
-  data: edges,
-  totalCount,
-  pageContext
-}: BlogListProps) => {
-  const { tag } = pageContext;
+export const BlogList = ({ pageContext, pathPrefix }: BlogListProps) => {
+  const isMobile = useMedia({ maxWidth: $breakpoints.sm * 16 - 1 });
+  const isTablet = useMedia({ maxWidth: $breakpoints.md * 16 - 1 });
+  const isDesktop = useMedia({ maxWidth: $breakpoints.lg * 16 - 1 });
+
+  const {
+    posts,
+    category,
+    tag,
+    numPages,
+    currentPage,
+    arrayOfPageNumbers
+    // totalCount
+  } = pageContext;
+
   let tagName;
   if (tag) {
     tagName = tag.replace("-", " ").toUpperCase();
   }
   const classNames = tagName
-    ? [
-        "blog-heading",
-        "tag-heading",
-        ...edges.map(edge => `post-${edge.node.id}`)
-      ]
-    : ["blog-heading", ...edges.map(edge => `post-${edge.node.id}`)];
+    ? ["blog-heading", "tag-heading", ...posts.map(post => `post-${post.id}`)]
+    : ["blog-heading", ...posts.map(post => `post-${post.id}`)];
 
-  const classNamesUsed = tagName ? 2 : 1;
   return (
     <StyledSection>
       <StyledContainer classNames={classNames}>
-        <BlogHeading
+        {/* <BlogHeading
           heading="Chattermill Insights"
           to="/resources/insights/"
           className={classNames[0]}
-        />
+        /> */}
         {tagName && (
-          <TagHeading
-            className={classNames[1]}
-          >{`${tagName} (${totalCount})`}</TagHeading>
+          // <TagHeading
+          //   className={classNames[1]}
+          // >{`${tagName} (${totalCount})`}</TagHeading>
+          <TagHeading className={classNames[0]}>{tagName}</TagHeading>
         )}
         <Row justify="center">
-          {edges.map((edge, i) => {
-            const {
-              node: {
-                id,
-                slug,
-                title: { title },
-                featuredImage,
-                author: { name },
-                body: {
-                  childMarkdownRemark: { excerpt }
-                }
-              }
-            } = edge;
-            const { fluid, title: imageTitle } = featuredImage;
-            const path = `/resources/insights/${slug}/`;
+          {posts.map((post, i) => {
             return (
-              <StyledCol justify="center" key={id} xs={4} sm={4} md={6} lg={4}>
-                <Article className={classNames[i + classNamesUsed]}>
+              <StyledCol
+                align="center"
+                key={post.id}
+                xs={4}
+                sm={4}
+                md={6}
+                lg={4}
+              >
+                {/* <Article className={classNames[i + classNamesUsed]}>
                   <ImageWrapper>
                     <StyledLink to={path}>
                       <StyledImg
@@ -117,12 +86,59 @@ export const BlogList = ({
                   <Author>{`By ${name}`}</Author>
                   <Text>{excerpt}</Text>
                   <ReadMore to={path}>Read more...</ReadMore>
-                </Article>
+                </Article> */}
+                {isMobile ? (
+                  <PostCard
+                    post={post}
+                    pathPrefix={pathPrefix}
+                    headingFontSize={22}
+                    excerptFontSize={14}
+                    vertical={true}
+                    imageFirst={true}
+                    imageWidth={50}
+                    // imageHeightAuto
+                  />
+                ) : isTablet ? (
+                  <PostCard
+                    post={post}
+                    pathPrefix={pathPrefix}
+                    headingFontSize={24}
+                    excerptFontSize={14}
+                    vertical={true}
+                    imageFirst={true}
+                    imageWidth={30}
+                    // imageHeightAuto
+                  />
+                ) : isDesktop ? (
+                  <PostCard
+                    post={post}
+                    pathPrefix={pathPrefix}
+                    headingFontSize={26}
+                    excerptFontSize={15}
+                    vertical={true}
+                    imageFirst={true}
+                    imageWidth={30}
+                    // imageHeightAuto
+                  />
+                ) : (
+                  <PostCard
+                    post={post}
+                    pathPrefix={pathPrefix}
+                    headingFontSize={26}
+                    excerptFontSize={16}
+                    vertical={true}
+                    imageFirst={true}
+                    imageWidth={30}
+                    // imageHeightAuto
+                  />
+                )}
               </StyledCol>
             );
           })}
         </Row>
-        <Pagination context={pageContext} />
+        <Pagination
+          context={{ category, tag, numPages, currentPage, arrayOfPageNumbers }}
+        />
       </StyledContainer>
     </StyledSection>
   );

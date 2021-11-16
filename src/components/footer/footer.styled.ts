@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Row, Col } from "react-awesome-styled-grid"
+import { Row, Col, Container } from "react-awesome-styled-grid"
 
 import media from "../../styles/media"
 
@@ -9,6 +9,10 @@ import {
   $colorSecondary,
   $colorPrimary,
 } from "../../styles/variables"
+
+export const StyledContainer = styled(Container)`
+  padding: 0 3rem;
+`
 
 export const StyledFooter = styled.footer`
   background-color: ${$white};
@@ -21,7 +25,7 @@ export const StyledFooter = styled.footer`
 `
 
 export const NavigationRow = styled(Row)`
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
   ul {
     list-style: none;
     li {
@@ -47,7 +51,7 @@ export const NavigationRow = styled(Row)`
   }
 
   ${media.lessThan("md")`
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
   `}
 `
 export const SocialLinksWrapper = styled.div`
@@ -55,6 +59,8 @@ export const SocialLinksWrapper = styled.div`
   a:not(:last-child) {
     margin-right: 2rem;
   }
+
+  justify-content: center;
 `
 interface SocialLinkWrapperProps {
   color: string
@@ -71,9 +77,9 @@ export const SocialLinkWrapper = styled.div<SocialLinkWrapperProps>`
   justify-content: center;
   transition: all 0.2s;
   a:hover & {
-    background-color: ${props => props.background && props.background};
+    background-color: ${(props) => props.background && props.background};
     svg path {
-      fill: ${props => props.color && props.color};
+      fill: ${(props) => props.color && props.color};
     }
   }
 `
@@ -83,11 +89,19 @@ export const MenusRow = styled(Row)`
 `
 
 export const MenuCol = styled(Col)`
-  flex-direction: column;
+  flex: 0;
+  margin-bottom: 2rem;
+
+  &:not(last-child) {
+    margin-right: 2rem;
+    ${media.lessThan("sm")`
+      margin-right: 0;
+    `}
+  }
   ${media.lessThan("sm")`
-    align-items: center;
+    flex: 1 0 auto;
+    width: 100%;
     text-align: center;
-    margin-bottom: 2rem;
   `}
 `
 
@@ -99,9 +113,7 @@ export const MenuHeading = styled.h6`
 `
 
 export const SocialCol = styled(Col)`
-  ${media.lessThan("lg")`
-    margin-bottom: 3rem;
-  `}
+  margin-bottom: 3rem;
 `
 
 export const CopyRightRow = styled(Row)`

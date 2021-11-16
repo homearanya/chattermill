@@ -1,19 +1,19 @@
-import styled from "styled-components"
-import { Row } from "react-awesome-styled-grid"
+import styled from "styled-components";
+import { Row } from "react-awesome-styled-grid";
 
-import media from "../../styles/media"
-import { $colorSecondary } from "../../styles/variables"
-import { animation, flexUnit, toVM } from "../../styles/mixins"
-import { Section, MediumHeading, fadeIn } from "../../styles/common.styled"
+import media from "../../styles/media";
+import { $colorSecondary } from "../../styles/variables";
+import { animation, flexUnit, toVM } from "../../styles/mixins";
+import { MediumHeading, fadeIn } from "../../styles/common.styled";
 
-export const StyledSection = styled(Section)`
+export const StyledSection = styled.section`
   padding: 7rem 0 9rem 0;
 
   ${media.lessThan("md")`
     padding-top: 5rem !important;
     padding-bottom: 0rem !important;
   `};
-`
+`;
 
 export const StyledRow = styled(Row)`
   margin-bottom: 10rem;
@@ -21,7 +21,7 @@ export const StyledRow = styled(Row)`
   ${media.lessThan("sm")`
     margin-bottom: 7rem;
   `};
-`
+`;
 export const StyledHeading = styled(MediumHeading)`
   color: ${$colorSecondary};
   margin-bottom: 0 !important;
@@ -33,4 +33,4 @@ export const StyledHeading = styled(MediumHeading)`
     margin-bottom: 3rem !important;
     text-align: center;
   `};
-`
+`;

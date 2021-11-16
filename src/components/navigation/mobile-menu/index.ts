@@ -1,2 +1,2 @@
-export * from "./mobile-menu"
-export { default } from "./mobile-menu"
+export * from "./mobile-menu";
+export { default } from "./mobile-menu";

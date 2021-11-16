@@ -1,11 +1,12 @@
 import React from "react"
-import { Container, Row } from "react-awesome-styled-grid"
+import { Row } from "react-awesome-styled-grid"
 import { useInView } from "react-intersection-observer"
 
 import { TextBlockData } from "../../types"
 
 import {
   StyledSection,
+  StyledContainer,
   StyledHeading,
   StyledCol,
   StyledTextBlock,
@@ -20,12 +21,14 @@ interface BenefitsSectionProps {
   readonly data: BenefitsSectionData
   readonly withBoxShadow?: boolean
   readonly withBorder?: boolean
+  readonly inverted?: boolean
 }
 
 const BenefitsSection = ({
   data: { heading, benefits },
   withBoxShadow,
   withBorder,
+  inverted,
 }: BenefitsSectionProps) => {
   const [headingRef, headingInView] = useInView({
     threshold: 0,
@@ -34,7 +37,7 @@ const BenefitsSection = ({
   })
   return (
     <StyledSection className="benefits-section" withBorder={withBorder}>
-      <Container>
+      <StyledContainer inverted={inverted}>
         {heading && (
           <StyledHeading
             dangerouslySetInnerHTML={{ __html: heading }}
@@ -50,12 +53,13 @@ const BenefitsSection = ({
                   textBlock={textBlock}
                   withBoxShadow={withBoxShadow}
                   withObserver
+                  inverted={inverted}
                 />
               </StyledCol>
             )
           })}
         </Row>
-      </Container>
+      </StyledContainer>
     </StyledSection>
   )
 }

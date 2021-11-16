@@ -1,0 +1,44 @@
+.sa-use-case-wrapper {
+    background-color: #F7F8FC;
+    padding: 5rem 4rem 4rem;
+    border-radius: 5px;
+}
+.sa-use-case-header.main-header {
+    font-size: 120%;
+    margin-top: 0;
+}
+.sa-use-case-header {
+    color: #332E5E;
+    font-weight: bold;
+    font-size: 2.5rem;
+    line-height: 3.3rem;
+    margin-bottom: 0;
+}
+.sa-use-case-title {
+    color: #10C2ED;
+    margin-bottom: 0;
+    font-size: 4.8rem;
+    line-height: 3.8rem;
+    margin-top: 3rem;
+}
+.sa-use-case-tagline {
+    margin-top: 1.4rem;
+    font-size: 2.1rem;
+    line-height: 3.3rem;
+}
+
+hr {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    height: 1px;
+    width: 100%;
+    background-color: #979797;
+}
+
+.sa-use-case-header + p {
+    margin-top: 0.8rem;
+}
+
+.sa-use-case-wrapper p:last-of-type {
+    margin-bottom: 0;
+}

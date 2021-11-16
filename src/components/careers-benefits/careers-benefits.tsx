@@ -4,18 +4,16 @@ import {
   StyledSection,
   Item,
   List,
-  StyledMediumHeading,
+  StyledBigHeading,
   StyledSmallHeading
 } from "./careers-benefits.styled";
 import { Container } from "react-awesome-styled-grid";
 
 const BenefitsOverview = () => {
   return (
-    <StyledSection>
+    <StyledSection id="benefits-overview">
       <Container>
-        <StyledMediumHeading id="#benefits">
-          Benefits at Chattermill
-        </StyledMediumHeading>
+        <StyledBigHeading>At Chattermill you'll...</StyledBigHeading>
         <GridWrapper>
           <Item>
             <StyledSmallHeading>
@@ -24,10 +22,11 @@ const BenefitsOverview = () => {
                 role="img"
                 aria-label="Bank"
               >
-                🏦
+                🚀
               </span>
-              Stock options
+              Grow With Us
             </StyledSmallHeading>
+
             <List>
               {" "}
               <p
@@ -37,8 +36,8 @@ const BenefitsOverview = () => {
                 }}
               >
                 {"\u2B24"}
-              </p>{" "}
-              Develop the opportunity to grow with us.{" "}
+              </p>
+              Fantastic progression opportunities
             </List>
             <List>
               {" "}
@@ -49,8 +48,9 @@ const BenefitsOverview = () => {
                 }}
               >
                 {"\u2B24"}
-              </p>{" "}
-              Competitive Stock Options.{" "}
+              </p>
+              The ability to share in the company’s success through stock
+              options
             </List>
           </Item>
           <Item>
@@ -62,9 +62,10 @@ const BenefitsOverview = () => {
               >
                 🎓
               </span>{" "}
-              Learning Budget{" "}
+              Learn & Develop{" "}
             </StyledSmallHeading>
             <List>
+              {" "}
               <p
                 style={{
                   fontSize: "5px",
@@ -73,8 +74,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              A library of industry-related books that you can borrow at any
-              time.
+              A learning & development budget of £500 (€550)
             </List>
             <List>
               {" "}
@@ -86,7 +86,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              Monthly breakfast and learn sessions.{" "}
+              Monthly breakfast and learn sessions
             </List>
             <List>
               {" "}
@@ -98,8 +98,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              Learning budget of £500 a year for books, training courses and
-              conferences.
+              A fully stocked library (open to requests!)
             </List>
           </Item>
           <Item>
@@ -109,9 +108,9 @@ const BenefitsOverview = () => {
                 role="img"
                 aria-label="Beach With Umbrella"
               >
-                🏖️
+                🌴
               </span>{" "}
-              Holiday
+              Enjoy Your Holidays
             </StyledSmallHeading>
             <List>
               {" "}
@@ -123,7 +122,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              25 days’ holiday a year, plus bank holidays - please use them all!
+              25 days holiday in addition to public holidays
             </List>
             <List>
               {" "}
@@ -135,7 +134,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              One additional day of holiday for every year you’re with us!
+              Get an extra day for every year you’re with us!
             </List>
           </Item>
           <Item>
@@ -147,7 +146,7 @@ const BenefitsOverview = () => {
               >
                 🎂
               </span>{" "}
-              Birthday Off
+              Celebrate Your Birthday
             </StyledSmallHeading>
             <List>
               {" "}
@@ -159,7 +158,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              Enjoy time off on your birthday
+              Take the day off!
             </List>
           </Item>
           <Item>
@@ -171,7 +170,7 @@ const BenefitsOverview = () => {
               >
                 🏠
               </span>{" "}
-              Flexible working
+              Work Flexibly
             </StyledSmallHeading>
             <List>
               {" "}
@@ -183,21 +182,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              You can work from home occasionally - as long as you have a good
-              internet connection and a private, quiet space which allows you to
-              do your best work.
-            </List>
-            <List>
-              {" "}
-              <p
-                style={{
-                  fontSize: "5px",
-                  padding: "10px 15px 10px 0px"
-                }}
-              >
-                {"\u2B24"}
-              </p>{" "}
-              Flexible working conditions.
+              Have the opportunity to work from home — even more than normal, these days!
             </List>
           </Item>
           <Item>
@@ -205,11 +190,11 @@ const BenefitsOverview = () => {
               <span
                 style={{ fontSize: "30px", paddingRight: "10px" }}
                 role="img"
-                aria-label="Rocket"
+                aria-label="Growing Heart"
               >
-                🚀
+                💗
               </span>{" "}
-              Perks
+              Take Care
             </StyledSmallHeading>
             <List>
               {" "}
@@ -221,8 +206,19 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              We offer employees discounts on utilities and entertainment
-              tickets.
+              Monday Mindfulness
+            </List>
+            <List>
+              {" "}
+              <p
+                style={{
+                  fontSize: "5px",
+                  padding: "10px 15px 10px 0px"
+                }}
+              >
+                {"\u2B24"}
+              </p>{" "}
+              Free yoga classes
             </List>
           </Item>
           <Item>
@@ -230,11 +226,11 @@ const BenefitsOverview = () => {
               <span
                 style={{ fontSize: "30px", paddingRight: "10px" }}
                 role="img"
-                aria-label="Ambulance"
+                aria-label="Flying Money"
               >
-                🚑
+                💸
               </span>{" "}
-              Health & Wellbeing
+              Enjoy Perks
             </StyledSmallHeading>
             <List>
               {" "}
@@ -246,8 +242,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              We offer employees discounts on utilities and entertainment
-              tickets.
+              Including discounts on cinema tickets, utilities and more
             </List>
           </Item>
           <Item>
@@ -255,11 +250,11 @@ const BenefitsOverview = () => {
               <span
                 style={{ fontSize: "30px", paddingRight: "10px" }}
                 role="img"
-                aria-label="Birthday Cake"
+                aria-label="Party Popper"
               >
-                🎂
+                🎉
               </span>{" "}
-              Community
+              Have Fun!
             </StyledSmallHeading>
             <List>
               {" "}
@@ -271,7 +266,8 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              Quarterly company socials planned by our great colleagues.
+              Plenty of fun (and currently remote) socials planned by our great
+              colleagues.
             </List>
             <List>
               {" "}
@@ -283,8 +279,7 @@ const BenefitsOverview = () => {
               >
                 {"\u2B24"}
               </p>{" "}
-              Smaller team lunches, dinners, breakfasts & other social
-              get-togethers.
+              Social clubs (including book, gaming, crafting and more!)
             </List>
           </Item>
         </GridWrapper>

@@ -1,9 +1,8 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-import media from "../../styles/media"
-import { Section } from "../../styles/common.styled"
+import media from "../../styles/media";
 
-export const StyledSection = styled(Section)`
+export const StyledSection = styled.section`
   padding: 0 0 5rem;
 
   .text {
@@ -13,4 +12,4 @@ export const StyledSection = styled(Section)`
   ${media.lessThan("lg")`
     padding: 3rem 0;
   `};
-`
+`;

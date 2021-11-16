@@ -1,91 +1,71 @@
 import React from "react"
 import { graphql } from "gatsby"
-import kebabCase from "lodash.kebabcase"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import BlogList, { BlogListData } from "../components/blog-list"
-import { PaginationData } from "../components/pagination"
-
-import "../styles/scss/styles.scss"
+import { BlogPageContext } from "../types"
+import BlogList from "../components/blog-list"
 
 interface TagPageProps {
-  readonly data: PageQueryData
-  readonly pageContext: PaginationData
+  readonly data: GatsbyTypes.WhitePaperPageQuery
+  readonly pageContext: BlogPageContext
+  readonly location: Location
 }
 
 const TagPage = ({
   data: {
     site: {
-      siteMetadata: { title, description },
+      siteMetadata: {
+        title,
+        description,
+        blog: { pathPrefix },
+      },
     },
-    allContentfulPost: { edges },
+    allContentfulPost: { edges: postEdges },
   },
   pageContext,
+  location,
 }: TagPageProps) => {
-  const { skip, limit, tag } = pageContext
-  const filterEdges = edges.filter(edge => {
-    const { node } = edge
-    return node.tags && node.tags.some(nodeTag => kebabCase(nodeTag) === tag)
-  })
-
+  pageContext.posts = postEdges.map(
+    ({ node }) => node
+  ) as GatsbyTypes.ContentfulPost[]
   return (
-    <Layout className="tag-page">
+    <Layout blog className="tag-page" path={location.pathname}>
       <SEO title={title} description={description} />
-      <BlogList
-        data={filterEdges.slice(skip, skip + limit)}
-        totalCount={filterEdges.length}
-        pageContext={pageContext}
-      />
+      <BlogList pageContext={pageContext} pathPrefix={pathPrefix} />
     </Layout>
   )
 }
 
 export default TagPage
 
-interface PageQueryData {
-  site: {
-    siteMetadata: {
-      title: string
-      description: string
-    }
-  }
-  allContentfulPost: {
-    edges: BlogListData[]
-  }
-}
-
 export const query = graphql`
-  query {
+  query TagPage($posts: [String!]!) {
     site {
       siteMetadata {
         title
         description
+        blog {
+          pathPrefix
+        }
       }
     }
-    allContentfulPost(sort: { fields: [createdAt], order: DESC }) {
+    allContentfulPost(
+      sort: { fields: [createdAt], order: DESC }
+      filter: { id: { in: $posts } }
+    ) {
+      totalCount
       edges {
         node {
-          title {
-            title
-          }
-          id
-          slug
-          tags
-          createdAt(formatString: "DD MMM YYYY")
+          ...ContentfulPostFragment
           featuredImage {
             title
-            fluid(maxWidth: 600) {
+            fluid(maxWidth: 400) {
               ...GatsbyContentfulFluid_withWebp
             }
-          }
-          body {
-            childMarkdownRemark {
-              excerpt(pruneLength: 220)
+            file {
+              url
             }
-          }
-          author {
-            name
           }
         }
       }

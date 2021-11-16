@@ -26,9 +26,10 @@ module.exports = {
     sourceType: "module", // Allows for the use of imports
   },
   rules: {
-    semi: ["error", "never"],
+    // semi: ["error", "always"],
     "react/prop-types": "off", // Disable prop-types as we use TypeScript for type checking
     "@typescript-eslint/explicit-function-return-type": "off",
+    camelcase: "off",
   },
   overrides: [
     // Override some TypeScript rules just for .js files

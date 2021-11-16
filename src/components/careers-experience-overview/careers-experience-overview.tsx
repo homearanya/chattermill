@@ -1,36 +1,127 @@
-import React from "react";
+import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+
 import {
   StyledSection,
   StyledMediumHeading,
   Underline,
-  ImageBlock
-} from "./careers-experience-overview.styled";
-import { Container } from "react-awesome-styled-grid";
-
-import Image5 from "./chattermill_team.png";
+  Wrapper,
+  StyledImage,
+  StyledContainer,
+} from "./careers-experience-overview.styled"
 
 const ExperienceOverview = () => {
+  const {
+    anishaImage,
+    balconyImage,
+    browniesImage,
+    christmasPartyImage,
+    tshirtsImage,
+  } = useStaticQuery<GatsbyTypes.ExperienceOverviewQuery>(graphql`
+    query ExperienceOverview {
+      anishaImage: file(
+        relativePath: { eq: "careers-experience-overview/careers-anisha.jpg" }
+      ) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 393
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
+        }
+        publicURL
+      }
+      balconyImage: file(
+        relativePath: { eq: "careers-experience-overview/careers-balcony.jpg" }
+      ) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 393
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
+        }
+        publicURL
+      }
+      browniesImage: file(
+        relativePath: {
+          eq: "careers-experience-overview/careers-cm-brownies.jpg"
+        }
+      ) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 393
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
+        }
+        publicURL
+      }
+      christmasPartyImage: file(
+        relativePath: {
+          eq: "careers-experience-overview/careers-company-christmas-party.jpg"
+        }
+      ) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 393
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
+        }
+        publicURL
+      }
+      tshirtsImage: file(
+        relativePath: {
+          eq: "careers-experience-overview/chattermill-t-shirts.jpg"
+        }
+      ) {
+        childImageSharp {
+          gatsbyImageData(
+            width: 584
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
+        }
+        publicURL
+      }
+    }
+  `)
   return (
     <StyledSection>
       <StyledMediumHeading>
-        We're all about positive <Underline>EXPERIENCES.</Underline>That starts
+        We're all about <Underline>positive experience</Underline> that starts
         with our <Underline>employees!</Underline>
       </StyledMediumHeading>
-      <Container>
-        <ImageBlock>
-          <img
-            src={Image5}
-            alt="chattermill-team"
-            style={{
-              width: "auto",
-              maxWidth: "100%",
-              height: "auto"
-            }}
-          ></img>
-        </ImageBlock>
-      </Container>
+      <StyledContainer>
+        <Wrapper>
+          <StyledImage image={anishaImage as GatsbyTypes.File} alt="text alt" />
+          <StyledImage
+            image={balconyImage as GatsbyTypes.File}
+            alt="text alt"
+          />
+          <StyledImage
+            image={browniesImage as GatsbyTypes.File}
+            alt="text alt"
+          />
+          {/* <StyledImage image={climbingImage} alt="text alt" /> */}
+          <StyledImage
+            image={christmasPartyImage as GatsbyTypes.File}
+            alt="text alt"
+          />
+          <StyledImage
+            image={tshirtsImage as GatsbyTypes.File}
+            alt="text alt"
+          />
+        </Wrapper>
+      </StyledContainer>
     </StyledSection>
-  );
-};
+  )
+}
 
-export default ExperienceOverview;
+export default ExperienceOverview

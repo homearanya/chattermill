@@ -1,15 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
+import styled from "styled-components"
 
+import { $white } from "../styles/variables"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import CustomersHeader, {
-  CustomersHeaderData,
-} from "../components/customers-header"
-import CustomersQuotesSection, {
-  CustomersQuotesSectionData,
-} from "../components/customers-quotes-section"
-import BrandsSection from "../components/brands-section"
+import CarouselCustomers from "../components/carousel-customers"
 import CaseStudiesSection, {
   CaseStudiesSectionData,
 } from "../components/case-studies-section"
@@ -17,142 +13,136 @@ import TextBlockImageSection, {
   TextBlockImageSectionData,
 } from "../components/textblock-image-section"
 import BrandsSection2 from "../components/brands-section-2"
-import CTA2, { CTA2Data } from "../components/cta2"
+import CTA2 from "../components/cta2"
 
-import "../styles/scss/styles.scss"
-
-interface CustomersPageProps {
-  readonly data: PageQueryData
+interface PageContext {
+  id: string
+  industryTypes: string[]
 }
 
-const CustomersPage = ({
-  data: {
-    markdownRemark: {
-      frontmatter: {
-        title,
-        description,
-        header,
-        customersQuotesSection,
-        caseStudiesSection,
-        helpsSection,
-        CTASection,
+interface CustomersPageProps {
+  readonly data: GatsbyTypes.CustomersPageQuery
+  readonly pageContext: PageContext
+}
+
+const CustomersPage = ({ data, pageContext }: CustomersPageProps) => {
+  const { contentfulCustomersPage, allContentfulCaseStudy, helpImage } = data
+  const helpSection: TextBlockImageSectionData = {
+    textPosition: "left",
+    image: helpImage as GatsbyTypes.File,
+    alt: "Chattermil helps customer focused companies build better products",
+    textBlock: {
+      subHeading:
+        "Chattermil helps customer focused companies build better products",
+      text: [
+        "We'll partner with you on how best to leverage Chattermill as it relates to your customer experience goals. Learn how we'll help you drive customer experience best practices at your organization.",
+      ],
+      moreDetails: {
+        button: {
+          text: "Learn more",
+          link: "/platform/",
+          arrow: true,
+        },
       },
     },
-  },
-}: CustomersPageProps) => (
-  <Layout className="customers-page">
-    <SEO title={title} description={description} />
-    <CustomersHeader data={header} />
-    <CustomersQuotesSection data={customersQuotesSection} />
-    <BrandsSection withObserver />
-    <CaseStudiesSection data={caseStudiesSection} />
-    <TextBlockImageSection data={helpsSection} />
-    <BrandsSection2 withObserver />
-    <CTA2 data={CTASection} />
-  </Layout>
-)
+  }
+  const caseStudiesSectionData: CaseStudiesSectionData = {
+    heading: contentfulCustomersPage.caseStudyListingHeadline,
+    caseStudies: allContentfulCaseStudy.edges.map(
+      ({ node }) => node
+    ) as GatsbyTypes.ContentfulCaseStudy[],
+    industryTypes: pageContext.industryTypes,
+  }
+  return (
+    <Layout className="customers-page">
+      <SEO
+        title={contentfulCustomersPage.metaTitle}
+        description={contentfulCustomersPage.metaDescription}
+      />
+      <CarouselCustomers
+        items={
+          contentfulCustomersPage.carousel as GatsbyTypes.ContentfulCaseStudy[]
+        }
+        image={contentfulCustomersPage.heroImage as GatsbyTypes.ContentfulAsset}
+      />
+      <CaseStudiesSection data={caseStudiesSectionData} />
+      <StyledTextBlockImageSection data={helpSection} />
+      <StyledCTA2
+        data={{
+          shapeColor: "#DEF200",
+          text: "Power your CX with Chattermill",
+          subText:
+            "Try chattermill today and learn why 1000s businesses use Chattermill as their customer understanding platform.",
+        }}
+      />
+      <StyledBrandsSection2 withObserver />
+    </Layout>
+  )
+}
 
 export default CustomersPage
 
-interface PageQueryData {
-  markdownRemark: {
-    frontmatter: {
-      title: string
-      description: string
-      header: CustomersHeaderData
-      customersQuotesSection: CustomersQuotesSectionData
-      caseStudiesSection: CaseStudiesSectionData
-      helpsSection: TextBlockImageSectionData
-      CTASection: CTA2Data
-    }
-  }
-}
-
 export const query = graphql`
-  query CustomersPageQuery($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        title
-        description
-        header {
-          backgroundImage {
-            src {
-              childImageSharp {
-                fluid(maxWidth: 1440) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-              publicURL
-            }
-            alt
-          }
+  query CustomersPage($id: String!) {
+    contentfulCustomersPage(id: { eq: $id }) {
+      metaTitle
+      metaDescription
+      heroImage {
+        fluid(maxWidth: 1920) {
+          ...GatsbyContentfulFluid_withWebp
         }
-        customersQuotesSection {
-          heading
-          customersQuotes {
-            customerHeader {
-              src {
-                childImageSharp {
-                  fluid(maxWidth: 380) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-                publicURL
-              }
-              alt
-            }
-            customerLogo
-            text
-            person {
-              image
-              name
-              role
-            }
-          }
-        }
-        caseStudiesSection {
-          heading
-          caseStudies {
-            imageName
-            text
-            moreDetails {
-              button {
-                text
-                link
-                arrow
-              }
+      }
+      carousel {
+        id
+        slug
+        name
+        carouselTitle
+        carouselSubtitle
+      }
+      caseStudyListingHeadline
+    }
+    allContentfulCaseStudy {
+      edges {
+        node {
+          id
+          name
+          slug
+          thumbnailImage {
+            fluid(maxWidth: 500) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
-        }
-        helpsSection {
-          textPosition
-          image {
-            childImageSharp {
-              fluid(maxWidth: 559) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-            publicURL
-          }
-          textBlock {
-            subHeading
-            text
-            moreDetails {
-              button {
-                text
-                link
-                arrow
-              }
+          thumbnailText {
+            childMarkdownRemark {
+              html
             }
           }
-        }
-        CTASection {
-          shapeColor
-          text
-          textPlaceholder
-          buttonText
+          company {
+            industryType
+          }
         }
       }
     }
+    helpImage: file(relativePath: { eq: "chattermill-helps-customer.png" }) {
+      childImageSharp {
+        gatsbyImageData(
+          width: 559
+          quality: 80
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
+      }
+    }
   }
+`
+
+const StyledTextBlockImageSection = styled(TextBlockImageSection)`
+  background: ${$white};
+`
+const StyledCTA2 = styled(CTA2)`
+  background: ${$white};
+`
+const StyledBrandsSection2 = styled(BrandsSection2)`
+  background: ${$white};
 `

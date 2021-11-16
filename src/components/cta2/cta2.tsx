@@ -1,81 +1,62 @@
 import React from "react"
-import { Container, Col } from "react-awesome-styled-grid"
 import { useInView } from "react-intersection-observer"
+import EmailForm from "../email-form"
 
 import {
+  StyledSection,
+  StyledContainer,
+  StyledWideContainer,
   StyledShapeLeft,
   StyledShapeRight,
-  StyledSection,
-  StyledWideContainer,
-  StyledRow,
   Heading,
-  FormWrapper,
-  StyledEmailForm,
+  Text,
 } from "./cta2.styled"
-
-import { EmailFormData } from "../email-form"
 
 export interface CTA2Data {
   shapeColor: string
   text: string
-  textPlaceholder: string
-  buttonText: string
+  subText?: string
+  button1?: ButtonData
+  button2?: ButtonData
 }
 
 interface CTA2Props {
   readonly data: CTA2Data
-  readonly marginTop?: boolean
 }
 
-export const CTA2 = ({ data, marginTop }: CTA2Props) => {
-  const { shapeColor, text, textPlaceholder, buttonText } = data
+export const CTA2 = ({ data, ...rest }: CTA2Props) => {
+  const { shapeColor, text, subText } = data
   const [ref, inView] = useInView({
     threshold: 0,
     triggerOnce: true,
     rootMargin: "-100px",
   })
-  const emailFormData: EmailFormData = { textPlaceholder, buttonText }
+
   return (
-    <StyledSection className="cta2" marginTop={marginTop}>
+    <StyledSection {...rest}>
       <StyledWideContainer>
         <StyledShapeLeft color={shapeColor} />
         <StyledShapeRight color={shapeColor} />
-        <Container>
-          <StyledRow>
-            <Col
-              justify={{
-                xs: "center",
-                md: "flex-start",
-              }}
-              xs={4}
-              sm={3}
-              md={5}
-              lg={5}
-              offset={{ md: 1 }}
-            >
-              <Heading
-                ref={ref}
-                inView={inView}
-                dangerouslySetInnerHTML={{ __html: text }}
-                className="heading"
-              />
-            </Col>
-            <Col
-              justify={{
-                xs: "center",
-                sm: "flex-end",
-              }}
-              sm={5}
-              xs={4}
-              md={6}
-              lg={5}
-            >
-              <FormWrapper inView={inView}>
-                <StyledEmailForm data={emailFormData} />
-              </FormWrapper>
-            </Col>
-          </StyledRow>
-        </Container>
+        <StyledContainer>
+          <Heading
+            ref={ref}
+            inView={inView}
+            dangerouslySetInnerHTML={{ __html: text }}
+            className="heading"
+          />
+          {subText ? (
+            <Text
+              ref={ref}
+              inView={inView}
+              dangerouslySetInnerHTML={{ __html: subText }}
+              className="heading"
+            />
+          ) : null}
+          <EmailForm />
+          <Text ref={ref} inView={inView} className="heading">
+            Free 30-day Trial
+          </Text>
+        </StyledContainer>
       </StyledWideContainer>
     </StyledSection>
   )

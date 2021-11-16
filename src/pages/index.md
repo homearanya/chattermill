@@ -1,87 +1,78 @@
 ---
 templateKey: home-page
-title: Next Generation Customer Experience Analytics
-description: New generation tool helping companies analyse open-ended feedback at scale
+title: Unified Customer Feedback Analytics
+description: A unified customer experience analytics platform enabling companies to analyse customer feedback at scale
 header:
   backgroundImage:
     src: ../images/header.jpg
     alt: A man working at his office
   textBlock:
-    heading: Customer <br/> Experience
+    heading: Unified <br/> Customer <br/> Feedback <br/> Analytics
     subHeading: For the world&#39;s <span class="underline">fastest</span><br/>growing companies
     text:
-      - See how Chattermill can help you understand your customers feedback to solve your most important business challenges
-    button:
-      text: Get a demo
-      link: "/contact/"
+      - Gain an edge by unifying, measuring and analysing all your customer feedback in real time with Chattermill.
+    emailForm:
+      textPlaceholder: Your work email
+      buttonText: Book a Demo
 platformSection:
   heading: We help brands redefine <span class="oval">customer</span> experience
   button:
-    text: Explore our platform
-    link: "/platform/"
+    text: Explore Product
+    link: "/product/feedback/"
   features:
-    - shapeColor: "#BDD9FF"
-      image:
-        src: "../images/integrations.svg"
-        alt: "integrations"
-      textBlock:
-        imageName: "capture.png"
+    - textBlock:
+        imageName: "purpleCircle.svg"
         subHeading: Capture
         text:
-          - Pipe each and every source of feedback into one place with easy to use and collaborative analytics
+          - Pipe every source of feedback and customer interaction into one place with easy to use, collaborative platform
         button:
-          text: Learn more
-          link: "/platform/integrate/"
-    - shapeColor: "#DEF200"
-      image:
-        src: "../images/feedback.svg"
-        alt: "Search Feedback"
+          text: View Integrations
+          link: "/integrations/trustpilot/"
+    - video:
+        src: "../images/feedback_animation_4_660.mp4"
       textBlock:
-        imageName: "analyse.png"
-        subHeading: Analyse
-        text:
-          - Use groundbreaking  theme and sentiment AI to see how customers feel about your product, stay on top of emerging topics and understand what keeps them coming back
-
-        button:
-          text: Learn more
-          link: "/platform/"
-    - shapeColor: "#10C2ED"
-      image:
-        src: "../images/metrics.svg"
-        alt: "metrics"
-      textBlock:
-        imageName: "understand.png"
+        imageName: "blueCircle.svg"
         subHeading: Understand
         text:
-          - Analyse, filter, and interpret meaning within your data to instantly gauge what's driving customer experience
+          - Use groundbreaking theme and sentiment AI to see how customers feel about your product, stay on top of emerging topics and understand what keeps them coming back
         button:
           text: Learn more
-          link: "/platform/understand/"
-    - shapeColor: "#291C45"
-      image:
-        src: "../images/single-metric.svg"
-        alt: "Single Metric"
+          link: "/product/feedback/"
+    - video:
+        src: "../images/understand_section_660.mp4"
       textBlock:
-        imageName: "progress.png"
-        subHeading: Propel
+        imageName: "redCircle.svg"
+        subHeading: Analyse
         text:
-          - Analyse signals within your customer feedback to  accurately identify and predict opportunities to drive revenue, advocacy and retention across each and every touchpoint
+          - Filter and interpret the underlying layers of meaning within your data to instantly gauge what's driving customer experience
         button:
           text: Learn more
-          link: "/platform/track/"
+          link: "/product/analytics/"
+    - video:
+        src: "../images/scale_section_660.mp4"
+      textBlock:
+        imageName: "yellowCircle.svg"
+        subHeading: Scale
+        text:
+          - Analyse signals within your customer feedback to accurately identify and predict opportunities to drive revenue, advocacy and retention across each and every touchpoint
+        button:
+          text: Learn more
+          link: "/product/dashboards/"
 caseStudySection:
   backgroundImage: ../images/case-study.jpg
+  alt: alt
   textBlock:
     tagline: Case Study
     subHeading: Join the most ambitious companies in the world <span class="underline">reshaping CX</span>
     text:
-      - CX, product, and analytics teams from Gusto, Trainline, and Just Eat get instant powerful insights in Chattermill that drive customer insights, retention and advocacy
+      - CX, product, and analytics teams from Gusto, Trainline, and Just Eat use Chattermill to discover powerful customer insights and improve retention and advocacy
   image: "../images/case-study.png"
+  imageAlt: alt
 customerExperienceSection:
   heading: <span class="oval">Scale</span> your customer experience
   experiences:
     - image:
-        src: "../images/customer-experience.svg"
+        src: "../images/customer-experience.png"
         alt: "Customer Experience"
       textBlock:
         tagline: Customer Experience
@@ -97,14 +88,6 @@ customerExperienceSection:
         text:
           - Understand user segments, combine feedback from touchpoints, and harness insights to develop products that customers love.
 CTASection:
-  shapeColor: "#10B1ED"
-  textBlock:
-    image: "../images/call-to-action.png"
-    subHeading: Shake off the feedback fog
-    text:
-      - Get started today
-    button:
-      text: Get a demo
-      link: "/contact/"
-      secondary: true
+  shapeColor: "#DEF200"
+  text: Power your CX with Chattermill
 ---

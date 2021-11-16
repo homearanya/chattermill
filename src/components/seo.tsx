@@ -9,39 +9,56 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-interface StaticQueryData {
-  site: {
-    siteMetadata: {
-      title: string
-      description: string
-      author: string
-    }
-  }
+interface LocationInterface {
+  host: string
+  protocol: string
+  href: string
 }
 
 interface SEOProps {
   readonly title: string
   readonly description?: string
   readonly lang?: string
-  readonly meta?: []
+  readonly postUrl?: string
+  readonly featuredImage?: string
+  readonly authorName?: string
 }
 
-function SEO({ title, description = "", lang = "en", meta = [] }: SEOProps) {
-  const { site }: StaticQueryData = useStaticQuery(
+function SEO({
+  title,
+  description = "",
+  postUrl = "",
+  lang = "en",
+  featuredImage = "",
+  authorName = "",
+}: SEOProps) {
+  const { site, card } = useStaticQuery<GatsbyTypes.SeoQuery>(
     graphql`
-      query {
+      query Seo {
         site {
           siteMetadata {
             title
             description
             author
+            siteUrl
           }
+        }
+        card: file(relativePath: { regex: "/chattermill-logo/" }) {
+          publicURL
         }
       }
     `
   )
 
+  const location: LocationInterface | null =
+    typeof window !== "undefined" ? window.location : null
+
   const metaDescription = description || site.siteMetadata.description
+  const image =
+    featuredImage || `${location?.protocol}//${location?.host}${card.publicURL}`
+  const url = postUrl ? postUrl : location?.href
+  // strip HTML tags from metaDescription:
+  const cleanMetaDescription = metaDescription.replace(/<\/?[^>]+(>|$)/g, "")
 
   return (
     <Helmet
@@ -52,28 +69,46 @@ function SEO({ title, description = "", lang = "en", meta = [] }: SEOProps) {
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
+          name: `og:title`,
           property: `og:title`,
           content: title,
         },
         {
-          property: `og:description`,
-          content: metaDescription,
+          name: `og:description`,
+          property: "og:description",
+          content: cleanMetaDescription,
         },
         {
+          name: `og:image`,
+          property: "og:image",
+          content: image,
+        },
+        {
+          name: "og:author",
+          property: "og:author",
+          content: authorName,
+        },
+        {
+          name: "og:url",
+          property: "og:url",
+          content: url,
+        },
+        {
+          name: `og:type`,
           property: `og:type`,
           content: `website`,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
           content: site.siteMetadata.author,
+        },
+        {
+          name: "twitter:image",
+          content: image,
         },
         {
           name: `twitter:title`,
@@ -81,9 +116,13 @@ function SEO({ title, description = "", lang = "en", meta = [] }: SEOProps) {
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: cleanMetaDescription,
         },
-      ].concat(meta)}
+        {
+          name: "twitter:url",
+          content: url,
+        },
+      ]}
     />
   )
 }

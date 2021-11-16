@@ -13,18 +13,27 @@ interface TextBlockWrapperProps {
   classNames: string[]
 }
 export const TextBlockWrapper = styled.div<TextBlockWrapperProps>`
-  ${props =>
+  a {
+    text-decoration: none;
+    color: ${$colorPrimary};
+  }
+
+  .text {
+    white-space: pre-line;
+  }
+
+  ${(props) =>
     props.withObserver &&
     props.classNames &&
     css`
       ${props.classNames.reduce((rules, className) => {
         return css`
            ${rules}
-          .${className} {
+          .${className.replace(" ", ".")} {
             opacity: 0;
             transition: opacity 1s;
           }
-          .${className}.animated {
+          .${className.replace(" ", ".")}.animated {
               opacity: 1;
           }
         `
@@ -80,6 +89,7 @@ export const StyledLink = styled(Link)`
 `
 export const StyledA = styled.a`
   ${linkStyles};
+  width: 300px;
 `
 export const StyledUnivButtonLink = styled(UnivButtonLink)`
   margin-left: 3rem;

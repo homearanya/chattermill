@@ -2,7 +2,7 @@ import React from "react"
 import { Row, Col } from "react-awesome-styled-grid"
 import { useInView } from "react-intersection-observer"
 
-import { ImageObject, TextBlockData } from "../../types"
+import { TextBlockData } from "../../types"
 
 import { WideContainer } from "../../styles/common.styled"
 
@@ -17,17 +17,18 @@ import {
 } from "./case-study-section.styled"
 
 export interface CaseStudySectionData {
-  backgroundImage: ImageObject
+  backgroundImage?: SubFile
+  alt?: string
   textBlock: TextBlockData
-  image: ImageObject
+  image: SubFile
+  imageAlt?: string
 }
 
 interface CaseStudySectionProps {
   readonly data: CaseStudySectionData
 }
-
 export const CaseStudySection = ({ data }: CaseStudySectionProps) => {
-  const { backgroundImage, textBlock, image } = data
+  const { backgroundImage, textBlock, image, alt } = data
   // observer for the image
   const [ref, inView] = useInView({
     threshold: 0,
@@ -35,7 +36,7 @@ export const CaseStudySection = ({ data }: CaseStudySectionProps) => {
     rootMargin: "-100px",
   })
   return (
-    <StyledSection>
+    <StyledSection className="case-study-section">
       <WideContainer>
         <StyledContainer>
           <Row>
@@ -44,18 +45,20 @@ export const CaseStudySection = ({ data }: CaseStudySectionProps) => {
             </Col>
             <Col xs={4} sm={4} md={6}>
               <CardWrapper ref={ref}>
-                <Card image={image} alt="feedback card" inView={inView} />
+                <Card image={image} alt={alt} inView={inView} />
               </CardWrapper>
             </Col>
           </Row>
         </StyledContainer>
-        <BackgroundImageWrapper>
-          <BackgroundImage
-            image={backgroundImage}
-            alt="People working at their office"
-            style={{ position: "absolute" }}
-          />
-        </BackgroundImageWrapper>
+        {backgroundImage && (
+          <BackgroundImageWrapper>
+            <BackgroundImage
+              image={backgroundImage}
+              alt="People working at their office"
+              style={{ position: "absolute" }}
+            />
+          </BackgroundImageWrapper>
+        )}
       </WideContainer>
     </StyledSection>
   )

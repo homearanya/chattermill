@@ -1,19 +1,19 @@
-import styled from "styled-components"
-import { Container } from "react-awesome-styled-grid"
+import styled from "styled-components";
+import { Container } from "react-awesome-styled-grid";
 
-import media from "../../styles/media"
-import { Section } from "../../styles/common.styled"
+import media from "../../styles/media";
+
 import {
   absoluteCenter,
   verticalCenter,
   transitionIntoView,
-  centerTextBlock,
-} from "../../styles/mixins"
+  centerTextBlock
+} from "../../styles/mixins";
 
-import Image from "../image"
-import TextBlock from "../text-block"
+import Image from "../image";
+import TextBlock from "../text-block";
 
-export const StyledSection = styled(Section)``
+export const StyledSection = styled.section``;
 
 export const BackgroundImageWrapper = styled.div`
   clip-path: ellipse(39% 98% at 100% 50%);
@@ -29,10 +29,11 @@ export const BackgroundImageWrapper = styled.div`
     clip-path: none;
     z-index: -1;
   `}
-`
+`;
 
 export const BackgroundImage = styled(Image)`
   display: block !important;
+  height: 100%;
   width: 39%;
   bottom: 0;
   right: 0;
@@ -49,11 +50,11 @@ export const BackgroundImage = styled(Image)`
     height: 34.3rem !important;
     width: 100% !important;
   `}
-`
+`;
 
 export const StyledContainer = styled(Container)`
   background-color: rgba(189, 217, 255, 0.1);
-`
+`;
 
 export const StyledTextBlock = styled(TextBlock)`
   ${verticalCenter};
@@ -87,7 +88,7 @@ export const StyledTextBlock = styled(TextBlock)`
       ${centerTextBlock};
       padding: 5rem 0;
   `}
-`
+`;
 
 export const CardWrapper = styled.div`
   ${verticalCenter};
@@ -103,11 +104,11 @@ export const CardWrapper = styled.div`
     max-width: 43rem;
     padding: 0 1rem;
   `}
-`
+`;
 
 interface CardProps {
-  inView?: boolean
+  inView?: boolean;
 }
 export const Card = styled(Image)<CardProps>`
   ${props => transitionIntoView(true, props.inView)}
-`
+`;

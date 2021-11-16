@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Col } from "react-awesome-styled-grid"
 
 import media from "../../styles/media"
-import { Section, fadeInTop, fadeIn } from "../../styles/common.styled"
+import { fadeInTop, fadeIn } from "../../styles/common.styled"
 import {
   centerTextBlock,
   absoluteCenter,
@@ -13,7 +13,7 @@ import {
 import TextBlock from "../text-block"
 import Image from "../image"
 
-export const StyledSection = styled(Section)`
+export const StyledSection = styled.section`
   overflow: hidden;
 `
 
@@ -22,7 +22,7 @@ interface StyledTextBlockProps {
 }
 
 export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
-  padding: 10rem 0;
+  padding: 12rem 0;
 
   .tagline {
     margin-bottom: 3rem;
@@ -34,7 +34,7 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
     margin-bottom: 3rem;
   }
 
-  ${props =>
+  ${(props) =>
     props.classNames &&
     staggeredAnimation(fadeInTop, 1, 0, 0.2, props.classNames)}
 
@@ -50,6 +50,7 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
 
     .emailForm {
       margin-bottom: 7rem;
+      text-align: left;
     }
   `}
 `
@@ -65,12 +66,19 @@ export const StyledCol = styled(Col)`
 
 export const StyledImage = styled(Image)`
   position: absolute !important;
+  max-width: unset !important;
+  /* width: 100%;
+  height: 100%;
+  img {
+    object-fit: contain !important;
+  } */
   ${absoluteCenter};
   ${animation(fadeIn, 1, 0.8)};
 
-  ${media.lessThan("lg")`
+  /* ${media.lessThan("lg")`
     width: 100% !important;
-  `};
+  `}; */
+    width: 100% !important;
 
   ${media.lessThan("sm")`
     position: relative !important;

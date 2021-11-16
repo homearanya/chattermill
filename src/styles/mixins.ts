@@ -2,8 +2,11 @@ import { css, Keyframes } from "styled-components"
 
 import { $white, $colorHeading, $colorPrimary } from "./variables"
 
-export const boxShadow = `
+export const boxShadow = ` 
   box-shadow: 0px 8px 24px rgba(28,10,54,0.12);
+`
+export const boxShadowHover = `
+  box-shadow: 0 12px 32px rgba(28,10,54,0.2);
 `
 export const clearfix = css`
   &::after {
@@ -69,7 +72,7 @@ export function buttonStyles(
   secondary?: boolean
 ) {
   return css`
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     line-height: 1;
     display: inline-block;
     background-color: ${inverted
@@ -82,7 +85,7 @@ export function buttonStyles(
     text-align: center;
     border: 1px solid ${secondary ? $colorHeading : $colorPrimary};
     border-radius: 2.5rem;
-    padding: ${wide ? "1.5rem 3rem" : "1.5rem 2.5rem"};
+    padding: ${wide ? "1.3rem 2.6rem" : "0.9rem 2.7rem"};
     transition: all 0.2s;
     /* Change for the <button> element */
     cursor: pointer;
@@ -90,6 +93,9 @@ export function buttonStyles(
     -webkit-tap-highlight-color: transparent;
     /* Firefox Specific CSS to remove button differences and focus ring */
     background-image: none;
+    :focus {
+      outline: 0;
+    }
   `
 }
 export function buttonStylesHover(inverted?: boolean, secondary?: boolean) {
@@ -242,4 +248,26 @@ export function transitionIntoViewTop(
           `}
       `
     : css``
+}
+
+// Aspect Ratio
+
+export const aspectRatio = (width: number, height: number) => {
+  return css`
+    position: relative;
+    width: 100%;
+    &::before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: ${(height / width) * 100}%;
+    }
+    > .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  `
 }

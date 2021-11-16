@@ -1,6 +1,12 @@
 .terms-section,
 .security-section,
 .vdp-section {
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 2rem 0;
+  }
   h1 {
     font-size: 4rem;
   }

@@ -1,12 +1,12 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { Link } from "gatsby";
 
-import { Heading } from "./blog-heading.styled"
+import { Heading } from "./blog-heading.styled";
 
 interface BlogHeadingProps {
-  readonly heading: string
-  readonly to?: string
-  readonly className?: string
+  readonly heading: string;
+  readonly to?: string;
+  readonly className?: string;
 }
 
 export const BlogHeading = ({ heading, to, className }: BlogHeadingProps) =>
@@ -16,6 +16,6 @@ export const BlogHeading = ({ heading, to, className }: BlogHeadingProps) =>
     </Heading>
   ) : (
     <Heading className={className}>{heading}</Heading>
-  )
+  );
 
-export default BlogHeading
+export default BlogHeading;

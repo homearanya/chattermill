@@ -1,53 +1,44 @@
-import React, { useState } from "react"
-import { navigate } from "gatsby"
+import React from "react"
 
-import { StyledForm, StyledInput, StyledButton } from "./email-form.styled"
+import { StyledLink, StyledLink2, ButtonWrapper } from "./email-form.styled"
 
-export interface EmailFormData {
-  textPlaceholder: string
-  buttonText: string
-}
-
-interface EmailFormProps {
-  readonly data: EmailFormData
-  readonly border?: boolean
-  readonly className?: string
-}
-
-export const EmailForm = ({ data, border, className }: EmailFormProps) => {
-  const [email, setEmail] = useState("")
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    setEmail("")
-    e.preventDefault()
-    navigate("/contact/", {
-      state: { email },
+export const EmailForm = () => {
+  const handleSalesClick = () => {
+    window.analytics &&
+      window.analytics.track("Clicked Button", {
+        email: "dummy@dummy.com",
+        label: "Clicked Request Demo Button",
+      })
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: "Request Demo Click",
     })
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEmail(e.target.value)
+  const handleDemoClick = () => {
+    window.analytics &&
+      window.analytics.track("Clicked Button", {
+        email: "dummy@dummy.com",
+        label: "Clicked Try Free Demo Button",
+      })
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: "Try for Free Click",
+    })
+  }
 
-  const { textPlaceholder, buttonText } = data
   return (
-    <StyledForm id="email-form" className={className} onSubmit={handleSubmit}>
-      <StyledInput
-        type="email"
-        name="email"
-        placeholder={textPlaceholder}
-        aria-label="email"
-        required
-        value={email}
-        onChange={handleChange}
-        border={border}
-      />
-      <StyledButton
-        as="input"
-        type="submit"
-        value={buttonText}
-        wide
-        secondary
-      />
-    </StyledForm>
+    <ButtonWrapper>
+      <StyledLink
+        href="https://app.chattermill.com/signup"
+        onClick={handleDemoClick}
+      >
+        <div className="button-1">Try For Free</div>
+      </StyledLink>
+      <StyledLink2 href="/book-demo?ref=homepage/" onClick={handleSalesClick}>
+        <div className="button-2">Request Demo</div>
+      </StyledLink2>
+    </ButtonWrapper>
   )
 }
 

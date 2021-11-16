@@ -1,2 +1,2 @@
-export * from "./mobile-dropdown"
-export { default } from "./mobile-dropdown"
+export * from "./mobile-dropdown";
+export { default } from "./mobile-dropdown";

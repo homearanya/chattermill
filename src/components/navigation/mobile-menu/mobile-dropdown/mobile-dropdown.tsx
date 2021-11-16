@@ -14,17 +14,17 @@ import {
 
 interface MobileDropdownProps {
   title: string
-  list: {
-    name: string
-    href: string
-  }[]
+  href: string
+  list: readonly Pick<
+    GatsbyTypes.MarkdownRemarkFrontmatterMenuItemsSubMenuItems,
+    "name" | "href"
+  >[]
 }
 
-const MobileDropdown = ({ title, list }: MobileDropdownProps) => {
+const MobileDropdown = ({ title, href, list }: MobileDropdownProps) => {
   const ref = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
   useOnClickOutside(ref, () => setIsOpen(false))
-
   return (
     <div ref={ref}>
       <Header onClick={() => setIsOpen(!isOpen)}>
@@ -32,6 +32,16 @@ const MobileDropdown = ({ title, list }: MobileDropdownProps) => {
         {isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
       </Header>
       <List isOpen={isOpen}>
+        {href && (
+          <ListItem>
+            {href.indexOf("http://") !== -1 ||
+            href.indexOf("https://") !== -1 ? (
+              <a href={href}>{title}</a>
+            ) : (
+              <Link to={href}>{title}</Link>
+            )}
+          </ListItem>
+        )}
         {list.map((item, index) => (
           <ListItem key={index}>
             {item.href.indexOf("http://") !== -1 ||

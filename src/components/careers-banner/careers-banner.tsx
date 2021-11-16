@@ -4,32 +4,33 @@ import {
   StyledBigHeading,
   StyledMediumHeading,
   StyledCol,
-  StyledButton,
   StyledContainer
 } from "./careers-banner.styled";
 import Logo from "./cm-primary-logo.svg";
-import { Link } from "gatsby";
 
-function Heading(props) {
-  return <StyledBigHeading>{props.message}</StyledBigHeading>;
+interface HeaderProps {
+  message: string;
 }
 
-export const CareersBanner = () => {
+function Heading({ message }: HeaderProps) {
+  return <StyledBigHeading>{message}</StyledBigHeading>;
+}
+
+type BannerProps = { children: React.ReactNode };
+
+export const CareersBanner: React.FunctionComponent<BannerProps> = props => {
   return (
     <StyledSection>
       <img src={Logo} alt="chattermill-logo"></img>
       <Heading message="Careers at Chattermill"></Heading>
       <StyledContainer>
         <StyledMediumHeading>
-          At Chattermill we are innovating customer experience for some of the
+          At Chattermill we are innovating Customer Experience for some of the
           most exciting companies on earth.
         </StyledMediumHeading>
+        <StyledMediumHeading>Interested in joining us?</StyledMediumHeading>
       </StyledContainer>
-      <StyledCol>
-        <StyledButton>View Job Openings 🚀</StyledButton>
-        <StyledButton>View Benefits ❤</StyledButton>
-        <Link to="/careers-benefits/">Click me</Link>
-      </StyledCol>
+      <StyledCol>{props.children}</StyledCol>
     </StyledSection>
   );
 };

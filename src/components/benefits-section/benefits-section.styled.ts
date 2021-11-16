@@ -1,34 +1,49 @@
-import styled from "styled-components"
-import { Col } from "react-awesome-styled-grid"
+import styled from "styled-components";
+import { Col, Container } from "react-awesome-styled-grid";
 
-import media from "../../styles/media"
-import { Section, MediumHeading } from "../../styles/common.styled"
-import { $colorSecondary, $greyLight } from "../../styles/variables"
+import media from "../../styles/media";
+import { MediumHeading } from "../../styles/common.styled";
+import {
+  $colorPrimary,
+  $colorSecondary,
+  $greyLight,
+  $white
+} from "../../styles/variables";
 import {
   centerTextBlock,
   boxShadow,
-  transitionIntoView,
-} from "../../styles/mixins"
-import TextBlock from "../text-block"
+  transitionIntoView
+} from "../../styles/mixins";
+import TextBlock from "../text-block";
 
 interface StyledSectionProps {
-  withBorder?: boolean
+  withBorder?: boolean;
+  inverted?: boolean;
 }
-export const StyledSection = styled(Section) <StyledSectionProps>`
-  padding: 5rem 0;
+export const StyledSection = styled.section<StyledSectionProps>`
+  padding: 2rem 0;
   border-top: ${({ withBorder }) =>
     withBorder ? `1px solid ${$greyLight}` : 0};
   border-bottom: ${({ withBorder }) =>
     withBorder ? `1px solid ${$greyLight}` : 0};
+
   ${media.lessThan("sm")`
     padding: 3rem 0 0;
-  `}
-`
+  `};
+`;
 
-interface StyledHeadingProps {
-  inView?: boolean
+interface StyledContainerProps {
+  withBorder?: boolean;
+  inverted?: boolean;
 }
-export const StyledHeading = styled(MediumHeading) <StyledHeadingProps>`
+export const StyledContainer = styled(Container)<StyledContainerProps>`
+  background-color: ${({ inverted }) =>
+    inverted ? $colorPrimary : `transparent`};
+`;
+interface StyledHeadingProps {
+  inView?: boolean;
+}
+export const StyledHeading = styled(MediumHeading)<StyledHeadingProps>`
   color: ${$colorSecondary};
   margin-bottom: 9rem;
   text-align: center;
@@ -37,14 +52,16 @@ export const StyledHeading = styled(MediumHeading) <StyledHeadingProps>`
   ${media.lessThan("sm")`
     text-align: center;
   `}
-`
+`;
 
-export const StyledCol = styled(Col)``
+export const StyledCol = styled(Col)``;
 
 interface StyledTextBlockProps {
-  withBoxShadow?: boolean
+  withBoxShadow?: boolean;
+  inverted?: boolean;
 }
-export const StyledTextBlock = styled(TextBlock) <StyledTextBlockProps>`
+export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
+  height: 100%;
   padding: 5rem 3rem;
   ${props => props.withBoxShadow && boxShadow};
   text-align: center;
@@ -58,21 +75,23 @@ export const StyledTextBlock = styled(TextBlock) <StyledTextBlockProps>`
   }
 
  .smallHeading {
+   color: ${({ inverted }) => (inverted ? $white : `unset`)};
    margin-bottom: 3rem;
    .underline {
      padding-bottom: 5px;
     }
   }
-  
+
   .text {
     margin: 0 auto;
     margin-bottom: 3rem;
+    color: ${({ inverted }) => (inverted ? $white : `unset`)};
   }
-  
+
   ${media.lessThan("lg")`
     padding: 5rem 2rem;
   `}
-  
+
   ${media.lessThan("md")`
     box-shadow: none !important;
     ${centerTextBlock};
@@ -84,4 +103,4 @@ export const StyledTextBlock = styled(TextBlock) <StyledTextBlockProps>`
     box-shadow: none !important;
     ${centerTextBlock};
   `}
-`
+`;
