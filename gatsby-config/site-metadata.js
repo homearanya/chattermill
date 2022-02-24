@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
-const { siteUrl } = require("./constants");
+const { siteUrl } = require("./constants")
 
-const domainsExcluded = require("../src/utils/domain");
+const domainsExcluded = require("../src/utils/domain")
 
 module.exports = {
   title: `Chattermill`,
@@ -11,38 +11,38 @@ module.exports = {
   blog: {
     pathPrefix: "/blog/",
     postsPerPage: 18,
-    postsPerGrid: [0, 2, 3, 3] // first entry ignored
+    postsPerGrid: [0, 2, 3, 3], // first entry ignored
   },
   templates: {
     pathPrefix: "/templates/",
-    templatesPerPage: 18
+    templatesPerPage: 18,
   },
   partners: {
-    pathPrefix: "/partners/"
+    pathPrefix: "/partners/",
   },
   roles: {
-    pathPrefix: "/roles/"
+    pathPrefix: "/roles/",
   },
   ppc: {
-    pathPrefix: "/ppc/"
+    pathPrefix: "/ppc/",
   },
   pillar: {
-    pathPrefix: "/pillar/"
+    pathPrefix: "/pillar/",
   },
   integrations: {
-    pathPrefix: "/integrations/"
+    pathPrefix: "/integrations/",
   },
   industries: {
-    pathPrefix: "/industries/"
+    pathPrefix: "/industries/",
   },
   investor: {
-    pathPrefix: "/investor/"
+    pathPrefix: "/investor/",
   },
   customers: {
-    pathPrefix: "/customers/"
+    pathPrefix: "/customers/",
   },
   productPage: {
-    pathPrefix: "/product/"
+    pathPrefix: "/product/",
   },
   siteUrl, // for gatsby plugin sitemap
   domainsExcluded,
@@ -65,6 +65,7 @@ module.exports = {
     templates_formId: process.env.HUBSPOT_FORM_TEMPLATES,
     newsletter_formId: process.env.HUBSPOT_NEWSLETTER,
     cxExcellence_formId: process.env.HUBSPOT_FORM_WHITEPAPER_EXCELLENCE,
+    eCXpectations_formId: process.env.HUBSPOT_FORM_WHITEPAPER_ECXPECTATIONS,
     cxFashion_formId: process.env.HUBSPOT_FORM_WHITEPAPER_CX_FASHION,
     cxFashion_retail_formId:
       process.env.HUBSPOT_FORM_WHITEPAPER_CX_FASHION_RETAIL,
@@ -78,6 +79,9 @@ module.exports = {
     datasheet_overview_report_formId: process.env.HUBSPOT_FORM_OVERVIEW_REPORT,
     datasheet_growth_report_formId: process.env.HUBSPOT_FORM_GROWTH_REPORT,
     datasheet_enterprise_report_formId:
-      process.env.HUBSPOT_FORM_ENTERPRISE_REPORT
-  }
-};
+      process.env.HUBSPOT_FORM_ENTERPRISE_REPORT,
+    customer_support_trends_formId:
+      process.env.HUBSPOT_FORM_CUSTOMER_SUPPORT_TRENDS,
+    cxFintech_formId: process.env.HUBSPOT_FORM_WHITEPAPER_CX_FINTECH,
+  },
+}

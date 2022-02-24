@@ -76,7 +76,7 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
     max-width: 80%;
   }
 
-  ${(props) =>
+  ${props =>
     props.classNames &&
     staggeredAnimation(fadeInTop, 1, 0, 0.2, props.classNames)}
 
@@ -154,6 +154,7 @@ const cardStyles = css`
 
 export const Card = styled.div`
   ${cardStyles};
+  overflow: visible;
 `
 export const Card2 = styled.img`
   ${cardStyles};

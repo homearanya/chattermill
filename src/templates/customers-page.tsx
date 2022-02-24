@@ -88,9 +88,12 @@ export const query = graphql`
       metaTitle
       metaDescription
       heroImage {
-        fluid(maxWidth: 1920) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 1920
+          layout: FULL_WIDTH
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       carousel {
         id
@@ -108,9 +111,12 @@ export const query = graphql`
           name
           slug
           thumbnailImage {
-            fluid(maxWidth: 500) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              width: 550
+              layout: CONSTRAINED
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+            )
           }
           thumbnailText {
             childMarkdownRemark {

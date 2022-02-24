@@ -34,9 +34,14 @@ const IntegrationsCarouselSlider = () => {
               file {
                 url
               }
-              fluid(maxWidth: 100, quality: 100) {
-                ...GatsbyContentfulFluid_withWebp
-              }
+
+              gatsbyImageData(
+                width: 100
+                quality: 100
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }

@@ -2,7 +2,7 @@ import React, { useMemo } from "react"
 import { graphql } from "gatsby"
 import { Container } from "react-awesome-styled-grid"
 import styled from "styled-components"
-import useMedia from "use-media"
+import { useMediaQuery } from "react-responsive"
 
 import Layout from "../components/layout"
 import WhitePaper, { WhitePaperProps } from "../components/whitepaper"
@@ -41,9 +41,15 @@ const ScalingCX = ({
     },
   },
 }: ScalingCXPageProps) => {
-  const isMobile = useMedia({ maxWidth: $breakpoints.sm * 16 - 1 })
-  const isTablet = useMedia({ maxWidth: $breakpoints.md * 16 - 1 })
-  const isDesktop = useMedia({ maxWidth: $breakpoints.lg * 16 - 1 })
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${$breakpoints.sm * 16 - 1}px)`,
+  })
+  const isTablet = useMediaQuery({
+    query: `(max-width: ${$breakpoints.md * 16 - 1}px)`,
+  })
+  const isDesktop = useMediaQuery({
+    query: `(max-width: ${$breakpoints.lg * 16 - 1}px)`,
+  })
 
   const backgroundImage: SubFile = useMemo(() => {
     if (isMobile) return scalingCxMobile
@@ -69,7 +75,13 @@ const ScalingCX = ({
         featuredImage={backgroundImageDesktop}
       />
       <StyledSection>
-        <StyledImage image={backgroundImage} alt="hero image" />
+        <ImageWrapper>
+          <StyledImage
+            image={backgroundImage}
+            objectFit="contain"
+            alt="hero image"
+          />
+        </ImageWrapper>
       </StyledSection>
       <StyledContainer>
         <StyledHeader
@@ -132,7 +144,7 @@ export const query = graphql`
               width: 375
               quality: 100
               layout: CONSTRAINED
-              placeholder: BLURRED
+              placeholder: NONE
               formats: [AUTO, WEBP]
             )
           }
@@ -173,18 +185,15 @@ export const query = graphql`
   }
 `
 
-const StyledSection = styled.section`
-  position: relative;
-  height: 100vh;
+const StyledSection = styled.section``
+
+const ImageWrapper = styled.div`
+  padding: 0 3rem;
+  max-width: 120rem;
+  margin: 0 auto;
 `
 
-const StyledImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  object-fit: cover;
-`
+const StyledImage = styled(Image)``
 
 const StyledContainer = styled(Container)`
   display: flex;

@@ -52,17 +52,10 @@ export const getCookie = (name: string): string => {
 }
 
 export const contentfulImageMap = (image: SubContentfulAsset): SubFile => {
-  const imageFluid: SubImageSharpFluid = image.fluid
-    ? { ...image.fluid }
-    : undefined
-
-  const imageFixed: SubImageSharpFixed = image.fixed
-    ? { ...image.fixed }
-    : undefined
+  if (!image) return undefined
 
   const childImageSharp: SubImageSharp = {
-    fixed: imageFixed,
-    fluid: imageFluid,
+    gatsbyImageData: image.gatsbyImageData,
   }
   const publicURL = image.file && image.file.url ? image.file.url : undefined
   return {

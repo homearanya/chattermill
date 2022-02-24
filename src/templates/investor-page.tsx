@@ -150,19 +150,19 @@ const InvestorPage = ({
   }
 
   const brands: Brand[] = brandsContentful.map(
-    ({ title, website, logoWhite, logoColor }) => ({
+    ({ title, website, logo, logoHover }) => ({
       name: title,
       link: website,
-      whiteIcon: logoWhite.file.url,
-      colorIcon: logoColor.file.url,
+      whiteIcon: logo.file.url,
+      colorIcon: logoHover.file.url,
     })
   )
   const brands2: Brand[] = brandsContentful2.map(
-    ({ title, website, logoWhite, logoColor }) => ({
+    ({ title, website, logo, logoHover }) => ({
       name: title,
       link: website,
-      whiteIcon: logoWhite.file.url,
-      colorIcon: logoColor.file.url,
+      whiteIcon: logo.file.url,
+      colorIcon: logoHover.file.url,
     })
   )
   return (
@@ -199,20 +199,23 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 683) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
+        gatsbyImageData(
+          width: 683
+          layout: CONSTRAINED
+          placeholder: NONE
+          formats: [AUTO, WEBP]
+        )
       }
       brands {
         id
         title
         website
-        logoWhite {
+        logo {
           file {
             url
           }
         }
-        logoColor {
+        logoHover {
           file {
             url
           }
@@ -223,9 +226,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 80) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 80
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       feature1Title
       feature1Text {
@@ -236,9 +242,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 80) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 80
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       feature2Title
       feature2Text {
@@ -249,9 +258,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 80) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 80
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       feature3Title
       feature3Text {
@@ -262,9 +274,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 550) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 550
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section1Heading
       section1Text {
@@ -275,9 +290,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 550) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 550
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section2Heading
       section2Text {
@@ -288,9 +306,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 550) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 550
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section3Heading
       section3Text {
@@ -300,12 +321,12 @@ export const query = graphql`
         id
         title
         website
-        logoWhite {
+        logo {
           file {
             url
           }
         }
-        logoColor {
+        logoHover {
           file {
             url
           }
@@ -320,18 +341,24 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 528) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 528
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       caseStudyBackgroundImage {
         file {
           url
         }
         title
-        fluid(maxWidth: 575) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 575
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       caseStudyDownloadLink
       ctaHeading

@@ -21,13 +21,13 @@ export const StyledRow = styled(Row)<StyledRowProps>`
   padding: 3rem;
   width: 100vw;
   background-color: ${$white};
-  transition: transform 0.3s ease-in-out;
+  /* transition: transform 0.3s ease-in-out; */
   margin: 0 !important;
   overflow-y: scroll;
   height: calc(100vh - 80px);
   -webkit-overflow-scrolling: touch;
 
-  transform: ${({ open }) => (open ? "translateY(0)" : "translateY(-120%)")};
+  transform: ${({ open }) => (open ? "translateY(0)" : "translateY(-150%)")};
   z-index: -1;
 
   display: none;

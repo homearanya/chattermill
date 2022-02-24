@@ -1,6 +1,6 @@
 # Redirect domain aliases to primary domain
 https://chattermill.io/*  https://chattermill.com/:splat  301!
-https://chattermill.netlify.com/* https://chattermill.com/:splat  301!
+https://chattermill.netlify.app/* https://chattermill.com/:splat  301!
 https://chattermill-signup.netlify.app/* https://start.chattermill.com/:splat 301!
 https://start.chattermill.com/ https://app.chattermill.com/signup 301!
 

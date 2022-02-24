@@ -27,12 +27,11 @@ interface JobPageProps {
 
 const JobPage = ({
   pageContext: { html_content },
-  data: { jobs, featuredImage },
+  data: { greenhouseJob, featuredImage },
   location: { href },
 }: JobPageProps) => {
-  const { title, departments, location, absolute_url } = jobs
+  const { title, departments, location, absolute_url } = greenhouseJob
   const departmentsList = greenHouseDepartmentsList(departments)
-
   return (
     <Layout className="job-page">
       <SEO
@@ -67,7 +66,7 @@ const JobPage = ({
 export default JobPage
 
 interface PageQueryData {
-  job: {
+  greenhouseJob: {
     title: string
     internal_job_id: number
     location: {
@@ -85,7 +84,7 @@ interface PageQueryData {
 
 export const query = graphql`
   query($job_id: Float!) {
-    jobs(internal_job_id: { eq: $job_id }) {
+    greenhouseJob(internal_job_id: { eq: $job_id }) {
       title
       internal_job_id
       location {
@@ -96,7 +95,7 @@ export const query = graphql`
       }
       absolute_url
     }
-    featuredImage: file(relativePath: { regex: "/team/" }) {
+    featuredImage: file(relativePath: { eq: "team.jpg" }) {
       publicURL
     }
   }

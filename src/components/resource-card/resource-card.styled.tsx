@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import media from "../../styles/media";
-import TextBlock from "../text-block";
+import styled, { css } from "styled-components"
+import media from "../../styles/media"
+import TextBlock from "../text-block"
 
 export const StyledCard = styled.div`
   text-align: center;
@@ -20,30 +20,11 @@ export const StyledCard = styled.div`
   ${media.lessThan("lg")`
     padding: 1rem;
   `}
-`;
-interface StyledTextBlockProps {
-  imageCircle: boolean;
-  imageHeight?: number;
-  imageWidth?: number;
-}
-export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
+`
+export const StyledTextBlock = styled(TextBlock)`
   width: 100%;
   .image {
     opacity: 1;
-    border-radius: ${({ imageCircle }) => (imageCircle ? "50%" : "0")};
-    width: 100%;
-    ${({ imageHeight }) =>
-      imageHeight &&
-      css`
-        height: ${imageHeight}px;
-      `};
-    ${({ imageWidth }) =>
-      imageWidth &&
-      css`
-        width: ${imageWidth}px;
-        margin: 0 auto 2rem;
-      `};
-    min-height: 14rem;
   }
   .tagline {
     opacity: 1;
@@ -65,4 +46,4 @@ export const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
   .text {
     opacity: 1;
   }
-`;
+`

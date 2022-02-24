@@ -42,24 +42,18 @@ export const PostCard = ({
   excerptFontSize = 16,
   limit = 200,
 }: PostCardProps) => {
-  const {
-    title: { title },
-    category: { title: catTitle },
-    slug,
-    featuredImage,
-    body,
-    author: { name },
-  } = post
+  const { title, category, slug, featuredImage, body, author } = post
 
   let text = body?.childMarkdownRemark?.excerpt ?? ""
   if (limit && text) {
     // text = htmlTruncate(html, limit);
     text = textTruncate(text, limit)
   }
+
   return (
     <StyledLink to={`${pathPrefix}${slug}`}>
       <Article imageFirst={imageFirst} vertical={vertical}>
-        {featuredImage && featuredImage.fluid ? (
+        {featuredImage && (
           <StyledImage
             image={contentfulImageMap(featuredImage)}
             alt={featuredImage.title}
@@ -69,19 +63,16 @@ export const PostCard = ({
             vertical={vertical}
             imageFirst={imageFirst}
             imgStyle={{ objectFit: imageSize }}
-            aspectRatio={
-              featuredImage.fluid.aspectRatio
-                ? featuredImage.fluid.aspectRatio
-                : undefined
-            }
           />
-        ) : null}
+        )}
         <TextBlockWrapper>
-          <StyledCategory>{catTitle}</StyledCategory>
-          <StyledHeading headingFontSize={headingFontSize}>
-            {title}
-          </StyledHeading>
-          <StyledAuthor>{`By ${name}`}</StyledAuthor>
+          {category?.title && <StyledCategory>{category.title}</StyledCategory>}
+          {title?.title && (
+            <StyledHeading headingFontSize={headingFontSize}>
+              {title.title}
+            </StyledHeading>
+          )}
+          {author?.name && <StyledAuthor>{`By ${author.name}`}</StyledAuthor>}
           <StyledIntro
             dangerouslySetInnerHTML={{ __html: text }}
             excerptFontSize={excerptFontSize}

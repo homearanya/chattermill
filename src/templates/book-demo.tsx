@@ -60,8 +60,13 @@ const BookDemo: React.FC<BookDemoProps> = ({ data }) => {
     <Container>
       <SEO title={title} description={description} />
       <Helmet>
+        <script>
+          {`
+        function q(a){return function(){ChiliPiper[a].q = (ChiliPiper[a].q || []).concat([arguments])}}window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b] = q(b);return a},{ });
+        ChiliPiper.scheduling("chattermill", "request-demo-router", {title: "Thanks! What time works best for a quick call?"})`}
+        </script>
         <script
-          src="https://js.na.chilipiper.com/marketing.js"
+          src="https://js.chilipiper.com/marketing.js"
           type="text/javascript"
           async
         />

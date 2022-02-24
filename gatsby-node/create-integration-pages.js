@@ -1,7 +1,7 @@
-const path = require("path");
+const path = require("path")
 
 module.exports = async (actions, graphql) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   try {
     const { errors, data } = await graphql(`
       {
@@ -22,29 +22,29 @@ module.exports = async (actions, graphql) => {
           }
         }
       }
-    `);
+    `)
     if (errors) {
-      errors.forEach(e => console.error(e.toString()));
-      throw new Error("error on graphql for contentful nodes - integrations");
+      errors.forEach(e => console.error(e.toString()))
+      throw new Error("error on graphql for contentful nodes - integrations")
     }
     const {
-      integrations: { pathPrefix }
-    } = data.site.siteMetadata;
+      integrations: { pathPrefix },
+    } = data.site.siteMetadata
 
-    const { edges } = data.allContentfulIntegration;
+    const { edges } = data.allContentfulIntegration
     edges.forEach(({ node: integration }) => {
-      const { id, slug } = integration;
-      const integrationPath = `${pathPrefix}${slug ? slug : ""}`;
+      const { id, slug } = integration
+      const integrationPath = `${pathPrefix}${slug ? `${slug}/` : ""}`
       createPage({
         path: integrationPath,
         component: path.resolve(`src/templates/integration-page.tsx`),
         context: {
           slug: slug ? slug : "",
-          id
-        }
-      });
-    });
+          id,
+        },
+      })
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

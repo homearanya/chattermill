@@ -45,7 +45,7 @@ export const TemplateCard = ({
   const headingRef = useRef(null)
   useEffect(() => {
     if (headingRef.current && setTemplateTitleHeights) {
-      setTemplateTitleHeights((titles) => {
+      setTemplateTitleHeights(titles => {
         titles[`title${index}`] = headingRef.current.clientHeight
         return titles
       })
@@ -57,6 +57,7 @@ export const TemplateCard = ({
         <StyledImg
           image={contentfulImageMap(featuredImage)}
           alt={featuredImage.title}
+          objectFit="contain"
         />
         <StyledHeading
           ref={headingRef}

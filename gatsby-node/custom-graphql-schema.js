@@ -15,8 +15,8 @@ exports.customGraphqlSchema = ({ actions, schema }) => {
         title: String
         website:String
         logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
-        logoWhite: ContentfulAsset @link(by: "id", from: "logoWhite___NODE")
-        logoColor: ContentfulAsset @link(by: "id", from: "logoColor___NODE")
+        logo: ContentfulAsset @link(by: "id", from: "logo___NODE")
+        logoHover: ContentfulAsset @link(by: "id", from: "logoHover___NODE")
       }
       type ContentfulBrand implements Node {
         title: String
@@ -162,16 +162,6 @@ exports.customGraphqlSchema = ({ actions, schema }) => {
         ctaButtonText: String
         ctaColor: String
       }
-      type SitePage implements Node {context: SitePageContext}
-  
-      type FrontPostCat {
-        title: String
-        grid: Int
-        posts: [ContentfulPost]
-      }
-      type FrontPost {
-        cat: FrontPostCat
-      }
   
       type contentfulRolesHeaderTextTextNode implements Node {
         headerText: String
@@ -250,65 +240,6 @@ exports.customGraphqlSchema = ({ actions, schema }) => {
         subText: String
       }
      `,
-    schema.buildObjectType({
-      name: "SitePageContext",
-      fields: {
-        mainPost2: {
-          type: "ContentfulPost",
-          resolve: (source, args, context, info) => {
-            // If you were linking by ID, you could use `getNodeById` to
-            // find the correct author:
-            // return context.nodeModel.getNodeById({
-            //   id: source.author,
-            //   type: "AuthorJson",
-            // })
-            // But since the example is using the author email as foreign key,
-            // you can use `runQuery`, or get all author nodes
-            // with `getAllNodes` and manually find the linked author
-            // node:
-            if (source.mainPost) {
-              return context.nodeModel.getNodeById({
-                id: source.mainPost,
-                type: "ContentfulPost",
-              })
-            } else {
-              return null
-            }
-          },
-        },
-        frontPosts2: {
-          type: "[FrontPost]",
-          resolve: (source, args, context, info) => {
-            // If you were linking by ID, you could use `getNodeById` to
-            // find the correct author:
-            // return context.nodeModel.getNodeById({
-            //   id: source.author,
-            //   type: "AuthorJson",
-            // })
-            // But since the example is using the author email as foreign key,
-            // you can use `runQuery`, or get all author nodes
-            // with `getAllNodes` and manually find the linked author
-            // node:
-
-            if (source.frontPosts) {
-              return source.frontPosts.map(({ cat }) => ({
-                cat: {
-                  ...cat,
-                  posts: cat.posts.map(post =>
-                    context.nodeModel.getNodeById({
-                      id: post,
-                      type: "ContentfulPost",
-                    })
-                  ),
-                },
-              }))
-            } else {
-              return null
-            }
-          },
-        },
-      },
-    }),
   ]
   createTypes(typeDefs)
 }

@@ -9,10 +9,10 @@ module.exports = [
       // boolean (defaults to false) on whether you want
       // to include analytics.page() automatically
       // if false, see below on how to track pageviews manually
-      trackPage: true
+      trackPage: false,
 
-      // devKey: `SEGMENT_DEV_WRITE_KEY`,
-    }
+      // devKey: process.env.GATSBY_SEGMENT_WRITE_KEY,
+    },
 
     //     // if you have a development env for your segment account, paste that key here
     //     // when process.env.NODE_ENV === 'development'
@@ -44,5 +44,5 @@ module.exports = [
     //     // To be used when `delayLoad` is set to `true`
     //     delayLoadTime: 1000
     //   }
-  }
-];
+  },
+]

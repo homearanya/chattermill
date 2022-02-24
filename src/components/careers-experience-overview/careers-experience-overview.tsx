@@ -24,7 +24,7 @@ const ExperienceOverview = () => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 393
+            width: 212
             layout: CONSTRAINED
             placeholder: BLURRED
             formats: [AUTO, WEBP]
@@ -37,7 +37,7 @@ const ExperienceOverview = () => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 393
+            width: 373
             layout: CONSTRAINED
             placeholder: BLURRED
             formats: [AUTO, WEBP]
@@ -52,7 +52,7 @@ const ExperienceOverview = () => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 393
+            width: 318
             layout: CONSTRAINED
             placeholder: BLURRED
             formats: [AUTO, WEBP]
@@ -82,7 +82,7 @@ const ExperienceOverview = () => {
       ) {
         childImageSharp {
           gatsbyImageData(
-            width: 584
+            width: 420
             layout: CONSTRAINED
             placeholder: BLURRED
             formats: [AUTO, WEBP]

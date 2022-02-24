@@ -1,6 +1,6 @@
 import React from "react"
 
-import ContactForm from "../forms/contact-form"
+import ContactForm, { OptionalField } from "../forms/contact-form"
 import {
   StyledContainer,
   StyledWrapper,
@@ -16,6 +16,7 @@ export interface WhitePaperProps {
   formId: string
   newsletterFormId: string
   portalId: string
+  optionalField: OptionalField
 }
 
 const WhitePaper = ({
@@ -25,6 +26,7 @@ const WhitePaper = ({
   formId,
   newsletterFormId,
   portalId,
+  optionalField,
 }: WhitePaperProps) => (
   <StyledContainer>
     <Item>
@@ -46,6 +48,7 @@ const WhitePaper = ({
         }}
         buttonText={"Read Now"}
         buttonPosition="left"
+        sendSolutionDemoForm={false}
         actionOnSuccess={() => {
           window.location.href = pdfUrl
           window.dataLayer = window.dataLayer || []
@@ -53,6 +56,7 @@ const WhitePaper = ({
             event: "Whitepaper Download",
           })
         }}
+        optionalField={optionalField}
       />
     </Item>
   </StyledContainer>

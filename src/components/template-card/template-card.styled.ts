@@ -15,7 +15,9 @@ export const StyledLink = styled(Link)`
   `}
 `
 
-export const StyledImg = styled(Image)``
+export const StyledImg = styled(Image)`
+  margin-bottom: 1rem;
+`
 
 export const StyledHeader = styled.h1`
   font-size: 4rem;

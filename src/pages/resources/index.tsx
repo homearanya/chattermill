@@ -40,7 +40,6 @@ const ResourcesPage = ({
 }: ResourcesPageProps) => {
   const wistiaVideosEdges =
     allWistiaVideos && allWistiaVideos.edges ? allWistiaVideos.edges : []
-  console.log({ wistiaVideosEdges })
   const [templateTitleHeights, setTemplateTitleHeights] = useState({})
   const [webinarTitleHeights, setWebinarTitleHeights] = useState({})
   const [imageSizes, setImageSizes] = useState({})
@@ -294,9 +293,13 @@ export const query = graphql`
           }
           featuredImage {
             title
-            fluid(maxWidth: 600, maxHeight: 400) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              width: 600
+              height: 400
+              layout: CONSTRAINED
+              placeholder: NONE
+              formats: [AUTO, WEBP]
+            )
             file {
               url
             }
@@ -331,9 +334,13 @@ export const query = graphql`
               url
             }
             title
-            fluid(maxWidth: 640) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+
+            gatsbyImageData(
+              width: 640
+              layout: CONSTRAINED
+              placeholder: NONE
+              formats: [AUTO, WEBP]
+            )
           }
         }
       }
@@ -375,7 +382,7 @@ export const query = graphql`
     imageBlog: file(relativePath: { eq: "blog.png" }) {
       childImageSharp {
         gatsbyImageData(
-          width: 200
+          height: 150
           layout: CONSTRAINED
           placeholder: BLURRED
           formats: [AUTO, WEBP]
@@ -386,7 +393,7 @@ export const query = graphql`
     imageWebinars: file(relativePath: { eq: "webinars.png" }) {
       childImageSharp {
         gatsbyImageData(
-          width: 200
+          height: 150
           layout: CONSTRAINED
           placeholder: BLURRED
           formats: [AUTO, WEBP]
@@ -397,7 +404,7 @@ export const query = graphql`
     imageTemplates: file(relativePath: { eq: "templates.png" }) {
       childImageSharp {
         gatsbyImageData(
-          width: 200
+          height: 150
           layout: CONSTRAINED
           placeholder: BLURRED
           formats: [AUTO, WEBP]
@@ -407,7 +414,7 @@ export const query = graphql`
     }
     imageWhitepapers: file(relativePath: { eq: "whitepapers.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 200, layout: CONSTRAINED, placeholder: BLURRED)
+        gatsbyImageData(height: 150, layout: CONSTRAINED, placeholder: BLURRED)
       }
       publicURL
     }

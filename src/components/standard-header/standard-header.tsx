@@ -64,6 +64,7 @@ export const StandardHeader = ({ data, ...rest }: StandardHeaderProps) => {
                 image={src}
                 alt={alt}
                 loading="eager"
+                objectFit="contain"
               />
             )}
           </StyledCol>

@@ -20,24 +20,15 @@ const PostPage = ({
     contentfulPost,
   },
 }: PostPageProps) => {
-  const {
-    title: { title },
-    slug,
-    body: {
-      childMarkdownRemark: { excerpt },
-    },
-    featuredImage,
-    author,
-  } = contentfulPost
-
+  const { title, slug, body, featuredImage, author } = contentfulPost
   return (
     <Layout blog className="post-page">
       <SEO
-        title={title}
-        description={excerpt}
+        title={title?.title}
+        description={body?.childMarkdownRemark?.excerpt}
         featuredImage={
           featuredImage && featuredImage.file
-            ? featuredImage.file.url
+            ? `https:${featuredImage.file.url}`
             : undefined
         }
         authorName={author?.name}
@@ -82,9 +73,12 @@ export const query = graphql`
       }
       featuredImage {
         title
-        fluid(maxWidth: 780) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
+        gatsbyImageData(
+          width: 780
+          layout: CONSTRAINED
+          placeholder: NONE
+          formats: [AUTO, WEBP]
+        )
         file {
           url
         }

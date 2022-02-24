@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from "react"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
 import { getCookie } from "./helpers"
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from "gatsby"
 
 interface StaticQueryData {
   site: {
@@ -33,7 +33,7 @@ interface HandleFormSubmitProps {
     label: string
   }
   actionOnSuccess?: () => void
-  downloadFile?: ContentfulAssetFile
+  downloadFile?: GatsbyTypes.ContentfulAssetFile
   downloadFileOnBrowser?: boolean
   downloadGaDataLayerEventName?: string
   email?: string
@@ -46,7 +46,7 @@ interface HandleFormSubmitProps {
     name: string
   }
 }
- 
+
 const handleFormSubmit = ({
   actionOnSuccess,
   downloadFile,
@@ -83,7 +83,7 @@ const handleFormSubmit = ({
       }
     `
   )
-    const handleClick = (email) => {
+  const handleClick = email => {
     if (downloadFile && downloadFile.url && downloadFile.fileName) {
       fileDownload(
         downloadFile,
@@ -102,54 +102,54 @@ const handleFormSubmit = ({
         label: analyticsOptions.label,
       })
   }
-    const handleGtm = (event: string) => {
+  const handleGtm = (event: string) => {
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push({
       event,
     })
-    }
-    const fileDownload = (
-  file: ContentfulAssetFile,
-  downloadFileOnBrowser: boolean,
-  downloadGaDataLayerEventName: string,
-  actionOnSuccess: () => void
-) => {
-  if (downloadFileOnBrowser) {
-    const link = document.createElement("a")
-    link.target = "_blank"
-    link.href = file.url
-    document.body.appendChild(link)
-    link.click()
-    actionOnSuccess && setTimeout(actionOnSuccess, 400)
-  } else {
-    axios({
-      url: `${file.url}`,
-      method: "GET",
-      responseType: "blob", // important
-    })
-      .then((response) => {
-        const fileExtension = file.contentType.split("/")[1]
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        const link = document.createElement("a")
-        link.href = url
-        link.setAttribute("download", `${file.fileName}.${fileExtension}`)
-        document.body.appendChild(link)
-        link.click()
+  }
+  const fileDownload = (
+    file: GatsbyTypes.ContentfulAssetFile,
+    downloadFileOnBrowser: boolean,
+    downloadGaDataLayerEventName: string,
+    actionOnSuccess: () => void
+  ) => {
+    if (downloadFileOnBrowser) {
+      const link = document.createElement("a")
+      link.target = "_blank"
+      link.href = file.url
+      document.body.appendChild(link)
+      link.click()
+      actionOnSuccess && setTimeout(actionOnSuccess, 400)
+    } else {
+      axios({
+        url: `${file.url}`,
+        method: "GET",
+        responseType: "blob", // important
+      })
+        .then(response => {
+          const fileExtension = file.contentType.split("/")[1]
+          const url = window.URL.createObjectURL(new Blob([response.data]))
+          const link = document.createElement("a")
+          link.href = url
+          link.setAttribute("download", `${file.fileName}.${fileExtension}`)
+          document.body.appendChild(link)
+          link.click()
 
-        actionOnSuccess && setTimeout(actionOnSuccess, 400)
+          actionOnSuccess && setTimeout(actionOnSuccess, 400)
+        })
+        .catch(error => {
+          console.log("catch", error)
+        })
+    }
+    if (downloadGaDataLayerEventName) {
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({
+        event: downloadGaDataLayerEventName,
+        file: file.url,
       })
-      .catch((error) => {
-        console.log("catch", error)
-      })
+    }
   }
-  if (downloadGaDataLayerEventName) {
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push({
-      event: downloadGaDataLayerEventName,
-      file: file.url,
-    })
-  }
-}
   const {
     isSubmitting,
     setSubmitting,
@@ -165,8 +165,8 @@ const handleFormSubmit = ({
       company: "",
       jobtitle: "",
       email: email ? email : "",
-      ...(optionalField && {[optionalField.name]: '' }),
-      terms_checkbox: false
+      ...(optionalField && { [optionalField.name]: "" }),
+      terms_checkbox: false,
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -180,14 +180,13 @@ const handleFormSubmit = ({
       company: Yup.string()
         .max(50, "Must be 50 characters or less")
         .required("Required"),
-      [optionalField ? optionalField.name : undefined]: Yup.string().max(
-        50,
-        "Must be 50 characters or less"
-      ),
+      [optionalField ? optionalField.name : undefined]: Yup.string()
+        .max(50, "Must be 50 characters or less")
+        .required("Required"),
       email: Yup.string()
         .required("Required")
         .email("Invalid email address")
-        .test("email", "Please enter a business email address", (value) => {
+        .test("email", "Please enter a business email address", value => {
           if (value) {
             const domain = value.split("@")[1]
             if (domainsExcluded.indexOf(domain) === -1) {
@@ -215,8 +214,8 @@ const handleFormSubmit = ({
                 body: JSON.stringify({ email: value }),
               }
             )
-              .then((data) => data.json())
-              .then((result) => {
+              .then(data => data.json())
+              .then(result => {
                 const { valid } = result
                 return valid
               })
@@ -236,8 +235,8 @@ const handleFormSubmit = ({
       setMessage("")
       const fields: { name: string; value: string }[] = []
       Object.keys(values)
-        .filter((e) => e !== "terms_checkbox" && e !== "undefined")
-        .forEach((key) => {
+        .filter(e => e !== "terms_checkbox" && e !== "undefined")
+        .forEach(key => {
           fields.push({ name: key, value: values[key] })
         })
       const context = {
@@ -261,8 +260,7 @@ const handleFormSubmit = ({
         context,
       }
       // subscribe to sendNewsletterForm
-      console.log(values.terms_checkbox);
-      
+
       if (values.terms_checkbox && sendNewsletterForm) {
         axios
           .post(
@@ -272,7 +270,7 @@ const handleFormSubmit = ({
             JSON.stringify(newsletterSubscriptionData, null, 2),
             { headers: { "content-type": "application/json" } }
           )
-          .then((response) => {
+          .then(response => {
             const {
               status,
               data: { inlineMessage },
@@ -294,7 +292,7 @@ const handleFormSubmit = ({
               }
             }
           })
-          .catch((error) => {
+          .catch(error => {
             console.log("catch - sendNewsletterForm subscription", error)
             if (!sendSolutionDemoForm && !sendForm) {
               setMessage("Error. Form hasn't been sent. Contact admin")
@@ -312,7 +310,7 @@ const handleFormSubmit = ({
             JSON.stringify(solutionDemoData, null, 2),
             { headers: { "content-type": "application/json" } }
           )
-          .then((response) => {
+          .then(response => {
             const {
               status,
               data: { inlineMessage },
@@ -331,7 +329,7 @@ const handleFormSubmit = ({
               }
             }
           })
-          .catch((error) => {
+          .catch(error => {
             console.log("catch - solution demo request", error)
             if (!sendForm) {
               setMessage("Error. Form hasn't been sent. Contact admin")
@@ -349,7 +347,7 @@ const handleFormSubmit = ({
             JSON.stringify(formData, null, 2),
             { headers: { "content-type": "application/json" } }
           )
-          .then((response) => {
+          .then(response => {
             const {
               data: { inlineMessage },
             } = response
@@ -361,7 +359,7 @@ const handleFormSubmit = ({
               resetForm()
             }
           })
-          .catch((error) => {
+          .catch(error => {
             console.log({ error })
             setMessage("Error. Form hasn't been sent. Contact admin")
             setSubmitting(false)
@@ -377,8 +375,8 @@ const handleFormSubmit = ({
     values,
     touched,
     errors,
-    resultMessage
+    resultMessage,
   }
 }
- 
-export default handleFormSubmit;
+
+export default handleFormSubmit

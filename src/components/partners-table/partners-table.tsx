@@ -76,9 +76,13 @@ const PartnersTable = ({
                 file {
                   url
                 }
-                fluid {
-                  src
-                }
+                gatsbyImageData(
+                  width: 200
+                  height: 70
+                  layout: CONSTRAINED
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP]
+                )
               }
             }
           }
@@ -101,9 +105,13 @@ const PartnersTable = ({
               file {
                 url
               }
-              fluid {
-                src
-              }
+              gatsbyImageData(
+                width: 200
+                height: 70
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
           }
         }
@@ -116,15 +124,15 @@ const PartnersTable = ({
       .filter(
         ({ node }) =>
           contentfulPartnersTable.integrations.findIndex(
-            (partner) => node.id === partner.id
+            partner => node.id === partner.id
           ) === -1
       )
       .map(({ node }) => node)
     return [
-      ...contentfulPartnersTable.integrations.filter((e) => e.featured),
-      ...restPartners.filter((e) => e.featured),
-      ...contentfulPartnersTable.integrations.filter((e) => !e.featured),
-      ...restPartners.filter((e) => !e.featured),
+      ...contentfulPartnersTable.integrations.filter(e => e.featured),
+      ...restPartners.filter(e => e.featured),
+      ...contentfulPartnersTable.integrations.filter(e => !e.featured),
+      ...restPartners.filter(e => !e.featured),
     ]
   }, [allContentfulPartner, contentfulPartnersTable])
 
@@ -141,7 +149,7 @@ const PartnersTable = ({
       }, {}),
     [allContentfulPartner]
   )
-  const selectPartnerType = (partnerType) => {
+  const selectPartnerType = partnerType => {
     setPartnerTypeSelected(partnerType)
     scroller.scrollTo("table-wrapper", {
       duration: 1500,
@@ -180,7 +188,7 @@ const PartnersTable = ({
             <TableWrapper id="table-wrapper">
               <Results>{`${partnerTypes[partnerTypeSelected]} results`}</Results>
               <TableContainer>
-                {filteredPartners.map((partner) => {
+                {filteredPartners.map(partner => {
                   return (
                     <Flipped key={partner.id} flipId={partner.id}>
                       <PartnerTile

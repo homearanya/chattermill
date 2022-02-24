@@ -148,9 +148,13 @@ export const query = graphql`
         headerDescription
       }
       headerImage {
-        fluid(maxWidth: 400, quality: 100) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 400
+          quality: 100
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
         title
         description
         file {
@@ -158,9 +162,12 @@ export const query = graphql`
         }
       }
       benefitIcon1 {
-        fluid(maxWidth: 55) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 55
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
         title
         description
         file {
@@ -172,9 +179,12 @@ export const query = graphql`
         benefitDescription1
       }
       benefitIcon2 {
-        fluid(maxWidth: 55) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 55
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
         title
         description
         file {
@@ -186,9 +196,12 @@ export const query = graphql`
         benefitDescription2
       }
       benefitIcon3 {
-        fluid(maxWidth: 55) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 55
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
         title
         description
         file {
@@ -223,9 +236,12 @@ export const query = graphql`
         externalUrl
       }
       caseStudyImage {
-        fluid(maxWidth: 528) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 528
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
         title
         description
         file {

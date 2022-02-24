@@ -20,39 +20,10 @@ export const ResourceCard = ({
   data: { textBlock },
   handle,
   imageCircle = false,
-  index = 0,
-  setImageSizes = undefined,
-  height,
 }: ResourceCardProps) => {
-  const imageRef = useRef(null)
-
-  useEffect(() => {
-    if (imageRef.current && setImageSizes) {
-      setImageSizes(images => {
-        images[`image${index}`] = imageRef.current.clientHeight
-        return images
-      })
-    }
-  }, [imageRef.current])
-  let imageWidth
-  if (
-    height &&
-    textBlock.image &&
-    textBlock.image.childImageSharp &&
-    textBlock.image.childImageSharp.fluid
-  ) {
-    imageWidth = textBlock.image.childImageSharp.fluid.aspectRatio
-  }
   return (
     <StyledCard onClick={handle}>
-      <StyledTextBlock
-        className="text-block"
-        textBlock={textBlock}
-        imageCircle={imageCircle}
-        imageRef={imageRef}
-        imageHeight={height}
-        imageWidth={imageWidth}
-      />
+      <StyledTextBlock className="text-block" textBlock={textBlock} />
     </StyledCard>
   )
 }

@@ -31,14 +31,12 @@ interface BlogViewProps {
 
 export const BlogView = ({ data: post }: BlogViewProps) => {
   const {
-    title: { title },
+    title,
     tags,
     date,
     featuredImage,
-    author: { name },
-    body: {
-      childMarkdownRemark: { html },
-    },
+    author,
+    body,
   }: GatsbyTypes.ContentfulPost = post
   const classNames = [
     "blog-heading",
@@ -55,9 +53,11 @@ export const BlogView = ({ data: post }: BlogViewProps) => {
       <StyledSection>
         <StyledContainer classNames={classNames}>
           <Article>
-            <Heading as="h1" className={classNames[1]}>
-              {title}
-            </Heading>
+            {title?.title && (
+              <Heading as="h1" className={classNames[1]}>
+                {title.title}
+              </Heading>
+            )}
             <p
               className={classNames[3]}
               style={{
@@ -67,7 +67,9 @@ export const BlogView = ({ data: post }: BlogViewProps) => {
             >
               {date}
             </p>
-            <Author className={classNames[2]}>{`By ${name}`}</Author>
+            {author?.name && (
+              <Author className={classNames[2]}>{`By ${author.name}`}</Author>
+            )}
             <Tags className={classNames[4]}>
               {tags
                 ? tags.map((tag, i) => (
@@ -82,7 +84,7 @@ export const BlogView = ({ data: post }: BlogViewProps) => {
                   ))
                 : null}
             </Tags>
-            {featuredImage && featuredImage.fluid ? (
+            {featuredImage ? (
               <ImageWrapper className={classNames[4]}>
                 <StyledImg
                   image={contentfulImageMap(featuredImage)}
@@ -91,10 +93,14 @@ export const BlogView = ({ data: post }: BlogViewProps) => {
                 />
               </ImageWrapper>
             ) : null}
-            <Body
-              dangerouslySetInnerHTML={{ __html: html }}
-              className={classNames[5]}
-            />
+            {body?.childMarkdownRemark?.html && (
+              <Body
+                dangerouslySetInnerHTML={{
+                  __html: body.childMarkdownRemark.html,
+                }}
+                className={classNames[5]}
+              />
+            )}
           </Article>
         </StyledContainer>
       </StyledSection>

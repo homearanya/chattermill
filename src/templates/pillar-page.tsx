@@ -32,7 +32,11 @@ const PillarPage = ({
 
   return (
     <Layout className="ppc-page">
-      <SEO title={header} description={description} featuredImage={url} />
+      <SEO
+        title={header}
+        description={description}
+        featuredImage={`https:${url}`}
+      />
       <PillarHeader data={headerSection} />
       <PillarIntroSection data={body} />
       <PillarCards data={articleCard} />
@@ -47,9 +51,12 @@ export const query = graphql`
     contentfulPillar(slug: { eq: $slug }) {
       id
       heroImage {
-        fluid(maxWidth: 1440) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 1440
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       header
       description
@@ -70,9 +77,12 @@ export const query = graphql`
         tags
         url
         featuredImage {
-          fluid(maxWidth: 400) {
-            ...GatsbyContentfulFluid_withWebp
-          }
+          gatsbyImageData(
+            width: 400
+            layout: CONSTRAINED
+            placeholder: NONE
+            formats: [AUTO, WEBP]
+          )
         }
       }
     }

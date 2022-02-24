@@ -1,9 +1,9 @@
 import { Container } from "react-awesome-styled-grid"
-import { MediumHeading } from "../../styles/common.styled";
-import styled from "styled-components";
-import media from "../../styles/media";
+import { MediumHeading } from "../../styles/common.styled"
+import styled from "styled-components"
+import media from "../../styles/media"
 
-import Image from "../image";
+import Image from "../image"
 
 export const StyledSection = styled.section`
   padding: 15rem 10rem 15rem 10rem;
@@ -17,7 +17,7 @@ export const StyledSection = styled.section`
     min-height: 420px;
     padding: 6rem 6rem 6rem 6rem;
   `}
-`;
+`
 
 export const Wrapper = styled.div`
   display: flex;
@@ -33,13 +33,11 @@ export const Wrapper = styled.div`
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   `}
-`;
+`
 export const StyledImage = styled(Image)`
   border-radius: 3%;
-  width: 100%;
-  flex: 1 0 auto;
   margin: 0 0.5rem 3rem 0.5rem !important;
-`;
+`
 export const StyledMediumHeading = styled(MediumHeading)`
   color: #332e5e;
   text-align: left;
@@ -48,13 +46,13 @@ export const StyledMediumHeading = styled(MediumHeading)`
   ${media.lessThan("sm")`
     text-align: center;
   `}
-`;
+`
 
 export const Underline = styled.span`
   text-decoration: underline;
   font-weight: bold;
   text-decoration-color: #10c2ed;
-`;
+`
 
 export const StyledContainer = styled(Container)`
   width: 100%;

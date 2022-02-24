@@ -7,7 +7,7 @@ module.exports = async (actions, graphql) => {
   try {
     const { errors, data } = await graphql(`
       {
-        allJobs {
+        allGreenhouseJob {
           edges {
             node {
               title
@@ -23,7 +23,7 @@ module.exports = async (actions, graphql) => {
       throw new Error("error on graphql for GreenhouseJob nodes")
     }
 
-    data?.allJobs?.edges.forEach(({ node: job }) => {
+    data?.allGreenhouseJob?.edges.forEach(({ node: job }) => {
       const { title, internal_job_id, content } = job
       const jobSlug = kebabCase(`${title} ${internal_job_id}`)
       const tagPath = `/careers/${jobSlug}/`

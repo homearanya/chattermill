@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -26,28 +26,49 @@ const BlogPage = ({
   data: {
     site: {
       siteMetadata: {
-        title,
         description,
         blog: { pathPrefix },
       },
     },
-    sitePage: {
-      context: { mainPost2: mainPost, frontPosts2: frontPosts },
-    },
+    mainPost,
+    frontPosts,
   },
   pageContext,
   location,
 }: BlogPageProps) => {
   const { numPages, currentPage, arrayOfPageNumbers } = pageContext
-
+  const frontPostsByCat = useMemo(() => {
+    const catObject = frontPosts.edges.reduce((output, { node: post }) => {
+      const { category } = post
+      if (!output[category.title]) {
+        output[category.title] = {
+          ...category,
+          posts: [post],
+        }
+      } else {
+        output[category.title] = {
+          ...category,
+          posts: [...output[category.title].posts, post],
+        }
+      }
+      return output
+    }, {})
+    return Object.keys(catObject)
+      .sort((a, b) => catObject[a].order - catObject[b].order)
+      .map(category => ({ cat: catObject[category] }))
+  }, [frontPosts])
   return (
     <Layout blog className="blog-page" path={location.pathname}>
       <SEO title={`Chattermill Blog`} description={description} />
       <TagHeading className="tag-heading">BLOG</TagHeading>
-      {mainPost ? <MainPost pathPrefix={pathPrefix} post={mainPost} /> : null}
-      {frontPosts
-        ? frontPosts.map(({ cat }) => (
-            <CategoryPosts category={cat} pathPrefix={pathPrefix} />
+      {mainPost && <MainPost pathPrefix={pathPrefix} post={mainPost} />}
+      {frontPostsByCat
+        ? frontPostsByCat.map(({ cat }) => (
+            <CategoryPosts
+              key={cat.id}
+              category={cat}
+              pathPrefix={pathPrefix}
+            />
           ))
         : null}
 
@@ -69,7 +90,8 @@ interface PageQueryData {
       }
     }
   }
-  sitePage: GatsbyTypes.SitePage
+  mainPost: GatsbyTypes.ContentfulPost
+  frontPosts: GatsbyTypes.ContentfulPostConnection
 }
 
 export const query = graphql`
@@ -80,7 +102,9 @@ export const query = graphql`
     }
     createdAt
     category {
+      id
       title
+      grid
     }
     slug
     tags
@@ -89,7 +113,7 @@ export const query = graphql`
       name
     }
   }
-  query {
+  query BlogPage($mainPostId: String!, $mainPostsIds: [String!]!) {
     site {
       siteMetadata {
         title
@@ -99,9 +123,34 @@ export const query = graphql`
         }
       }
     }
-    sitePage(context: { mainPost2: { id: { ne: null } } }) {
-      context {
-        mainPost2 {
+    mainPost: contentfulPost(id: { eq: $mainPostId }) {
+      ...ContentfulPostFragment
+      body {
+        childMarkdownRemark {
+          excerpt
+        }
+      }
+      featuredImage {
+        title
+        gatsbyImageData(
+          width: 860
+          layout: CONSTRAINED
+          placeholder: NONE
+          formats: [AUTO, WEBP]
+        )
+        file {
+          url
+        }
+      }
+    }
+
+    frontPosts: allContentfulPost(
+      sort: { fields: [createdAt], order: DESC }
+      filter: { id: { in: $mainPostsIds } }
+    ) {
+      totalCount
+      edges {
+        node {
           ...ContentfulPostFragment
           body {
             childMarkdownRemark {
@@ -110,34 +159,14 @@ export const query = graphql`
           }
           featuredImage {
             title
-            fluid(maxWidth: 860) {
-              ...GatsbyContentfulFluid_withWebp_noBase64
-            }
+            gatsbyImageData(
+              width: 660
+              layout: CONSTRAINED
+              placeholder: NONE
+              formats: [AUTO, WEBP]
+            )
             file {
               url
-            }
-          }
-        }
-        frontPosts2 {
-          cat {
-            title
-            grid
-            posts {
-              ...ContentfulPostFragment
-              body {
-                childMarkdownRemark {
-                  excerpt
-                }
-              }
-              featuredImage {
-                title
-                fluid(maxWidth: 660) {
-                  ...GatsbyContentfulFluid_withWebp
-                }
-                file {
-                  url
-                }
-              }
             }
           }
         }

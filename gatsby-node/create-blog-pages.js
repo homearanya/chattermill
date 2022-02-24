@@ -45,7 +45,7 @@ module.exports = async (actions, graphql) => {
         
         allContentfulPost(
           sort: { fields: [createdAt], order: DESC }
-          limit: 1
+          limit: 1000
           ) {
         totalCount
         edges {
@@ -67,13 +67,13 @@ module.exports = async (actions, graphql) => {
       blog: { postsPerPage, postsPerGrid, pathPrefix },
     } = data.site.siteMetadata
 
-    let mostRecentPost
+    let mostRecentPostId
     if (totalCount && totalCount > 0) {
-      mostRecentPost = data.allContentfulPost.edges[0].node
+      mostRecentPostId = data.allContentfulPost.edges[0].node?.id
     }
 
     // first capture all posts on main blog
-    const [mainPosts, restOfPosts, allPosts] = categories.reduce(
+    const [mainPostsIds] = categories.reduce(
       (output, edge) => {
         const { node: category } = edge
         let posts = []
@@ -82,34 +82,25 @@ module.exports = async (actions, graphql) => {
           posts = category.post
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .filter(p => {
-              return p.id !== mostRecentPost.id
+              return p.id !== mostRecentPostId
             })
 
-          const categoryEntry = {}
-          categoryEntry.cat = {
-            title: category.title,
-            grid: category.grid,
-            posts: posts
-              .slice(0, postsPerGrid[category.grid])
-              .map(post => post.id),
-          }
+          output[0] = [
+            ...output[0],
+            ...posts.slice(0, postsPerGrid[category.grid]).map(post => post.id),
+          ]
 
-          output[0].push(categoryEntry)
-          output[1] = output[1].concat(posts.slice(postsPerGrid[category.grid]))
-          output[2] = output[2].concat(posts)
           createCategoryPages(category, postsPerPage, pathPrefix, createPage)
         }
         return output
       },
-      [[], [], []]
+      [[], []]
     )
-    if (mostRecentPost) {
-      allPosts.push(mostRecentPost)
-    }
 
     // sort posts chronologically
-    restOfPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    const numPages = Math.ceil(restOfPosts.length / postsPerPage)
+    const numPages = Math.ceil(
+      (totalCount - mainPostsIds.length) / postsPerPage
+    )
 
     // blog page
     createPage({
@@ -117,8 +108,8 @@ module.exports = async (actions, graphql) => {
       component: path.resolve(`./src/templates/blog-page.tsx`),
       // additional data can be passed via context
       context: {
-        mainPost: mostRecentPost.id,
-        frontPosts: mainPosts,
+        mainPostId: mostRecentPostId,
+        mainPostsIds,
         numPages: numPages + 1,
         currentPage: 1,
         arrayOfPageNumbers: createArrayOfPageNumbers(numPages + 1),
@@ -132,9 +123,9 @@ module.exports = async (actions, graphql) => {
         path: `${pathPrefix}page/${i + 2}/`,
         component: path.resolve(`./src/templates/blog-pagination-page.tsx`),
         context: {
-          posts: restOfPosts
-            .slice(postsPerPage * i, postsPerPage * (i + 1))
-            .map(post => post.id),
+          skip: postsPerPage * i,
+          limit: postsPerPage,
+          mainPostsIds: mainPostsIds.concat(mostRecentPostId),
           numPages: numPages + 1,
           currentPage: i + 2,
           arrayOfPageNumbers: createArrayOfPageNumbers(numPages + 1),
@@ -144,70 +135,62 @@ module.exports = async (actions, graphql) => {
 
     // post pages
 
-    allPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    allPosts.forEach((post, i) => {
-      const prev = i === 0 ? null : allPosts[i - 1]
-      const next = i === allPosts.length - 1 ? null : allPosts[i + 1]
+    data.allContentfulPost.edges.forEach(({ node: post }, i) => {
+      // const prev = i === 0 ? null : allPosts[i - 1]
+      // const next = i === allPosts.length - 1 ? null : allPosts[i + 1]
+      // DSG
+      const postDate = new Date(post.createdAt)
+      const today = new Date()
+      postDate.setMonth(18 + postDate.getMonth())
+      const defer = postDate < today ? true : false
       createPage({
         path: `${pathPrefix}${post.slug}/`,
         component: path.resolve(`./src/templates/post-page.tsx`),
         // additional data can be passed via context
         context: {
           slug: post.slug,
-          prev,
-          next,
+          // prev,
+          // next,
         },
+        // defer,
       })
     })
 
     // tags pages
-    let tags = []
+
     // Iterate through each post, putting all found tags into `tags`
-    allPosts.forEach(post => {
-      if (post.tags) {
-        post.tags.forEach(tag => tags.push(kebabCase(tag)))
-      }
+    let tags = []
+    data.allContentfulPost.edges.forEach(({ node: post }) => {
+      tags = tags.concat(post.tags ?? [])
     })
     // Eliminate duplicate tags
     tags = uniq(tags)
     // Make tag pages
     tags.forEach(tag => {
-      const tagPath = `${pathPrefix}tags/${tag}/`
       // Iterate through each post, to see number of posts per tag
-      const tagPosts = allPosts.filter(post => {
+      const tagPosts = data.allContentfulPost.edges.filter(({ node: post }) => {
         if (post.tags) {
-          return post.tags.some(nodeTag => kebabCase(nodeTag) === tag)
+          return post.tags.some(nodeTag => nodeTag === tag)
         }
         return false
       })
 
       const numPages = Math.floor(tagPosts.length / postsPerPage)
 
-      createPage({
-        path: tagPath,
-        component: path.resolve(`src/templates/tag-page.tsx`),
-        context: {
-          posts: tagPosts.slice(0, postsPerPage).map(post => post.id),
-          numPages: numPages + 1,
-          currentPage: 1,
-          tag,
-          totalCount,
-          arrayOfPageNumbers: createArrayOfPageNumbers(numPages + 1),
-        },
-      })
-
       // Create additional pagination on tag page if needed
-      Array.from({ length: numPages }).forEach((_, i) => {
+      Array.from({ length: numPages + 1 }).forEach((_, i) => {
         createPage({
-          path: `${pathPrefix}tags/${tag}/page/${i + 2}/`,
+          path: `${pathPrefix}tags/${kebabCase(tag)}${
+            i === 0 ? "/" : `/page/${i + 1}/`
+          }`,
           component: path.resolve(`./src/templates/tag-page.tsx`),
           context: {
-            posts: tagPosts
-              .slice(postsPerPage * (i + 1), postsPerPage * (i + 2))
-              .map(post => post.id),
+            skip: postsPerPage * i,
+            limit: postsPerPage,
             numPages: numPages + 1,
-            currentPage: i + 2,
+            currentPage: i + 1,
             tag,
+            filter: { tags: { in: [tag] } },
             totalCount,
             arrayOfPageNumbers: createArrayOfPageNumbers(numPages + 1),
           },

@@ -6,8 +6,8 @@ import { Wrapper, ImageWrapper, Thumbnail, StyledModal } from "./gallery.styled"
 import Image from "../image"
 
 export type ExtendedContentfulAsset = GatsbyTypes.ContentfulAsset & {
-  fullSize?: GatsbyTypes.ContentfulAsset["fluid"]
-  thumbnail?: GatsbyTypes.ContentfulAsset["fluid"]
+  fullSize?: GatsbyTypes.ContentfulAsset["gatsbyImageData"]
+  thumbnail?: GatsbyTypes.ContentfulAsset["gatsbyImageData"]
 }
 
 interface GalleryProps {
@@ -27,19 +27,19 @@ const Gallery = ({ images }: GalleryProps) => {
           <Image
             image={contentfulImageMap({
               ...active,
-              fluid: active.fullSize,
-            } as GatsbyTypes.ContentfulAsset & { fullSize: GatsbyTypes.ContentfulAsset["fluid"] })}
+              gatsbyImageData: active.fullSize,
+            } as GatsbyTypes.ContentfulAsset & { fullSize: GatsbyTypes.ContentfulAsset["gatsbyImageData"] })}
             alt={active.title}
           />
         </StyledModal>
       )}
-      {images.map((item) => {
+      {images.map(item => {
         return (
           <ImageWrapper key={item.id} onClick={() => setActive(item)}>
             <Thumbnail
               image={contentfulImageMap({
                 ...item,
-                fluid: item.thumbnail,
+                gatsbyImageData: item.thumbnail,
               })}
               alt={item.title}
             />

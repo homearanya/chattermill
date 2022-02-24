@@ -24,6 +24,7 @@ const WhitepaperPage = ({
         buttonLabel,
         pdfUrl,
         formId,
+        optionalField,
       },
       html,
     },
@@ -41,8 +42,8 @@ const WhitepaperPage = ({
     formId: hubspotConfig[formId],
     newsletterFormId: newsletter_formId,
     portalId,
+    optionalField,
   }
-
   return (
     <Layout>
       <SEO
@@ -84,6 +85,11 @@ export const query = graphql`
         buttonLabel
         pdfUrl
         formId
+        optionalField {
+          label
+          placeHolder
+          name
+        }
       }
       html
     }
@@ -100,6 +106,8 @@ export const query = graphql`
           freeBook_formId
           cxFashion_formId
           cxFashion_retail_formId
+          cxFintech_formId
+          eCXpectations_formId
         }
       }
     }
@@ -114,6 +122,8 @@ const StyledHeader = styled.h1`
   font-size: 5rem;
   font-weight: 500;
   text-align: center;
+  max-width: 100rem;
+  margin: 0 auto;
 
   ${media.lessThan("sm")`
     font-size: 3rem;

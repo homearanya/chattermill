@@ -74,7 +74,11 @@ const ProductPage = ({
 
   return (
     <Layout>
-      <SEO title={header} description={description} featuredImage={url} />
+      <SEO
+        title={header}
+        description={description}
+        featuredImage={`https:${url}`}
+      />
       <StandardHeaderCentered data={headerSection} />
       <FeatureSectionProduct data={features} />
       <ProductPageSection data={productSectionData} />
@@ -150,15 +154,13 @@ export const query = graphql`
       caseStudyHeading
       caseStudies {
         photoImage {
-          fluid(maxWidth: 100, quality: 92) {
-            base64
-            aspectRatio
-            src
-            srcSet
-            srcWebp
-            srcSetWebp
-            sizes
-          }
+          gatsbyImageData(
+            width: 100
+            quality: 92
+            layout: CONSTRAINED
+            placeholder: NONE
+            formats: [AUTO, WEBP]
+          )
         }
         title
         quote

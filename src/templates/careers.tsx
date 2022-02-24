@@ -89,7 +89,7 @@ export const query = graphql`
           image {
             childImageSharp {
               gatsbyImageData(
-                width: 482
+                width: 337
                 layout: CONSTRAINED
                 placeholder: BLURRED
                 formats: [AUTO, WEBP]
@@ -108,7 +108,7 @@ export const query = graphql`
           image {
             childImageSharp {
               gatsbyImageData(
-                width: 482
+                width: 337
                 layout: CONSTRAINED
                 placeholder: BLURRED
                 formats: [AUTO, WEBP]
@@ -127,7 +127,7 @@ export const query = graphql`
           image {
             childImageSharp {
               gatsbyImageData(
-                width: 482
+                width: 337
                 layout: CONSTRAINED
                 placeholder: BLURRED
                 formats: [AUTO, WEBP]
@@ -146,7 +146,7 @@ export const query = graphql`
           image {
             childImageSharp {
               gatsbyImageData(
-                width: 482
+                width: 337
                 layout: CONSTRAINED
                 placeholder: BLURRED
                 formats: [AUTO, WEBP]
@@ -165,7 +165,7 @@ export const query = graphql`
           image {
             childImageSharp {
               gatsbyImageData(
-                width: 482
+                width: 337
                 layout: CONSTRAINED
                 placeholder: BLURRED
                 formats: [AUTO, WEBP]
@@ -184,7 +184,7 @@ export const query = graphql`
           image {
             childImageSharp {
               gatsbyImageData(
-                width: 482
+                width: 337
                 layout: CONSTRAINED
                 placeholder: BLURRED
                 formats: [AUTO, WEBP]

@@ -1,4 +1,3 @@
-import { GatsbyImage } from "gatsby-plugin-image";
 import {} from "gatsby-plugin-segment-js"
 
 declare global {
@@ -12,8 +11,7 @@ export type Maybe<T> = T | null
 
 interface ImageObject {
   readonly childImageSharp: {
-    fluid?: GatsbyImage | undefined | null
-    fixed?: FixedObject | undefined | null
+    gatsbyImageData?: GatsbyTypes.Scalars["JSON"] | undefined | null
   }
   readonly publicURL?: string
 }
@@ -80,7 +78,7 @@ interface TextBlockData {
 
 interface BlogPageContext {
   mainPost: GatsbyTypes.ContentfulPost
-  frontPosts?: GatsbyTypes.FrontPost[]
+  frontPosts?: string[]
   posts?: GatsbyTypes.ContentfulPost[]
   numPages: number
   currentPage: number

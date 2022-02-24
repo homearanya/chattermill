@@ -22,6 +22,7 @@ import logo from "../../images/logo-text.svg"
 import Dropdown from "./dropdown"
 import Burger from "../burger"
 import MobileMenu from "./mobile-menu"
+import Banner from "../Banner"
 
 export interface MenuEdge {
   node: {
@@ -111,6 +112,12 @@ const Navigation = ({ blog = false }: NavigationProps) => {
 
   return (
     <>
+      {!open && (
+        <Banner
+          href="https://app.livestorm.co/chattermillai/live-chattermill-demo-unified-customer-intelligence?type=detailed"
+          text="Sign up for our Live Chattermill Demo: Unified Customer Intelligence"
+        />
+      )}
       <StyledNavigation ref={ref} blog={blog}>
         <Container>
           <Nav>

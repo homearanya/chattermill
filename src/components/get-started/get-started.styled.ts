@@ -1,18 +1,18 @@
-import styled from 'styled-components';
-import media from '../../styles/media';
+import styled from "styled-components"
+import media from "../../styles/media"
 
 export const StyledSection = styled.section`
   padding: 200px 50px;
-  color: #291E45;
-  background-color: #DFF500;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  color: #291e45;
+  background-color: #dff500;
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
   margin: 90px 0;
   text-align: center;
 
   ${media.lessThan("lg")`
     padding: 150px 15px;
     `}
-`;
+`
 export const Title = styled.h1`
   max-width: 800px;
   font-style: normal;
@@ -30,7 +30,7 @@ export const Title = styled.h1`
   ${media.lessThan("sm")`
     margin-bottom: 2rem;
   `}
-`;
+`
 export const Description = styled.p`
   font-style: normal;
   font-weight: 300;
@@ -50,7 +50,7 @@ export const Description = styled.p`
     font-size: 1.6rem;
     line-height: 2.5rem;
   `}
-`;
+`
 export const Button = styled.a`
   text-decoration: none;
   display: block;
@@ -58,7 +58,7 @@ export const Button = styled.a`
   font-size: 2rem;
   padding: 1.5rem 4rem;
   color: #fff;
-  background-color: #0FC2ED;
+  background-color: #0fc2ed;
   border-radius: 21px;
   border: none;
   margin: 5rem auto 2rem auto;
@@ -75,4 +75,4 @@ export const Button = styled.a`
     max-width: 75%;
     margin-top: 2rem;
   `}
-`;
+`

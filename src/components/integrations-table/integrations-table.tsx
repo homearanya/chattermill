@@ -80,9 +80,14 @@ const IntegrationsTable = ({
               file {
                 url
               }
-              fluid(maxWidth: 200, quality: 100) {
-                ...GatsbyContentfulFluid_withWebp
-              }
+
+              gatsbyImageData(
+                width: 200
+                quality: 100
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
             }
             integrationCategory {
               title
@@ -97,7 +102,7 @@ const IntegrationsTable = ({
     <Grid className={className} {...props}>
       {contentfulIntegrationsTable.integrations
         .filter(({ id }) => id !== currentIntegration)
-        .map((integration) => (
+        .map(integration => (
           <IntegrationTile
             key={integration.id}
             integration={integration as GatsbyTypes.ContentfulIntegration}

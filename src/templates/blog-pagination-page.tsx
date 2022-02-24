@@ -40,7 +40,7 @@ const BlogPaginationPage = ({
 export default BlogPaginationPage
 
 export const query = graphql`
-  query BlogPagination($posts: [String!]!) {
+  query BlogPagination($skip: Int!, $limit: Int!, $mainPostsIds: [String!]!) {
     site {
       siteMetadata {
         title
@@ -52,7 +52,9 @@ export const query = graphql`
     }
     allContentfulPost(
       sort: { fields: [createdAt], order: DESC }
-      filter: { id: { in: $posts } }
+      filter: { id: { nin: $mainPostsIds } }
+      skip: $skip
+      limit: $limit
     ) {
       totalCount
       edges {
@@ -65,9 +67,12 @@ export const query = graphql`
           }
           featuredImage {
             title
-            fluid(maxWidth: 400) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              width: 400
+              layout: CONSTRAINED
+              placeholder: NONE
+              formats: [AUTO, WEBP]
+            )
             file {
               url
             }

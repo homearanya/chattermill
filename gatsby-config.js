@@ -4,9 +4,8 @@ require("dotenv").config({
 const siteMetadata = require("./gatsby-config/site-metadata")
 // plugins
 const gatsbySourceContentful = require("./gatsby-config/gatsby-source-contentful")
-// const gatsbyPluginSegmentJs = require("./gatsby-config/gatsby-plugin-segment-js")
-const gatsbySourceCustomApiWistia = require("./gatsby-config/gatsby-source-custom-api-wistia")
-const gatsbySourceCustomApiGreenhouseJobs = require("./gatsby-config/gatsby-source-custom-api-greenhouse-jobs")
+const gatsbyPluginSegmentJs = require("./gatsby-config/gatsby-plugin-segment-js")
+const wistiaVideosSourcePlugin = require("./gatsby-config/wistia-videos-source-plugin")
 const gatsbyPluginNprogress = require("./gatsby-config/gatsby-plugin-nprogress")
 const gatsbyPluginRobotsTxt = require("./gatsby-config/gatsby-plugin-robots-txt")
 const gatsbyPluginAnchorLinks = require("./gatsby-config/gatsby-plugin-anchor-links")
@@ -20,25 +19,22 @@ const gatsbyPluginGoogleTagmanager = require("./gatsby-config/gatsby-plugin-goog
 const gatsbyPluginPreconnect = require("./gatsby-config/gatsby-plugin-preconnect")
 const gatsbyPluginTypegen = require("./gatsby-config/gatsby-plugin-typegen")
 const gatsbyPluginIntercomSpa = require("./gatsby-config/gatsby-plugin-intercom-spa")
-const gatsbyPluginWebpackBundleAnalyserV2 = require("./gatsby-config/gatsby-plugin-webpack-bundle-analyser-v2")
 
 module.exports = {
   flags: {
     FAST_DEV: true,
     PARALLEL_SOURCING: true,
     PRESERVE_FILE_DOWNLOAD_CACHE: true,
-    LMDB_STORE: true,
-    PARALLEL_QUERY_RUNNING: true,
   },
   siteMetadata,
   plugins: [
-    `gatsby-plugin-gatsby-cloud`,
-    `gatsby-plugin-image`,
     `gatsby-plugin-perf-budgets`,
-    ...gatsbyPluginWebpackBundleAnalyserV2,
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
+    `gatsby-plugin-image`,
+    "greenhouse-source-plugin",
     ...gatsbyPluginPreconnect,
     ...gatsbyPluginGoogleTagmanager,
-    // ...gatsbyPluginSegmentJs,
+    ...gatsbyPluginSegmentJs,
     ...gatsbyPluginNprogress,
     `gatsby-plugin-sitemap`,
     ...gatsbyPluginRobotsTxt,
@@ -46,17 +42,21 @@ module.exports = {
     ...gatsbyPluginHubspot,
     ...gatsbyPluginIntercomSpa,
     ...gatsbyPluginLinkedinInsight,
-    ...gatsbySourceCustomApiWistia,
-    ...gatsbySourceCustomApiGreenhouseJobs,
+    ...wistiaVideosSourcePlugin,
     ...gatsbyPluginReactSvg,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sass`,
-    `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     ...gatsbySourceFilesystem,
     ...gatsbyTransformerRemark,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        pngCompressionSpeed: 6,
+      },
+    },
     ...gatsbyPluginManifest,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
@@ -67,5 +67,6 @@ module.exports = {
     ...gatsbySourceContentful,
     `gatsby-plugin-force-trailing-slashes`,
     ...gatsbyPluginTypegen,
+    `gatsby-plugin-netlify`,
   ],
 }

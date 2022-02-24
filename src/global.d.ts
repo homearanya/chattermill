@@ -57,8 +57,6 @@ type SubImageSharpFixed = Partial<
 >
 
 type SubImageSharp = {
-  fixed?: SubImageSharpFixed
-  fluid?: SubImageSharpFluid
   gatsbyImageData?: GatsbyTypes.Maybe<GatsbyTypes.Scalars["JSON"]>
 }
 
@@ -68,8 +66,6 @@ type SubFile = {
 }
 
 type SubContentfulAsset = {
-  readonly fluid?: Partial<GatsbyTypes.ContentfulFluid>
-  readonly fixed?: Partial<GatsbyTypes.ContentfulFixed>
   readonly gatsbyImageData?: Partial<
     GatsbyTypes.Maybe<GatsbyTypes.Scalars["JSON"]>
   >

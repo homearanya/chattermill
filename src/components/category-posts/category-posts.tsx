@@ -14,13 +14,18 @@ const catGrids = {
 }
 
 interface CategoryPostsProps {
-  readonly category: GatsbyTypes.FrontPostCat
+  readonly category: {
+    title?: string
+    grid?: number
+    posts: GatsbyTypes.ContentfulPost[]
+  }
   readonly pathPrefix: string
 }
 
 const CategoryPosts = ({ category, pathPrefix }: CategoryPostsProps) => {
   const { title, grid, posts } = category
   const CatGrid = catGrids[grid]
+
   return (
     <StyledSection>
       <Container>

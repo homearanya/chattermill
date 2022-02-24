@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react"
-import LazyLoad from "react-lazy-load"
+import LazyLoad from "react-lazyload"
 import styled from "styled-components"
 
 import {
@@ -58,7 +58,7 @@ export const WebinarCard = ({
 
   useEffect(() => {
     if (headingRef.current && setWebinarTitleHeights) {
-      setWebinarTitleHeights((titles) => {
+      setWebinarTitleHeights(titles => {
         titles[`title${index}`] = headingRef.current.clientHeight
         return titles
       })

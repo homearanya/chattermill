@@ -1,7 +1,7 @@
-const path = require("path");
+const path = require("path")
 
 module.exports = async (actions, graphql) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   try {
     const { errors, data } = await graphql(`
       {
@@ -26,39 +26,39 @@ module.exports = async (actions, graphql) => {
           }
         }
       }
-    `);
+    `)
     if (errors) {
-      errors.forEach(e => console.error(e.toString()));
-      throw new Error("error on graphql for contentful nodes - partners");
+      errors.forEach(e => console.error(e.toString()))
+      throw new Error("error on graphql for contentful nodes - partners")
     }
     const {
-      partners: { pathPrefix }
-    } = data.site.siteMetadata;
+      partners: { pathPrefix },
+    } = data.site.siteMetadata
 
     // Partners Page
     createPage({
       path: pathPrefix,
       component: path.resolve(`src/templates/partners-page.tsx`),
       context: {
-        id: data.contentfulPartnersPage.id
-      }
-    });
+        id: data.contentfulPartnersPage.id,
+      },
+    })
 
     // Partner Pages
-    const { edges } = data.allContentfulPartner;
+    const { edges } = data.allContentfulPartner
     edges.forEach(({ node: partner }) => {
-      const { id, slug } = partner;
-      const partnerPath = `${pathPrefix}${slug}`;
+      const { id, slug } = partner
+      const partnerPath = `${pathPrefix}${slug}/`
       createPage({
         path: partnerPath,
         component: path.resolve(`src/templates/partner-page.tsx`),
         context: {
           slug,
-          id
-        }
-      });
-    });
+          id,
+        },
+      })
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

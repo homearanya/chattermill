@@ -1,13 +1,13 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from "react"
+import { graphql } from "gatsby"
 
-import TemplateView, { TemplateViewData } from "../components/template-view";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import TemplateView, { TemplateViewData } from "../components/template-view"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 interface TemplatePageProps {
-  readonly path: string;
-  readonly data: PageQueryData;
+  readonly path: string
+  readonly data: PageQueryData
 }
 
 const TemplatePage = ({
@@ -16,48 +16,48 @@ const TemplatePage = ({
     site: {
       siteMetadata: {
         templates: { pathPrefix },
-        siteUrl
-      }
+        siteUrl,
+      },
     },
-    contentfulTemplate
-  }
+    contentfulTemplate,
+  },
 }: TemplatePageProps) => {
   const {
     title: { title },
     slug,
     body: {
-      childMarkdownRemark: { excerpt }
+      childMarkdownRemark: { excerpt },
     },
     featuredImage: {
-      file: { url }
-    }
-  } = contentfulTemplate;
+      file: { url },
+    },
+  } = contentfulTemplate
 
   return (
     <Layout className="template-page">
       <SEO
         title={title}
         description={excerpt}
-        featuredImage={url}
+        featuredImage={`https:${url}`}
         postUrl={`${siteUrl}${pathPrefix}${slug}`}
       />
       <TemplateView data={contentfulTemplate} path={path} />
     </Layout>
-  );
-};
+  )
+}
 
-export default TemplatePage;
+export default TemplatePage
 
 interface PageQueryData {
   site: {
     siteMetadata: {
-      siteUrl: string;
+      siteUrl: string
       templates: {
-        pathPrefix: string;
-      };
-    };
-  };
-  contentfulTemplate: TemplateViewData;
+        pathPrefix: string
+      }
+    }
+  }
+  contentfulTemplate: TemplateViewData
 }
 
 export const query = graphql`
@@ -84,9 +84,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 640) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 640
+          layout: CONSTRAINED
+          placeholder: NONE
+          formats: [AUTO, WEBP]
+        )
       }
       templateFile {
         file {
@@ -103,4 +106,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

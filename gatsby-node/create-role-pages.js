@@ -1,7 +1,7 @@
-const path = require("path");
+const path = require("path")
 
 module.exports = async (actions, graphql) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   try {
     const { errors, data } = await graphql(`
       {
@@ -22,29 +22,29 @@ module.exports = async (actions, graphql) => {
           }
         }
       }
-    `);
+    `)
     if (errors) {
-      errors.forEach(e => console.error(e.toString()));
-      throw new Error("error on graphql for contentful nodes - roles");
+      errors.forEach(e => console.error(e.toString()))
+      throw new Error("error on graphql for contentful nodes - roles")
     }
     const {
-      roles: { pathPrefix }
-    } = data.site.siteMetadata;
+      roles: { pathPrefix },
+    } = data.site.siteMetadata
 
-    const { edges } = data.allContentfulRoles;
+    const { edges } = data.allContentfulRoles
     edges.forEach(({ node: roles }) => {
-      const { id, slug } = roles;
-      const rolesPath = `${pathPrefix}${slug}`;
+      const { id, slug } = roles
+      const rolesPath = `${pathPrefix}${slug}/`
       createPage({
         path: rolesPath,
         component: path.resolve(`src/templates/roles-page.tsx`),
         context: {
           slug,
-          id
-        }
-      });
-    });
+          id,
+        },
+      })
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

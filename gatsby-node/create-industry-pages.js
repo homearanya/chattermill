@@ -1,7 +1,7 @@
-const path = require("path");
+const path = require("path")
 
 module.exports = async (actions, graphql) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   try {
     const { errors, data } = await graphql(`
       {
@@ -22,29 +22,29 @@ module.exports = async (actions, graphql) => {
           }
         }
       }
-    `);
+    `)
     if (errors) {
-      errors.forEach(e => console.error(e.toString()));
-      throw new Error("error on graphql for contentful nodes - industries");
+      errors.forEach(e => console.error(e.toString()))
+      throw new Error("error on graphql for contentful nodes - industries")
     }
     const {
-      industries: { pathPrefix }
-    } = data.site.siteMetadata;
+      industries: { pathPrefix },
+    } = data.site.siteMetadata
 
-    const { edges } = data.allContentfulIndustry;
+    const { edges } = data.allContentfulIndustry
     edges.forEach(({ node: industry }) => {
-      const { id, slug } = industry;
-      const industryPath = `${pathPrefix}${slug}`;
+      const { id, slug } = industry
+      const industryPath = `${pathPrefix}${slug}/`
       createPage({
         path: industryPath,
         component: path.resolve(`src/templates/industry-page.tsx`),
         context: {
           slug,
-          id
-        }
-      });
-    });
+          id,
+        },
+      })
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

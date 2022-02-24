@@ -9,7 +9,6 @@ import {
   Checkbox,
 } from "./book-demo-form.styled"
 import Loader from "react-loader-spinner"
-import Helmet from "react-helmet"
 
 interface BookDemoFormProps {
   data: {
@@ -83,6 +82,7 @@ const BookDemoForm: React.FC<BookDemoFormProps> = ({ data }) => {
     window.dataLayer.push({
       event: "Request Demo Click",
     })
+    navigate("/thank-you-get-a-demo/")
   }
 
   const {

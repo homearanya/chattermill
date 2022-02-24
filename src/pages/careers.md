@@ -49,5 +49,5 @@ teamIsKey:
   textBlock:
     subHeading: We believe the right <span class="highlight">team</span> is the key to success
     text:
-      - At Chattermill we have learned that any of our important achievements have been a result of people working together. To foster this we prioritise the team over any individual and team health over immediate business objectives. We respect our teammates and commit to team decisions even when we disagree. We are happier working in a team than by ourselves even if this is required on occasion. We always hire and promote with the team in mind.
+      - At Chattermill we have learned that any of our important achievements have been a result of people working together. We respect our teammates and commit to team decisions even when we disagree. We are happier working in a team than by ourselves even if this is required on occasion. We always hire and promote with the team in mind.
 ---

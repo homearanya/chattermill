@@ -1,7 +1,7 @@
-const path = require("path");
+const path = require("path")
 
 module.exports = async (actions, graphql) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   try {
     const { errors, data } = await graphql(`
       {
@@ -23,19 +23,19 @@ module.exports = async (actions, graphql) => {
           }
         }
       }
-    `);
+    `)
     if (errors) {
-      errors.forEach(e => console.error(e.toString()));
-      throw new Error("error on graphql for filesystem nodes");
+      errors.forEach(e => console.error(e.toString()))
+      throw new Error("error on graphql for filesystem nodes")
     }
 
-    const { edges: pages } = data.allMarkdownRemark;
+    const { edges: pages } = data.allMarkdownRemark
 
     pages.forEach(({ node }) => {
-      const { id, frontmatter, fields } = node;
+      const { id, frontmatter, fields } = node
       // to allow client-only pages under "/watch-demo/"
       const matchPath =
-        fields.slug === "/watch-demo/" ? "/watch-demo/*" : undefined;
+        fields.slug === "/watch-demo/" ? "/watch-demo/*" : undefined
       createPage({
         path: fields.slug,
         matchPath: matchPath,
@@ -45,11 +45,11 @@ module.exports = async (actions, graphql) => {
         // additional data can be passed via context
         context: {
           id,
-          contentfulID: frontmatter.contentfulID
-        }
-      });
-    });
+          contentfulID: frontmatter.contentfulID,
+        },
+      })
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

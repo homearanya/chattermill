@@ -1,5 +1,5 @@
 import React from "react"
-import useMedia from "use-media"
+import { useMediaQuery } from "react-responsive"
 
 import { $breakpoints } from "../../styles/media"
 import PostCard from "../post-card"
@@ -17,9 +17,15 @@ interface CatGrid2Props {
 }
 
 const CatGrid2 = ({ posts, pathPrefix }: CatGrid2Props) => {
-  const isMobile = useMedia({ maxWidth: $breakpoints.sm * 16 - 1 })
-  const isTablet = useMedia({ maxWidth: $breakpoints.md * 16 - 1 })
-  const isDesktop = useMedia({ maxWidth: $breakpoints.lg * 16 - 1 })
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${$breakpoints.sm * 16 - 1}px)`,
+  })
+  const isTablet = useMediaQuery({
+    query: `(max-width: ${$breakpoints.md * 16 - 1}px)`,
+  })
+  const isDesktop = useMediaQuery({
+    query: `(max-width: ${$breakpoints.lg * 16 - 1}px)`,
+  })
 
   return (
     <StyledRow>

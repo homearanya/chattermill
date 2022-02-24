@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import { kebabCase } from "lodash"
 import {
   Wrapper,
   PreviousLink,
@@ -30,7 +31,9 @@ const Pagination = ({ context }: PaginationProps) => {
   const tagsOrCategory = category ? "category" : "tags"
 
   const pathPrefix =
-    typeof tag === "string" ? `/blog/${tagsOrCategory}/${tag}/` : "/blog/"
+    typeof tag === "string"
+      ? `/blog/${tagsOrCategory}/${kebabCase(tag)}/`
+      : "/blog/"
   const prevPageLink = isFirst
     ? null
     : `${currentPage === 2 ? pathPrefix : `${pathPrefix}page/${prevPageNum}/`}`
@@ -48,7 +51,7 @@ const Pagination = ({ context }: PaginationProps) => {
       )} */}
       {!isNotPaginated && (
         <ListOfPageNumbers>
-          {arrayOfPageNumbers.map((e) => (
+          {arrayOfPageNumbers.map(e => (
             <PageNumber key={e} active={e === currentPage}>
               <Link to={`${pathPrefix}${e === 1 ? "" : `page/${e}`}`}>{e}</Link>
             </PageNumber>

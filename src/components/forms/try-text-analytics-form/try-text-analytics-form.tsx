@@ -166,11 +166,12 @@ const TryTextAnalyticsForm = ({ pathname }: TryTextAnalyticsFormProps) => {
           });
           setLoading(false);
 
-          fetch(`https://hooks.zapier.com/hooks/catch/3484800/o0sh1tw/`, {
+          fetch(`https://hooks.zapier.com/hooks/catch/1948336/o0sh1tw,b9nywic/`, {
             method: "POST",
             body: JSON.stringify(
               {
-                comment
+                comment: comment,
+                tags: data.result
               },
               null,
               2

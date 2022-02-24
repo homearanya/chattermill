@@ -6,6 +6,39 @@ whitepaperTable:
   textBlock:
     subHeading: Whitepapers
   benefits:
+    - image: ../images/great-ecxpectations-thumbnail.jpg
+      alt: "Great eCXpectations: How to Deliver the CX Your Customers Really Want"
+      smallHeading: '<span class="underline">Great eCXpectations: How to Deliver the CX Your Customers Really Want</span>'
+      text:
+        - Discover how customer expectations are changing, how to find out what your customers really want, and how to deliver experiences that meet their expectations in this insight-packed eBook.
+
+      moreDetails:
+        button:
+          text: Read Now
+          link: /how-to-deliver-the-cx-your-customers-want/
+          arrow: false
+    - image: ../images/redefining-cx-in-fintech-2022.jpg
+      alt: Redefining CX in Fintech in 2022
+      smallHeading: <span class="underline">Redefining CX in FinTech</span>
+      text:
+        - Learn what the current CX challenges are in FinTech, how to solve them, and how to compete on customer experience – with insights from Atom Bank, Happy Money, Moneybox, and Chattermill.
+
+      moreDetails:
+        button:
+          text: Read Now
+          link: /chattermill-redefining-cx-fintech/
+          arrow: false
+    - image: ../images/cs-trends-report-header.png
+      alt: alt
+      smallHeading: <span class="underline">Customer Support Trends 2022</span>
+      text:
+        - Based on research from customers and 339 global customer-focused leaders from key customer-facing functions, Chattermill’s Customer Support Trends 2022 Report uncovers everything you need to know to delight your customers next year and beyond.
+
+      moreDetails:
+        button:
+          text: Read Now
+          link: /customer-support-trends/
+          arrow: false
     - image: ../images/fashion-retail-ebook.jpg
       alt: alt
       smallHeading: <span class="underline">CX How To Radically Improve Customer Experience in Fashion and Retail</span>

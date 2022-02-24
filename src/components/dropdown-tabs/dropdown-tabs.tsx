@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import useMedia from "use-media"
+import { useMediaQuery } from "react-responsive"
 
 import { $breakpoints } from "../../styles/media"
 import {
@@ -21,7 +21,9 @@ interface DropdownTabsProps {
 }
 
 const DropdownTabs = ({ sections }: DropdownTabsProps) => {
-  const isMobile = useMedia({ maxWidth: $breakpoints.sm * 16 - 0.00001 })
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${$breakpoints.sm * 16 - 1}px)`,
+  })
   const [isOpen, setIsOpen] = useState(false)
   const [tabsHeight, setTabsHeight] = useState(0)
 

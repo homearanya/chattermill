@@ -34,7 +34,7 @@ const CustomersPage = ({
 }: CustomersPageProps) => {
   const [categorySelected, setCategorySelected] = useState("")
 
-  const selectCategory = (category) => setCategorySelected(category)
+  const selectCategory = category => setCategorySelected(category)
   const filteredTemplates = edges.filter(({ node }) =>
     !categorySelected ? true : node.category.title === categorySelected
   )
@@ -111,13 +111,17 @@ export const query = graphql`
           }
           tags
           featuredImage {
+            gatsbyImageData(
+              width: 400
+              height: 200
+              layout: CONSTRAINED
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+            )
             file {
               url
             }
             title
-            fluid(maxWidth: 640) {
-              ...GatsbyContentfulFluid_withWebp
-            }
           }
         }
       }

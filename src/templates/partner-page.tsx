@@ -165,9 +165,12 @@ export const query = graphql`
         file {
           url
         }
-        fluid(maxWidth: 250) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 250
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section1ShapeColor
       section1Image {
@@ -176,9 +179,12 @@ export const query = graphql`
         file {
           url
         }
-        fluid(maxWidth: 640) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 640
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section1Heading
       section1Description {
@@ -191,9 +197,12 @@ export const query = graphql`
         file {
           url
         }
-        fluid(maxWidth: 640) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 640
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section2Heading
       section2Description {
@@ -206,9 +215,12 @@ export const query = graphql`
         file {
           url
         }
-        fluid(maxWidth: 640) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 640
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section3Heading
       section3Description {
@@ -223,17 +235,23 @@ export const query = graphql`
         file {
           url
         }
-        fluid(maxWidth: 575) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 575
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       caseStudyCardImage {
         file {
           url
         }
-        fluid(maxWidth: 528) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 528
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
         title
       }
       caseStudyTagline

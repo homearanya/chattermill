@@ -20,6 +20,7 @@ interface SEOProps {
   readonly description?: string
   readonly lang?: string
   readonly postUrl?: string
+  // relative or absolute path
   readonly featuredImage?: string
   readonly authorName?: string
 }
@@ -43,7 +44,7 @@ function SEO({
             siteUrl
           }
         }
-        card: file(relativePath: { regex: "/chattermill-logo/" }) {
+        card: file(relativePath: { eq: "chattermill-logo.jpg" }) {
           publicURL
         }
       }
@@ -54,8 +55,7 @@ function SEO({
     typeof window !== "undefined" ? window.location : null
 
   const metaDescription = description || site.siteMetadata.description
-  const image =
-    featuredImage || `${location?.protocol}//${location?.host}${card.publicURL}`
+  const image = featuredImage || card.publicURL
   const url = postUrl ? postUrl : location?.href
   // strip HTML tags from metaDescription:
   const cleanMetaDescription = metaDescription.replace(/<\/?[^>]+(>|$)/g, "")

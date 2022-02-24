@@ -7,7 +7,7 @@ import { BlogPageContext } from "../types"
 import BlogList from "../components/blog-list"
 
 interface TagPageProps {
-  readonly data: GatsbyTypes.WhitePaperPageQuery
+  readonly data: GatsbyTypes.TagPageQuery
   readonly pageContext: BlogPageContext
   readonly location: Location
 }
@@ -40,7 +40,11 @@ const TagPage = ({
 export default TagPage
 
 export const query = graphql`
-  query TagPage($posts: [String!]!) {
+  query TagPage(
+    $skip: Int!
+    $limit: Int!
+    $filter: ContentfulPostFilterInput!
+  ) {
     site {
       siteMetadata {
         title
@@ -52,7 +56,9 @@ export const query = graphql`
     }
     allContentfulPost(
       sort: { fields: [createdAt], order: DESC }
-      filter: { id: { in: $posts } }
+      filter: $filter
+      skip: $skip
+      limit: $limit
     ) {
       totalCount
       edges {
@@ -60,9 +66,12 @@ export const query = graphql`
           ...ContentfulPostFragment
           featuredImage {
             title
-            fluid(maxWidth: 400) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              width: 400
+              layout: CONSTRAINED
+              placeholder: NONE
+              formats: [AUTO, WEBP]
+            )
             file {
               url
             }

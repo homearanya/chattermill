@@ -20,6 +20,8 @@ export const StyledSection = styled.section`
 `
 
 export const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   width: 90%;
   ${verticalCenter};
   margin: 0 auto;
@@ -34,8 +36,7 @@ interface StyledImageProps {
   inView?: boolean
 }
 export const StyledImage = styled(Image)<StyledImageProps>`
-  width: 100% !important;
-  ${(props) => transitionIntoView(props.withObserver, props.inView)};
+  ${props => transitionIntoView(props.withObserver, props.inView)};
 `
 
 export const StyledTextBlock = styled(TextBlock)`

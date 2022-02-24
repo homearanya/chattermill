@@ -2,7 +2,7 @@
 templateKey: whitepaper-page
 title: The Customer Churn Analysis Starter Kit
 description: Read Chattermills Customer Churn Analysis Starter Kit
-featuredImage: ../images/survey-guide-cover.png
+featuredImage: ../images/chattermill-churn-analysis-cover.png
 buttonLabel: whitepaper download (churn guide)
 pdfUrl: https://cdn2.hubspot.net/hubfs/613982/chattermill-churn-analysis.pdf
 formId: churnGuide_formId

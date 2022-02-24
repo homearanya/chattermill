@@ -12,10 +12,10 @@ import {
 } from "./careers-job-board.styled"
 
 const JobsBoard = () => {
-  const { allJobs } = useStaticQuery(
+  const { allGreenhouseJob } = useStaticQuery(
     graphql`
       query {
-        allJobs {
+        allGreenhouseJob {
           edges {
             node {
               internal_job_id
@@ -36,7 +36,7 @@ const JobsBoard = () => {
   return (
     <Container>
       <Row>
-        {allJobs?.edges?.map(({ node: job }) => {
+        {allGreenhouseJob?.edges?.map(({ node: job }) => {
           const { id, title, location, departments, internal_job_id } = job
           const departmentsList = greenHouseDepartmentsList(departments)
           const relativePath = jobSlug(title, internal_job_id)[0]

@@ -57,9 +57,13 @@ export const query = graphql`
       title
       metaDescription
       logo {
-        fluid(maxWidth: 200, quality: 100) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 200
+          quality: 100
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
         file {
           url
         }
@@ -99,12 +103,18 @@ export const query = graphql`
             title
             images {
               id
-              thumbnail: fluid(maxWidth: 400) {
-                ...GatsbyContentfulFluid_withWebp
-              }
-              fullSize: fluid(maxWidth: 1200) {
-                ...GatsbyContentfulFluid_withWebp
-              }
+              thumbnail: gatsbyImageData(
+                width: 400
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
+              fullSize: gatsbyImageData(
+                width: 1200
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
               title
               file {
                 url

@@ -26,6 +26,7 @@ import BrandsSection2 from "../components/brands-section-2"
 import CTA2 from "../components/cta2"
 
 import { contentfulImageMap } from "../utils/helpers"
+import { getSrc } from "gatsby-plugin-image"
 
 interface CaseStudyPageProps {
   data: GatsbyTypes.CaseStudyPageQuery
@@ -102,13 +103,12 @@ const CaseStudyPage = ({ data }: CaseStudyPageProps) => {
     companySize,
     businessType,
   }
-
   return (
     <Layout className="customers-page">
       <SEO
         title={metaTitle}
         description={metaDescription}
-        featuredImage={headerImage.fluid.src}
+        featuredImage={getSrc(headerImage.gatsbyImageData)}
       />
       <CaseStudyHeader data={caseStudyHeaderData} />
       <AchievementsSection data={achievementsSectionData} />
@@ -138,8 +138,14 @@ export const query = graphql`
       metaDescription
       headerImage {
         title
-        fluid(maxWidth: 1920) {
-          ...GatsbyContentfulFluid_withWebp
+        gatsbyImageData(
+          width: 1920
+          layout: FULL_WIDTH
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
+        file {
+          url
         }
       }
       headerText {
@@ -176,9 +182,12 @@ export const query = graphql`
         name
         logo {
           title
-          fluid(maxWidth: 500) {
-            ...GatsbyContentfulFluid_withWebp
-          }
+          gatsbyImageData(
+            width: 550
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
           file {
             url
           }
@@ -195,9 +204,12 @@ export const query = graphql`
         companySize
         businessType
         personPhoto {
-          fluid(maxWidth: 220) {
-            ...GatsbyContentfulFluid_withWebp
-          }
+          gatsbyImageData(
+            width: 220
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
         }
         personName
         personRole

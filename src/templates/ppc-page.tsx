@@ -133,9 +133,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 683) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
+        gatsbyImageData(
+          width: 683
+          layout: CONSTRAINED
+          placeholder: NONE
+          formats: [AUTO, WEBP]
+        )
       }
       brands {
         id
@@ -157,9 +160,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 550) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 550
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section1Heading
       section1Text {
@@ -170,9 +176,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 550) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 550
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section2Heading
       section2Text {
@@ -183,9 +192,12 @@ export const query = graphql`
           url
         }
         title
-        fluid(maxWidth: 550) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(
+          width: 550
+          layout: CONSTRAINED
+          placeholder: BLURRED
+          formats: [AUTO, WEBP]
+        )
       }
       section3Heading
       section3Text {
@@ -215,9 +227,12 @@ export const query = graphql`
             contentType
           }
           title
-          fluid(maxWidth: 575) {
-            ...GatsbyContentfulFluid_withWebp
-          }
+          gatsbyImageData(
+            width: 575
+            layout: CONSTRAINED
+            placeholder: BLURRED
+            formats: [AUTO, WEBP]
+          )
         }
         imageCaption
         documentToDownload {

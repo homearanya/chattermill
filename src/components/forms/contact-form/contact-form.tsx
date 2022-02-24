@@ -1,14 +1,8 @@
-import React, { useState, useRef, useEffect } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { useLocation } from "@reach/router"
-import { useFormik } from "formik"
-import * as Yup from "yup"
+import React, { useRef } from "react"
 import Loader from "react-loader-spinner"
 import { Transition } from "react-transition-group"
-import axios from "axios"
 
 import { $colorSecondary } from "../../../styles/variables"
-import { getCookie } from "../../../utils/helpers"
 
 import {
   FormWrapper,
@@ -30,6 +24,12 @@ import {
 } from "./contact-form.styled"
 import handleFormSubmit from "../../../utils/handle-submit-form"
 
+export type OptionalField = {
+  label: string
+  placeHolder: string
+  name: string
+}
+
 const duration = 300
 const defaultStyle = {
   transition: `color ${duration}ms cubic-bezier(0.325, 0.09, 0, 1.28)`,
@@ -42,68 +42,11 @@ const transitionStyles = {
   exiting: { color: "transparent" },
   exited: { color: "transparent" },
 }
-interface StaticQueryData {
-  site: {
-    siteMetadata: {
-      siteUrl: string
-      domainsExcluded: string[]
-      hubspotConfig: {
-        portalId: string
-        newsletter_formId: string
-        solution_demo_formId: string
-        formId: string
-      }
-    }
-  }
-}
-
-const fileDownload = (
-  file: ContentfulAssetFile,
-  downloadFileOnBrowser: boolean,
-  downloadGaDataLayerEventName: string,
-  actionOnSuccess: () => void
-) => {
-  if (downloadFileOnBrowser) {
-    const link = document.createElement("a")
-    link.target = "_blank"
-    link.href = file.url
-    document.body.appendChild(link)
-    link.click()
-    actionOnSuccess && setTimeout(actionOnSuccess, 400)
-  } else {
-    axios({
-      url: `${file.url}`,
-      method: "GET",
-      responseType: "blob", // important
-    })
-      .then((response) => {
-        const fileExtension = file.contentType.split("/")[1]
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        const link = document.createElement("a")
-        link.href = url
-        link.setAttribute("download", `${file.fileName}.${fileExtension}`)
-        document.body.appendChild(link)
-        link.click()
-
-        actionOnSuccess && setTimeout(actionOnSuccess, 400)
-      })
-      .catch((error) => {
-        console.log("catch", error)
-      })
-  }
-  if (downloadGaDataLayerEventName) {
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push({
-      event: downloadGaDataLayerEventName,
-      file: file.url,
-    })
-  }
-}
 
 interface ContactFormProps {
   oneColumn?: boolean
   actionOnSuccess?: () => void
-  downloadFile?: ContentfulAssetFile
+  downloadFile?: GatsbyTypes.ContentfulAssetFile
   downloadFileOnBrowser?: boolean
   downloadGaDataLayerEventName?: string
   email?: string
@@ -124,11 +67,7 @@ interface ContactFormProps {
     event?: string
     label: string
   }
-  optionalField?: {
-    label: string
-    placeHolder: string
-    name: string
-  }
+  optionalField?: OptionalField
 }
 
 const ContactForm = ({
@@ -158,7 +97,7 @@ const ContactForm = ({
     values,
     touched,
     errors,
-    resultMessage
+    resultMessage,
   } = handleFormSubmit({
     actionOnSuccess,
     email,
@@ -170,7 +109,7 @@ const ContactForm = ({
     downloadFile,
     analyticsOptions,
     downloadGaDataLayerEventName,
-    downloadFileOnBrowser
+    downloadFileOnBrowser,
   })
 
   return (
@@ -229,22 +168,6 @@ const ContactForm = ({
             </FieldMessage>
           </ControlField>
 
-          <ControlField>
-            <StyledLabel htmlFor="email">Work email*</StyledLabel>
-
-            <StyledInput
-              error={!!touched.email && !!errors.email}
-              id="email"
-              name="email"
-              type="email"
-              onChange={handleChange}
-              placeholder="you@company.com"
-              value={values.email}
-            />
-            <FieldMessage show={!!touched.email && !!errors.email}>
-              {errors.email}
-            </FieldMessage>
-          </ControlField>
           {optionalField && (
             <ControlField>
               <StyledLabel htmlFor={optionalField.name}>
@@ -271,6 +194,22 @@ const ContactForm = ({
               </FieldMessage>
             </ControlField>
           )}
+          <ControlField>
+            <StyledLabel htmlFor="email">Work email*</StyledLabel>
+
+            <StyledInput
+              error={!!touched.email && !!errors.email}
+              id="email"
+              name="email"
+              type="email"
+              onChange={handleChange}
+              placeholder="you@company.com"
+              value={values.email}
+            />
+            <FieldMessage show={!!touched.email && !!errors.email}>
+              {errors.email}
+            </FieldMessage>
+          </ControlField>
         </ControlFieldWrapper>
 
         <CheckboxArea>

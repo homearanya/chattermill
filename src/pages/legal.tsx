@@ -1,11 +1,11 @@
-import React from "react";
-import SEO from "../components/seo";
-import styled from "styled-components";
-import Layout from "../components/layout";
-import media from "../styles/media";
-import { Link } from "gatsby";
-import { Container } from "react-awesome-styled-grid";
-import { $colorHeading } from "../styles/variables";
+import React from "react"
+import SEO from "../components/seo"
+import styled from "styled-components"
+import Layout from "../components/layout"
+import media from "../styles/media"
+import { Link } from "gatsby"
+import { Container } from "react-awesome-styled-grid"
+import { $colorHeading } from "../styles/variables"
 
 interface LegalProps {}
 
@@ -32,15 +32,18 @@ const LegalHub = ({}: LegalProps) => {
             SaaS Agreement (Chattermill Teams)
           </StyledLink>
           <StyledLink to="/standard-contractual-clauses/">
-            Standard Contractual Clauses (Processors)
+            Standard Contractual Clauses UK (Processors)
+          </StyledLink>
+          <StyledLink to="/standard-contractual-clauses-eea/">
+            Standard Contractual Clauses EEA (Processors)
           </StyledLink>
         </StyledContainer>
       </StyledSection>
     </Layout>
-  );
-};
+  )
+}
 
-export default LegalHub;
+export default LegalHub
 
 export const StyledContainer = styled(Container)`
   display: flex;
@@ -59,7 +62,7 @@ export const StyledContainer = styled(Container)`
   ${media.lessThan("sm")`
     flex-direction: column;
   `}
-`;
+`
 
 export const StyledLink = styled(Link)`
   display: flex;
@@ -80,7 +83,7 @@ export const StyledLink = styled(Link)`
   ${media.lessThan("md")`
     width: 200px;
   `}
-`;
+`
 
 export const StyledSection = styled.section`
   display: flex;
@@ -98,7 +101,7 @@ export const StyledSection = styled.section`
     padding: 2rem 0 5rem;
     flex-direction: column;
   `}
-`;
+`
 
 export const LargeHeading = styled.h1`
   color: ${$colorHeading};
@@ -117,4 +120,4 @@ export const LargeHeading = styled.h1`
     padding: 20px;
     text-align: center;
   `}
-`;
+`
