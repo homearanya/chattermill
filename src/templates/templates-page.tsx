@@ -84,7 +84,7 @@ const CustomersPage = ({
 
 export default CustomersPage
 
-const query = graphql`
+export const query = graphql`
   query TemplatesPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

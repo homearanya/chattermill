@@ -138,7 +138,7 @@ const PartnersPage = ({
 
 export default PartnersPage
 
-const query = graphql`
+export const query = graphql`
   query PartnersPage($id: String!) {
     contentfulPartnersPage(id: { eq: $id }) {
       metaTitle

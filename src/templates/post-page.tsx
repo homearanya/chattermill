@@ -53,7 +53,7 @@ interface PageQueryData {
   contentfulPost: GatsbyTypes.ContentfulPost
 }
 
-const query = graphql`
+export const query = graphql`
   query($slug: String!) {
     site {
       siteMetadata {

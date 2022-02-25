@@ -1,39 +1,39 @@
-import React from "react"
-import { graphql } from "gatsby"
-import styled from "styled-components"
-import { Container } from "react-awesome-styled-grid"
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
+import { Container } from "react-awesome-styled-grid";
 
-import media from "../styles/media"
+import media from "../styles/media";
 import {
   staggeredAnimation,
   animation,
-  centerTextBlock,
-} from "../styles/mixins"
-import { fadeInTop } from "../styles/common.styled"
-import { $colorPrimary, $colorSecondary } from "../styles/variables"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import BrandsSection2 from "../components/brands-section-2"
-import CTA2, { CTA2Data } from "../components/cta2"
-import TextBlock from "../components/text-block"
-import TryTextAnalyticsForm from "../components/forms/try-text-analytics-form"
+  centerTextBlock
+} from "../styles/mixins";
+import { fadeInTop } from "../styles/common.styled";
+import { $colorPrimary, $colorSecondary } from "../styles/variables";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
+import BrandsSection2 from "../components/brands-section-2";
+import CTA2, { CTA2Data } from "../components/cta2";
+import TextBlock from "../components/text-block";
+import TryTextAnalyticsForm from "../components/forms/try-text-analytics-form";
 
-import { TextBlockData } from "../types"
+import { TextBlockData } from "../types";
 
-import "../styles/scss/styles.scss"
+import "../styles/scss/styles.scss";
 
 interface HomePageProps {
-  readonly data: PageQueryData
-  readonly location: Location
+  readonly data: PageQueryData;
+  readonly location: Location;
 }
 
 const HomePage = ({
   data: {
     markdownRemark: {
-      frontmatter: { title, description, CTASection, header },
-    },
+      frontmatter: { title, description, CTASection, header }
+    }
   },
-  location,
+  location
 }: HomePageProps) => {
   return (
     <Layout className="home-page">
@@ -57,25 +57,25 @@ const HomePage = ({
       <BrandsSection2 withObserver />
       <CTA2 data={CTASection} />
     </Layout>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
 
 interface PageQueryData {
   markdownRemark: {
     frontmatter: {
-      title: string
-      description: string
+      title: string;
+      description: string;
       header: {
-        textBlock: TextBlockData
-      }
-      CTASection: CTA2Data
-    }
-  }
+        textBlock: TextBlockData;
+      };
+      CTASection: CTA2Data;
+    };
+  };
 }
 
-const query = graphql`
+export const query = graphql`
   query TryAnalyticsPageQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {
@@ -95,8 +95,8 @@ const query = graphql`
       }
     }
   }
-`
-const StyledSection = styled.section``
+`;
+const StyledSection = styled.section``;
 
 const StyledContainer = styled(Container)`
   padding-top: 10rem;
@@ -104,10 +104,10 @@ const StyledContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`
+`;
 
 interface StyledTextBlockProps {
-  classNames: string[]
+  classNames: string[];
 }
 const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
   padding: 0rem 0 4rem;
@@ -149,7 +149,7 @@ const StyledTextBlock = styled(TextBlock)<StyledTextBlockProps>`
     margin-bottom: 0;
   }
   `}
-`
+`;
 const SignIn = styled.p`
   font-size: 1.4rem;
   margin-top: 3rem;
@@ -168,4 +168,4 @@ const SignIn = styled.p`
   a:active {
     color: ${$colorPrimary};
   }
-`
+`;

@@ -101,7 +101,7 @@ const ScalingCX = ({
 
 export default ScalingCX
 
-const query = graphql`
+export const query = graphql`
   query ScalingCx($id: String!) {
     scalingCxMobile: file(relativePath: { eq: "scaling-cx-mobile.png" }) {
       childImageSharp {

@@ -117,7 +117,7 @@ const PpcPage = ({ data }: PpcPageProps) => {
 
 export default PpcPage
 
-const query = graphql`
+export const query = graphql`
   query PpcPage($slug: String!) {
     contentfulPpc(slug: { eq: $slug }) {
       title

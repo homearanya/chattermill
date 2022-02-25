@@ -39,7 +39,7 @@ const TagPage = ({
 
 export default TagPage
 
-const query = graphql`
+export const query = graphql`
   query TagPage(
     $skip: Int!
     $limit: Int!

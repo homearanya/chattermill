@@ -143,19 +143,17 @@ module.exports = async (actions, graphql) => {
       const today = new Date()
       postDate.setMonth(18 + postDate.getMonth())
       const defer = postDate < today ? true : false
-      if (defer) {
-        createPage({
-          path: `${pathPrefix}${post.slug}/`,
-          component: path.resolve(`./src/templates/post-page.tsx`),
-          // additional data can be passed via context
-          context: {
-            slug: post.slug,
-            // prev,
-            // next,
-          },
-          // defer,
-        })
-      }
+      createPage({
+        path: `${pathPrefix}${post.slug}/`,
+        component: path.resolve(`./src/templates/post-page.tsx`),
+        // additional data can be passed via context
+        context: {
+          slug: post.slug,
+          // prev,
+          // next,
+        },
+        // defer,
+      })
     })
 
     // tags pages

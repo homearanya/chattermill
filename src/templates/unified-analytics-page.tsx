@@ -48,7 +48,7 @@ const UnifiedAnalyticsPage = ({
 
 export default UnifiedAnalyticsPage
 
-const query = graphql`
+export const query = graphql`
   query UnifiedAnalyticsPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

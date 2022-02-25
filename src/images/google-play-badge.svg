@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="53px" height="60px" viewBox="0 0 53 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>google-play-store</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="50.0198663%" x2="100.017577%" y2="50.0198663%" id="linearGradient-1">
+            <stop stop-color="#63BE6B" offset="0%"></stop>
+            <stop stop-color="#5BBC6A" offset="50.6%"></stop>
+            <stop stop-color="#4AB96A" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-0.0266963293%" y1="50.0120145%" x2="99.942158%" y2="50.0120145%" id="linearGradient-2">
+            <stop stop-color="#3EC6F2" offset="0%"></stop>
+            <stop stop-color="#45AFE3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0.0420683611%" y1="50.0367394%" x2="99.9894829%" y2="50.0367394%" id="linearGradient-3">
+            <stop stop-color="#FAA51A" offset="0%"></stop>
+            <stop stop-color="#FAB716" offset="38.7%"></stop>
+            <stop stop-color="#FAC412" offset="74.1%"></stop>
+            <stop stop-color="#FAC80F" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0.0162601626%" y1="49.9983515%" x2="99.9985218%" y2="49.9983515%" id="linearGradient-4">
+            <stop stop-color="#EC3B50" offset="0%"></stop>
+            <stop stop-color="#E7515B" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1453.000000, -851.000000)" fill-rule="nonzero">
+            <g id="google-play-store" transform="translate(1453.000000, 851.000000)">
+                <path d="M33.622698,18.2909483 L1.92717031,0.175547428 C1.52888844,-0.0557130089 1.02782416,-0.0428652069 0.642390103,0.18839523 C0.244108239,0.419655667 0,0.830785333 0,1.29330621 C0,1.29330621 0.0128478021,2.96352047 0.0256956041,5.71295011 L23.1131959,28.8004504 L33.622698,18.2909483 Z" id="Path" fill="url(#linearGradient-1)"></path>
+                <path d="M0.0256956041,5.71295011 C0.0642390103,15.6314533 0.179869229,39.7082344 0.231260437,51.6952337 L23.1260437,28.8004504 L0.0256956041,5.71295011 Z" id="Path" fill="url(#linearGradient-2)"></path>
+                <path d="M51.7637945,28.6591246 L33.622698,18.2909483 L23.1003481,28.8004504 L34.9717172,40.6718195 L51.7766423,30.8817943 C52.1749241,30.6505339 52.4190324,30.2265564 52.4190324,29.7768834 C52.4190324,29.3143625 52.1620763,28.890385 51.7637945,28.6591246 Z" id="Path" fill="url(#linearGradient-3)"></path>
+                <path d="M0.218412635,51.6952337 C0.244108239,55.9735518 0.256956041,58.7101336 0.256956041,58.7101336 C0.256956041,59.1726545 0.50106428,59.5966319 0.899346144,59.8150446 C1.29762801,60.046305 1.78584449,60.046305 2.18412635,59.8150446 L34.984565,40.6846673 L23.1131959,28.8132982 L0.218412635,51.6952337 Z" id="Path" fill="url(#linearGradient-4)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -11,9 +11,7 @@ const SentimentAnalysisTypes = props => {
   } = useStaticQuery(
     graphql`
       {
-        fineGrained: file(
-          relativePath: { eq: "sentiment-analysis-guide/illo-fine-grained.png" }
-        ) {
+        fineGrained: file(relativePath: { eq: "illo-fine-grained.png" }) {
           childImageSharp {
             gatsbyImageData(
               width: 150
@@ -24,9 +22,7 @@ const SentimentAnalysisTypes = props => {
           }
         }
         emotionDetection: file(
-          relativePath: {
-            eq: "sentiment-analysis-guide/illo-emotion-detection.png"
-          }
+          relativePath: { eq: "illo-emotion-detection.png" }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -37,9 +33,7 @@ const SentimentAnalysisTypes = props => {
             )
           }
         }
-        aspectBased: file(
-          relativePath: { eq: "sentiment-analysis-guide/illo-aspect-based.png" }
-        ) {
+        aspectBased: file(relativePath: { eq: "illo-aspect-based.png" }) {
           childImageSharp {
             gatsbyImageData(
               width: 150
@@ -49,11 +43,7 @@ const SentimentAnalysisTypes = props => {
             )
           }
         }
-        intentAnalysis: file(
-          relativePath: {
-            eq: "sentiment-analysis-guide/illo-intent-analysis.png"
-          }
-        ) {
+        intentAnalysis: file(relativePath: { eq: "illo-intent-analysis.png" }) {
           childImageSharp {
             gatsbyImageData(
               width: 150

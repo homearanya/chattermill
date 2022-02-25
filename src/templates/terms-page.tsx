@@ -53,7 +53,7 @@ interface PageQueryData {
   contentfulPages: GatsbyTypes.ContentfulPages
 }
 
-const query = graphql`
+export const query = graphql`
   query TermsPageQuery($id: String!, $contentfulID: Int!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {
