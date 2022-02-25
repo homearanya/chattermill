@@ -58,7 +58,7 @@ module.exports = {
     // `gatsby-plugin-remove-serviceworker`, // removes service worker installed by gatsby-plugin-offline
     //
     // Contentful Plugins
-    ...gatsbySourceContentful,
+    // ...gatsbySourceContentful,
     `gatsby-plugin-force-trailing-slashes`,
     ...gatsbyPluginTypegen,
     `gatsby-plugin-netlify`,
