@@ -12,7 +12,6 @@ declare module "*.ttf"
 declare module "*.woff"
 declare module "*.woff2"
 declare module "lodash"
-declare module "react-scroll-up"
 declare module "react-loader-spinner"
 
 type TextPosition = "left" | "right"

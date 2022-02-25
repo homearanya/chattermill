@@ -1,5 +1,3 @@
-[[plugins]]
-package = "@netlify/plugin-gatsby"
 [build.environment]
 AWS_LAMBDA_JS_RUNTIME = "nodejs14.x"
 CONTENTFUL_SPACE_ID = "67eijzr899es"
@@ -43,3 +41,4 @@ HUBSPOT_FORM_ZENDESK_PORTAL_ID = "613982"
 HUBSPOT_NEWSLETTER = "ffc14e83-1a76-4c37-81a9-166dff2bb232"
 NODE_OPTIONS = "--max-old-space-size=8192"
 WISTIA_PROJECT_ID = "6095447"
+YARN_VERSION = "1.22.17"

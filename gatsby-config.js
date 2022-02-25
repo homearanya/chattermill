@@ -28,8 +28,8 @@ module.exports = {
   },
   siteMetadata,
   plugins: [
-    `gatsby-plugin-perf-budgets`,
-    `gatsby-plugin-webpack-bundle-analyser-v2`,
+    // `gatsby-plugin-perf-budgets`,
+    // `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-image`,
     "greenhouse-source-plugin",
     ...gatsbyPluginPreconnect,
@@ -51,12 +51,6 @@ module.exports = {
     ...gatsbyTransformerRemark,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        pngCompressionSpeed: 6,
-      },
-    },
     ...gatsbyPluginManifest,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
