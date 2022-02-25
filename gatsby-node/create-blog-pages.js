@@ -45,7 +45,7 @@ module.exports = async (actions, graphql) => {
         
         allContentfulPost(
           sort: { fields: [createdAt], order: DESC }
-          limit: 10
+          limit: 0
           ) {
         totalCount
         edges {
