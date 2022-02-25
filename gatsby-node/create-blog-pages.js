@@ -45,7 +45,7 @@ module.exports = async (actions, graphql) => {
         
         allContentfulPost(
           sort: { fields: [createdAt], order: DESC }
-          limit: 0
+          limit: 1000
           ) {
         totalCount
         edges {
@@ -143,17 +143,19 @@ module.exports = async (actions, graphql) => {
       const today = new Date()
       postDate.setMonth(18 + postDate.getMonth())
       const defer = postDate < today ? true : false
-      createPage({
-        path: `${pathPrefix}${post.slug}/`,
-        component: path.resolve(`./src/templates/post-page.tsx`),
-        // additional data can be passed via context
-        context: {
-          slug: post.slug,
-          // prev,
-          // next,
-        },
-        // defer,
-      })
+      if (defer) {
+        createPage({
+          path: `${pathPrefix}${post.slug}/`,
+          component: path.resolve(`./src/templates/post-page.tsx`),
+          // additional data can be passed via context
+          context: {
+            slug: post.slug,
+            // prev,
+            // next,
+          },
+          // defer,
+        })
+      }
     })
 
     // tags pages
