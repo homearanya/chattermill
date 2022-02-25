@@ -4,28 +4,28 @@ module.exports = [
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `images`,
-      path: `${__dirname}/src/images/`,
+      path: path.join(__dirname, `../src/images/`),
     },
   },
   {
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `menu`,
-      path: `${__dirname}/src/components/navigation/`,
+      path: path.join(__dirname, `../src/components/navigation/`),
     },
   },
   {
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `footer`,
-      path: `${__dirname}/src/components/footer/`,
+      path: path.join(__dirname, `../src/components/footer/`),
     },
   },
   {
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `pages`,
-      path: `${__dirname}/src/pages/`,
+      path: path.join(__dirname, `../src/pages/`),
     },
   },
 ]
