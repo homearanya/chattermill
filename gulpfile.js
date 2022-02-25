@@ -1,10 +1,6 @@
-const gulp = require("gulp")
-const gulp = require("gulp")
+var gulp = require("gulp")
+var obsoleteImages = require("gulp-obsolete-images")
 
-gulp.task("images:filter", function() {
-  return gulp
-    .src(["src/images/**/*", ".src/styles/**/*.css", "src/*.html"])
-    .pipe(plumber())
-    .pipe(unusedImages())
-    .pipe(plumber.stop())
+gulp.task("clean:unused:show", function() {
+  return gulp.src(["src/images/**/*"]).pipe(obsoleteImages({ delete: true }))
 })
