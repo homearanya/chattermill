@@ -6,17 +6,6 @@ whitepaperTable:
   textBlock:
     subHeading: Whitepapers
   benefits:
-    - image: ../images/great-ecxpectations-thumbnail.jpg
-      alt: "Great eCXpectations: How to Deliver the CX Your Customers Really Want"
-      smallHeading: '<span class="underline">Great eCXpectations: How to Deliver the CX Your Customers Really Want</span>'
-      text:
-        - Discover how customer expectations are changing, how to find out what your customers really want, and how to deliver experiences that meet their expectations in this insight-packed eBook.
-
-      moreDetails:
-        button:
-          text: Read Now
-          link: /how-to-deliver-the-cx-your-customers-want/
-          arrow: false
     - image: ../images/redefining-cx-in-fintech-2022.jpg
       alt: Redefining CX in Fintech in 2022
       smallHeading: <span class="underline">Redefining CX in FinTech</span>

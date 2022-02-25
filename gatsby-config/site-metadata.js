@@ -65,7 +65,6 @@ module.exports = {
     templates_formId: process.env.HUBSPOT_FORM_TEMPLATES,
     newsletter_formId: process.env.HUBSPOT_NEWSLETTER,
     cxExcellence_formId: process.env.HUBSPOT_FORM_WHITEPAPER_EXCELLENCE,
-    eCXpectations_formId: process.env.HUBSPOT_FORM_WHITEPAPER_ECXPECTATIONS,
     cxFashion_formId: process.env.HUBSPOT_FORM_WHITEPAPER_CX_FASHION,
     cxFashion_retail_formId:
       process.env.HUBSPOT_FORM_WHITEPAPER_CX_FASHION_RETAIL,

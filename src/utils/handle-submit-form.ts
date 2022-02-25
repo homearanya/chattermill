@@ -180,9 +180,10 @@ const handleFormSubmit = ({
       company: Yup.string()
         .max(50, "Must be 50 characters or less")
         .required("Required"),
-      [optionalField ? optionalField.name : undefined]: Yup.string()
-        .max(50, "Must be 50 characters or less")
-        .required("Required"),
+      [optionalField ? optionalField.name : undefined]: Yup.string().max(
+        50,
+        "Must be 50 characters or less"
+      ),
       email: Yup.string()
         .required("Required")
         .email("Invalid email address")

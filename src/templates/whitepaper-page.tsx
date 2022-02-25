@@ -107,7 +107,6 @@ export const query = graphql`
           cxFashion_formId
           cxFashion_retail_formId
           cxFintech_formId
-          eCXpectations_formId
         }
       }
     }
@@ -122,8 +121,6 @@ const StyledHeader = styled.h1`
   font-size: 5rem;
   font-weight: 500;
   text-align: center;
-  max-width: 100rem;
-  margin: 0 auto;
 
   ${media.lessThan("sm")`
     font-size: 3rem;
