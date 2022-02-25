@@ -28,8 +28,8 @@ module.exports = {
   },
   siteMetadata,
   plugins: [
-    `gatsby-plugin-perf-budgets`,
-    `gatsby-plugin-webpack-bundle-analyser-v2`,
+    // `gatsby-plugin-perf-budgets`,
+    // `gatsby-plugin-webpack-bundle-analyser-v2`,
     `gatsby-plugin-image`,
     "greenhouse-source-plugin",
     ...gatsbyPluginPreconnect,
