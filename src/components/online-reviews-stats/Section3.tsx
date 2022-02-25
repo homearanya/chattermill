@@ -9,9 +9,7 @@ const Section3 = () => {
     graphql`
       {
         section3Header: file(
-          relativePath: {
-            eq: "online-reviews-stats/illustration-header-section-03.png"
-          }
+          relativePath: { eq: "illustration-header-section-03.png" }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -22,9 +20,7 @@ const Section3 = () => {
             )
           }
         }
-        statImg3: file(
-          relativePath: { eq: "online-reviews-stats/illustration-stat-03.png" }
-        ) {
+        statImg3: file(relativePath: { eq: "illustration-stat-03.png" }) {
           childImageSharp {
             gatsbyImageData(
               width: 300
@@ -34,9 +30,7 @@ const Section3 = () => {
             )
           }
         }
-        statImg4: file(
-          relativePath: { eq: "online-reviews-stats/illustration-stat-04.png" }
-        ) {
+        statImg4: file(relativePath: { eq: "illustration-stat-04.png" }) {
           childImageSharp {
             gatsbyImageData(
               width: 300

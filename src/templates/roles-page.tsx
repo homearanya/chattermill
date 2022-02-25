@@ -183,7 +183,7 @@ const RolesPage = ({
 
 export default RolesPage
 
-const query = graphql`
+export const query = graphql`
   query RolesPage($slug: String!) {
     contentfulRoles(slug: { eq: $slug }) {
       title

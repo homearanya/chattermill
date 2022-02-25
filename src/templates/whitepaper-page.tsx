@@ -64,7 +64,7 @@ const WhitepaperPage = ({
 
 export default WhitepaperPage
 
-const query = graphql`
+export const query = graphql`
   query WhitePaper($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

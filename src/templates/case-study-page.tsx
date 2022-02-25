@@ -131,7 +131,7 @@ const CaseStudyPage = ({ data }: CaseStudyPageProps) => {
 
 export default CaseStudyPage
 
-const query = graphql`
+export const query = graphql`
   query CaseStudyPage($id: String!) {
     contentfulCaseStudy(id: { eq: $id }) {
       metaTitle

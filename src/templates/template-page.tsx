@@ -60,7 +60,7 @@ interface PageQueryData {
   contentfulTemplate: TemplateViewData
 }
 
-const query = graphql`
+export const query = graphql`
   query($slug: String!) {
     site {
       siteMetadata {

@@ -91,7 +91,7 @@ interface PageQueryData {
   }
 }
 
-const query = graphql`
+export const query = graphql`
   query CmLitePage1Query($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

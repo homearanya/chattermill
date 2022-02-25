@@ -94,7 +94,7 @@ interface PageQueryData {
   frontPosts: GatsbyTypes.ContentfulPostConnection
 }
 
-const query = graphql`
+export const query = graphql`
   fragment ContentfulPostFragment on ContentfulPost {
     id
     title {

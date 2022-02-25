@@ -139,7 +139,7 @@ interface PageQueryData {
   }
 }
 
-const query = graphql`
+export const query = graphql`
   query ZendeskPageQuery {
     site {
       siteMetadata {

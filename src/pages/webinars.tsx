@@ -75,7 +75,7 @@ interface PageQueryData {
   }
 }
 
-const query = graphql`
+export const query = graphql`
   query WebinarsPage {
     allWistiaVideos(sort: { fields: [updated], order: DESC }) {
       edges {

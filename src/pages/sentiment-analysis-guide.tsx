@@ -15,11 +15,7 @@ function SentimentAnalysisGuidePage() {
   const { headerImg, aiSentimentAnalysis, toolResults } = useStaticQuery(
     graphql`
       {
-        headerImg: file(
-          relativePath: {
-            eq: "sentiment-analysis-guide/sentiment-analysis-hero.png"
-          }
-        ) {
+        headerImg: file(relativePath: { eq: "sentiment-analysis-hero.png" }) {
           childImageSharp {
             gatsbyImageData(
               width: 800
@@ -30,9 +26,7 @@ function SentimentAnalysisGuidePage() {
           }
         }
         aiSentimentAnalysis: file(
-          relativePath: {
-            eq: "sentiment-analysis-guide/ai-sentiment-analysis.png"
-          }
+          relativePath: { eq: "ai-sentiment-analysis.png" }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -44,9 +38,7 @@ function SentimentAnalysisGuidePage() {
           }
         }
         toolResults: file(
-          relativePath: {
-            eq: "sentiment-analysis-guide/sentiment-analyzer-tool-results.png"
-          }
+          relativePath: { eq: "sentiment-analyzer-tool-results.png" }
         ) {
           childImageSharp {
             gatsbyImageData(

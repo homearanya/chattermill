@@ -98,7 +98,7 @@ const ContactFormWrapper = styled.div`
 
 export default CustomerSupportTrends
 
-const query = graphql`
+export const page = graphql`
   query CustomerSupportTrends($id: String!) {
     site {
       siteMetadata {

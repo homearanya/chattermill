@@ -58,7 +58,7 @@ const Wrapper = styled.div`
   }
 `
 
-const query = graphql`
+export const DataSheetsPageQuery = graphql`
   query DataSheetsPage($id: String!) {
     Datasheets: markdownRemark(id: { eq: $id }) {
       id
