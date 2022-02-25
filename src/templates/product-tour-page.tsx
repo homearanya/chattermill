@@ -65,7 +65,7 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+const query = graphql`
   query ProductDemoPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

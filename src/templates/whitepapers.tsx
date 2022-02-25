@@ -58,7 +58,7 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+const query = graphql`
   query WhitepapersQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

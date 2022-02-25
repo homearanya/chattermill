@@ -152,7 +152,7 @@ const PartnerPage = ({
 
 export default PartnerPage
 
-export const query = graphql`
+const query = graphql`
   query PartnerPage($id: String!) {
     contentfulPartner(id: { eq: $id }) {
       title

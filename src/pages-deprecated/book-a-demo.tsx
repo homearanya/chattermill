@@ -111,7 +111,7 @@ interface PageQueryData {
 }
 
 // temporarily disabled
-// export const query = graphql`
+// const query = graphql`
 const query = graphql`
   query BookDemoPageQuery {
     site {

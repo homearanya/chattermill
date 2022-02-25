@@ -82,7 +82,7 @@ const CustomersPage = ({ data, pageContext }: CustomersPageProps) => {
 
 export default CustomersPage
 
-export const query = graphql`
+const query = graphql`
   query CustomersPage($id: String!) {
     contentfulCustomersPage(id: { eq: $id }) {
       metaTitle

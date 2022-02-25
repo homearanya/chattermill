@@ -92,7 +92,7 @@ const ProductPage = ({
 
 export default ProductPage
 
-export const query = graphql`
+const query = graphql`
   query($slug: String!) {
     contentfulProductPage(slug: { eq: $slug }) {
       seoImage {

@@ -78,7 +78,7 @@ const Careers = ({
   </>
 )
 
-export const query = graphql`
+const query = graphql`
   query CareersPageQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

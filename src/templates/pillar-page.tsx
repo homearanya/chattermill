@@ -46,7 +46,7 @@ const PillarPage = ({
 
 export default PillarPage
 
-export const query = graphql`
+const query = graphql`
   query PillarPage($slug: String!) {
     contentfulPillar(slug: { eq: $slug }) {
       id

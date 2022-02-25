@@ -39,7 +39,7 @@ const BlogPaginationPage = ({
 
 export default BlogPaginationPage
 
-export const query = graphql`
+const query = graphql`
   query BlogPagination($skip: Int!, $limit: Int!, $mainPostsIds: [String!]!) {
     site {
       siteMetadata {

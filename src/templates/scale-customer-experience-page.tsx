@@ -72,7 +72,7 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+const query = graphql`
   query ScaleCustomerExperienceQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

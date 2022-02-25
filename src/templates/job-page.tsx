@@ -82,7 +82,7 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+const query = graphql`
   query($job_id: Float!) {
     greenhouseJob(internal_job_id: { eq: $job_id }) {
       title

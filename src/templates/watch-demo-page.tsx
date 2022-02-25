@@ -192,7 +192,7 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+const query = graphql`
   query WatchDemoPageQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html

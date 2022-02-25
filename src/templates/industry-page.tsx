@@ -182,7 +182,7 @@ const IndustryPagePage = ({
 
 export default IndustryPagePage
 
-export const query = graphql`
+const query = graphql`
   query IndustryPage($slug: String!) {
     contentfulIndustry(slug: { eq: $slug }) {
       title

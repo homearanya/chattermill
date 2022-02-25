@@ -67,7 +67,7 @@ interface PageQueryData {
   }
 }
 
-export const DownloadPageQuery = graphql`
+const query = graphql`
   query TEIDownloadPageQuery($id: String!) {
     downloadTEI: markdownRemark(id: { eq: $id }) {
       frontmatter {

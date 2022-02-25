@@ -89,7 +89,7 @@ const Container = styled.div`
   `};
 `
 
-export const bookDemo = graphql`
+const query = graphql`
   query bookDemoQuery($id: String!) {
     bookDemo: markdownRemark(id: { eq: $id }) {
       frontmatter {

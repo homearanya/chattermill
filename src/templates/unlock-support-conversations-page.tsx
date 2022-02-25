@@ -79,7 +79,7 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+const query = graphql`
   query UnlockPageQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

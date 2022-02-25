@@ -183,7 +183,7 @@ const InvestorPage = ({
 
 export default InvestorPage
 
-export const query = graphql`
+const query = graphql`
   query InvestorPage($slug: String!) {
     contentfulInvestor(slug: { eq: $slug }) {
       title

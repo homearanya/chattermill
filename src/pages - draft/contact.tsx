@@ -78,7 +78,7 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+const query = graphql`
   query ContactPageQuery {
     site {
       siteMetadata {

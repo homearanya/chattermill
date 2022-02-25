@@ -56,7 +56,7 @@ const Wrapper = styled.div`
 
 export default TEIPage
 
-export const page = graphql`
+const query = graphql`
   query TEIPage($id: String!) {
     TEI: markdownRemark(id: { eq: $id }) {
       frontmatter {

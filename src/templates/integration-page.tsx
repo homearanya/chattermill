@@ -49,7 +49,7 @@ const IntegrationPage = ({
 
 export default IntegrationPage
 
-export const query = graphql`
+const query = graphql`
   query IntegrationPage($id: String!) {
     contentfulIntegration(id: { eq: $id }) {
       id

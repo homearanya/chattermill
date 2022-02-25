@@ -17,32 +17,32 @@ const { customGraphqlSchema } = require("./gatsby-node/custom-graphql-schema")
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
-  // create site pages (from md files on pages folder)
-  await createSitePages(actions, graphql)
-  // create blog-related pages
-  await createBlogPages(actions, graphql)
-  // create job-related's pages
-  await createJobPages(actions, graphql)
-  // create template-related pages
-  await createTemplatePages(actions, graphql)
-  // create industries-related pages
-  await createIndustryPages(actions, graphql)
-  // create roles-related pages
-  await createRolePages(actions, graphql)
-  // create partners-related pages
-  await createPartnerPages(actions, graphql)
-  // create integrations-related pages
-  await createIntegrationPages(actions, graphql)
-  // create investor pages
-  await createInvestorPages(actions, graphql)
-  // create customer pages
-  await createCustomerPages(actions, graphql)
-  // create ppc pages
-  await createPpcPages(actions, graphql)
-  // create pillar pages
-  await createPillarPages(actions, graphql)
-  // create product pages
-  await createProductPages(actions, graphql)
+  // // create site pages (from md files on pages folder)
+  // await createSitePages(actions, graphql)
+  // // create blog-related pages
+  // await createBlogPages(actions, graphql)
+  // // create job-related's pages
+  // await createJobPages(actions, graphql)
+  // // create template-related pages
+  // await createTemplatePages(actions, graphql)
+  // // create industries-related pages
+  // await createIndustryPages(actions, graphql)
+  // // create roles-related pages
+  // await createRolePages(actions, graphql)
+  // // create partners-related pages
+  // await createPartnerPages(actions, graphql)
+  // // create integrations-related pages
+  // await createIntegrationPages(actions, graphql)
+  // // create investor pages
+  // await createInvestorPages(actions, graphql)
+  // // create customer pages
+  // await createCustomerPages(actions, graphql)
+  // // create ppc pages
+  // await createPpcPages(actions, graphql)
+  // // create pillar pages
+  // await createPillarPages(actions, graphql)
+  // // create product pages
+  // await createProductPages(actions, graphql)
 }
 
 exports.onCreateNode = onCreateNode

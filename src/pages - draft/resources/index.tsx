@@ -252,7 +252,7 @@ const ResourcesPage = ({
 
 export default ResourcesPage
 
-export const query = graphql`
+const query = graphql`
   query ResourcesPage {
     allWistiaVideos(sort: { fields: [updated], order: DESC }, limit: 8) {
       edges {
