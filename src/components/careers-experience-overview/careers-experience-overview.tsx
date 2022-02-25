@@ -19,7 +19,9 @@ const ExperienceOverview = () => {
     tshirtsImage,
   } = useStaticQuery<GatsbyTypes.ExperienceOverviewQuery>(graphql`
     query ExperienceOverview {
-      anishaImage: file(relativePath: { eq: "careers-anisha.jpg" }) {
+      anishaImage: file(
+        relativePath: { eq: "careers-experience-overview/careers-anisha.jpg" }
+      ) {
         childImageSharp {
           gatsbyImageData(
             width: 212
@@ -30,7 +32,9 @@ const ExperienceOverview = () => {
         }
         publicURL
       }
-      balconyImage: file(relativePath: { eq: "careers-balcony.jpg" }) {
+      balconyImage: file(
+        relativePath: { eq: "careers-experience-overview/careers-balcony.jpg" }
+      ) {
         childImageSharp {
           gatsbyImageData(
             width: 373
@@ -41,7 +45,11 @@ const ExperienceOverview = () => {
         }
         publicURL
       }
-      browniesImage: file(relativePath: { eq: "careers-cm-brownies.jpg" }) {
+      browniesImage: file(
+        relativePath: {
+          eq: "careers-experience-overview/careers-cm-brownies.jpg"
+        }
+      ) {
         childImageSharp {
           gatsbyImageData(
             width: 318
@@ -53,7 +61,9 @@ const ExperienceOverview = () => {
         publicURL
       }
       christmasPartyImage: file(
-        relativePath: { eq: "careers-company-christmas-party.jpg" }
+        relativePath: {
+          eq: "careers-experience-overview/careers-company-christmas-party.jpg"
+        }
       ) {
         childImageSharp {
           gatsbyImageData(
@@ -65,7 +75,11 @@ const ExperienceOverview = () => {
         }
         publicURL
       }
-      tshirtsImage: file(relativePath: { eq: "chattermill-t-shirts.jpg" }) {
+      tshirtsImage: file(
+        relativePath: {
+          eq: "careers-experience-overview/chattermill-t-shirts.jpg"
+        }
+      ) {
         childImageSharp {
           gatsbyImageData(
             width: 420

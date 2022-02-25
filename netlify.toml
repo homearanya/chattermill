@@ -1,6 +1,10 @@
+[[plugins]]
+package = "@netlify/plugin-gatsby"
 [build.environment]
 AWS_LAMBDA_JS_RUNTIME = "nodejs14.x"
 CONTENTFUL_SPACE_ID = "67eijzr899es"
+GATSBY_ALGOLIA_APP_ID = "CFNGBT1XMK"
+GATSBY_ALGOLIA_SEARCH_KEY = "a311c21d82434d93fef95d8e5d501777"
 GATSBY_CPU_COUNT = "2"
 GATSBY_SEGMENT_WRITE_KEY = "nwg8aoykkq"
 GOOGLE_ANALYTICS_ID = "UA-157272475-1"

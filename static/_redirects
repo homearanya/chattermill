@@ -200,3 +200,5 @@ https://start.chattermill.com/ https://app.chattermill.com/signup 301!
 
 /company/customers/ /customers/
 /platform/ /product/feedback/
+
+/pricing/ /book-demo/ 302!

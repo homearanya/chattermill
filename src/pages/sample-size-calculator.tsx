@@ -18,7 +18,9 @@ function SampleSizeCalculatorPage() {
     graphql`
       query SampleSizeCalculatorPage {
         headerImg: file(
-          relativePath: { eq: "sample-size-calculator-hero.png" }
+          relativePath: {
+            eq: "sample-size-calculator/sample-size-calculator-hero.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -29,7 +31,9 @@ function SampleSizeCalculatorPage() {
             )
           }
         }
-        howItWorks: file(relativePath: { eq: "how-it-works.png" }) {
+        howItWorks: file(
+          relativePath: { eq: "sample-size-calculator/how-it-works.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 800
@@ -41,7 +45,9 @@ function SampleSizeCalculatorPage() {
           }
         }
         nPsSentimentAnalysisIg: file(
-          relativePath: { eq: "nps-and-sentiment-analysis-ig.png" }
+          relativePath: {
+            eq: "sample-size-calculator/nps-and-sentiment-analysis-ig.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -54,7 +60,9 @@ function SampleSizeCalculatorPage() {
           }
         }
         surveyAccuracyFactors: file(
-          relativePath: { eq: "survey-accuracy-factors.png" }
+          relativePath: {
+            eq: "sample-size-calculator/survey-accuracy-factors.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(

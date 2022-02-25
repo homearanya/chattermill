@@ -13,7 +13,9 @@ function CxStatsPage() {
   const { wheel, face, graph, share, infographic } = useStaticQuery(
     graphql`
       {
-        wheel: file(relativePath: { eq: "illustration-outline-01.png" }) {
+        wheel: file(
+          relativePath: { eq: "cx-stats/illustration-outline-01.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 100
@@ -23,7 +25,9 @@ function CxStatsPage() {
             )
           }
         }
-        face: file(relativePath: { eq: "illustration-outline-02.png" }) {
+        face: file(
+          relativePath: { eq: "cx-stats/illustration-outline-02.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 100
@@ -33,7 +37,9 @@ function CxStatsPage() {
             )
           }
         }
-        graph: file(relativePath: { eq: "illustration-outline-03.png" }) {
+        graph: file(
+          relativePath: { eq: "cx-stats/illustration-outline-03.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 100
@@ -43,7 +49,9 @@ function CxStatsPage() {
             )
           }
         }
-        share: file(relativePath: { eq: "illustration-outline-04.png" }) {
+        share: file(
+          relativePath: { eq: "cx-stats/illustration-outline-04.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 100
@@ -55,7 +63,7 @@ function CxStatsPage() {
         }
         infographic: file(
           relativePath: {
-            eq: "customer-service-stats-and-takeaways-for-2021-infographic.png"
+            eq: "cx-stats/customer-service-stats-and-takeaways-for-2021-infographic.png"
           }
         ) {
           childImageSharp {

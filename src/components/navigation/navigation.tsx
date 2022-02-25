@@ -114,8 +114,8 @@ const Navigation = ({ blog = false }: NavigationProps) => {
     <>
       {!open && (
         <Banner
-          href="https://app.livestorm.co/chattermillai/live-chattermill-demo-unified-customer-intelligence?type=detailed"
-          text="Sign up for our Live Chattermill Demo: Unified Customer Intelligence"
+          href="/customer-support-trends/"
+          text="Get your free copy of Chattermill’s Customer Support Trends 2022 Report"
         />
       )}
       <StyledNavigation ref={ref} blog={blog}>

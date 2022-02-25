@@ -21,7 +21,9 @@ function CxStatsPage() {
     graphql`
       {
         headerImg: file(
-          relativePath: { eq: "online-review-statistics-hero.png" }
+          relativePath: {
+            eq: "online-reviews-stats/online-review-statistics-hero.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -33,7 +35,9 @@ function CxStatsPage() {
             )
           }
         }
-        star: file(relativePath: { eq: "outline-01.png" }) {
+        star: file(
+          relativePath: { eq: "online-reviews-stats/outline-01.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 393
@@ -43,7 +47,9 @@ function CxStatsPage() {
             )
           }
         }
-        thumbs: file(relativePath: { eq: "outline-02.png" }) {
+        thumbs: file(
+          relativePath: { eq: "online-reviews-stats/outline-02.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 393
@@ -53,7 +59,9 @@ function CxStatsPage() {
             )
           }
         }
-        frown: file(relativePath: { eq: "outline-03.png" }) {
+        frown: file(
+          relativePath: { eq: "online-reviews-stats/outline-03.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 393
@@ -63,7 +71,9 @@ function CxStatsPage() {
             )
           }
         }
-        smile: file(relativePath: { eq: "outline-04.png" }) {
+        smile: file(
+          relativePath: { eq: "online-reviews-stats/outline-04.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 393
@@ -73,7 +83,9 @@ function CxStatsPage() {
             )
           }
         }
-        graph: file(relativePath: { eq: "outline-05.png" }) {
+        graph: file(
+          relativePath: { eq: "online-reviews-stats/outline-05.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 393
@@ -83,7 +95,9 @@ function CxStatsPage() {
             )
           }
         }
-        wheel: file(relativePath: { eq: "outline-06.png" }) {
+        wheel: file(
+          relativePath: { eq: "online-reviews-stats/outline-06.png" }
+        ) {
           childImageSharp {
             gatsbyImageData(
               width: 393
@@ -94,7 +108,9 @@ function CxStatsPage() {
           }
         }
         infographic: file(
-          relativePath: { eq: "online-review-statistics-ig.png" }
+          relativePath: {
+            eq: "online-reviews-stats/online-review-statistics-ig.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(

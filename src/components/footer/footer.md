@@ -77,8 +77,8 @@ menus:
         href: "/legal/"
   - heading: Company
     menuItems:
-      - name: Pricing
-        href: "/pricing/"
+      # - name: Pricing
+      #   href: "/pricing/"
       - name: Customers
         href: "/customers/"
       - name: Partners

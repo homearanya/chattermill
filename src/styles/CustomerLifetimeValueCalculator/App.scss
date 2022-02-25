@@ -246,7 +246,7 @@
         color: var(--grey);
         position: absolute;
         top: 50%;
-        left: calc($m / 4);
+        left: $m/4;
         transform: translate(0, -50%);
       }
     }

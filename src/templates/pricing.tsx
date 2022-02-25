@@ -77,7 +77,9 @@ interface PageQueryData {
   }
 }
 
-export const query = graphql`
+// temporarily disabled
+// export const query = graphql`
+const query = graphql`
   query PricingPageQuery($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {

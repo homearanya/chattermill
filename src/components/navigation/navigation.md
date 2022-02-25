@@ -26,8 +26,8 @@ menuItems:
         href: "/solution/unlock-support-conversations"
   - name: Integrations
     href: "/integrations/trustpilot/"
-  - name: Pricing
-    href: "/pricing/"
+  # - name: Pricing
+  #   href: "/pricing/"
   - name: Resources
     href: "/resources/"
     subMenuItems:

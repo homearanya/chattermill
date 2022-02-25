@@ -26,7 +26,9 @@ function CustomerLifetimeValueCalculator() {
     graphql`
       query CustomerLifetimeValueCalculator {
         clvCompanysAverageFormula: file(
-          relativePath: { eq: "companys-average-CLV-formula.png" }
+          relativePath: {
+            eq: "customer-lifetime-value-calculator/companys-average-CLV-formula.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -40,7 +42,7 @@ function CustomerLifetimeValueCalculator() {
         }
         clvCalculatorIllustrations: file(
           relativePath: {
-            eq: "customer-lifetime-value-calculator-illustrations.png"
+            eq: "customer-lifetime-value-calculator/customer-lifetime-value-calculator-illustrations.png"
           }
         ) {
           childImageSharp {
@@ -54,7 +56,9 @@ function CustomerLifetimeValueCalculator() {
           }
         }
         clvTermDefinitions: file(
-          relativePath: { eq: "customer-lifetime-value-term-definitions.png" }
+          relativePath: {
+            eq: "customer-lifetime-value-calculator/customer-lifetime-value-term-definitions.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(
@@ -67,7 +71,9 @@ function CustomerLifetimeValueCalculator() {
           }
         }
         clvWhyMattersBusinesses: file(
-          relativePath: { eq: "Why-CLV-Matters-to-Businesses.png" }
+          relativePath: {
+            eq: "customer-lifetime-value-calculator/Why-CLV-Matters-to-Businesses.png"
+          }
         ) {
           childImageSharp {
             gatsbyImageData(
