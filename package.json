@@ -46,7 +46,7 @@
 		"gatsby-remark-images-contentful": "^4.10.0",
 		"gatsby-source-contentful": "^5.14.1",
 		"gatsby-source-filesystem": "^3.14.0",
-		"gatsby-transformer-remark": "^4.11.0",
+		"gatsby-transformer-remark": "^5.25.1",
 		"gatsby-transformer-sharp": "^3.14.0",
 		"lodash": "^4.17.20",
 		"polished": "^3.6.7",
